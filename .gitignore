@@ -1,0 +1,30 @@
+# R
+*.rds
+*.rda
+*.RData
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+# Output
+*.pdf
+*.png
+# Data
+*.xlsx
+*.xls
+*.feather
+# Vector data
+*.cpg
+*.dbf
+*.prj
+*.qpj
+*.sbn
+*.sbx
+*.shp*
+*.shx
+*.gpkg*
+# Raster data
+*.tif
+*.nc
+# Misc
+*.zip
