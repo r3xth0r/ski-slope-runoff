@@ -1,3 +1,7 @@
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
+# Boxplots of runoff coefficients (Fig. 04)
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
+
 library("tidyverse")
 library("patchwork")
 
@@ -23,9 +27,6 @@ all_dat <- read.csv("dat/raw/all_data.csv",
     "Wartschenbach" = "Z"
   ), ski_slope = recode_factor(ski_slope, "yes" = "A", "no" = "B"))
 
-####################################
-# Boxplots for for ski and none-ski slopes
-####################################
 dat_ski <- subset(all_dat, ski_slope == "A") |>
   select(-ski_slope)
 dat_noski <- subset(all_dat, ski_slope == "B") |>

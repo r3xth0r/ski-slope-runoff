@@ -1,3 +1,7 @@
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
+# Individual boxplots for for ski and reference slopes of each ski region (Fig. 05)
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
+
 library("tidyverse")
 library("patchwork")
 
@@ -23,12 +27,8 @@ all_dat <- read.csv("dat/raw/all_data.csv",
     "Wartschenbach" = "Z"
   ), ski_slope = recode_factor(ski_slope, "yes" = "A", "no" = "B"))
 
-####################################
-# Individual boxplots for for ski and none-ski slopes of each ski region
-####################################
 allplots <- all_dat |>
   select("toponym", "ski_slope", "psi_intervall")
-
 
 p1 <- ggplot(allplots, aes(x = toponym, y = psi_intervall, color = as.factor(ski_slope), fill = as.factor(ski_slope))) +
   geom_boxplot(alpha = 0.4, outlier.shape = NA, width = 0.8) +
