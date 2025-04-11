@@ -37,18 +37,6 @@ p <- ggplot(all_dat, aes(x = toponym, y = psi_intervall, color = as.factor(ski_s
   ) +
   scale_y_continuous(breaks = scales::breaks_extended(n = 7)) +
   labs(x = "Ski regions", y = expression(Psi[italic(constant)])) +
-  scale_color_manual(values = c("#33ccff", "#A27146"), labels = c("ski slope", "reference"), name = "") +
-  scale_fill_manual(values = c("#33ccff", "#A27146"), labels = c("ski slope", "reference"), name = "") +
-  geom_vline(aes(xintercept = 1.5), linetype = "dashed", colour = "black", size = 0.7) +
-  geom_vline(aes(xintercept = 2.5), linetype = "dashed", colour = "black", size = 0.7) +
-  geom_vline(aes(xintercept = 3.5), linetype = "dashed", colour = "black", size = 0.7) +
-  geom_vline(aes(xintercept = 4.5), linetype = "dashed", colour = "black", size = 0.7) +
-  geom_vline(aes(xintercept = 5.5), linetype = "dashed", colour = "black", size = 0.7) +
-  geom_vline(aes(xintercept = 6.5), linetype = "dashed", colour = "black", size = 0.7) +
-  geom_vline(aes(xintercept = 7.5), linetype = "dashed", colour = "black", size = 0.7) +
-  geom_vline(aes(xintercept = 8.5), linetype = "dashed", colour = "black", size = 0.7) +
-  geom_vline(aes(xintercept = 9.5), linetype = "dashed", colour = "black", size = 0.7) +
-  geom_vline(aes(xintercept = 10.5), linetype = "dashed", colour = "black", size = 0.7) +
-  geom_vline(aes(xintercept = 11.5), linetype = "dashed", colour = "black", size = 0.7)
+  geom_vline(xintercept = seq(1.5, 11.5, 1), linetype = "dashed", colour = "black", size = 0.7)
 
 ggsave("plt/fig5.png", plot = p1, device = png, height = 10, width = 19, dpi = 300, units = "cm")
