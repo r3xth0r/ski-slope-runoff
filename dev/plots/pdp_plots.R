@@ -97,7 +97,6 @@ p4 <- ggplot(vc_ski_data, aes(x = vegetation_class, y = .value, fill = vegetatio
   labs(x = "vegetation class") +
   theme_ski()
 
-# patchwork1 <- (p2 + p1) / (p4 + p3) / (p6 + p5) +
 patchwork1 <- (p2 + p1) / (p4 + p3) +
   plot_annotation("Landuse feature variables",
     theme = theme(plot.title = element_text(hjust = 0.5, size = 16, face = "bold"))
