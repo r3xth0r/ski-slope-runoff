@@ -10,7 +10,7 @@ library("patchwork")
 
 # Get data for ski slopes and reference slopes
 dat_ski <- readRDS("dat/processed/dat_sd_delta_ski.rds")
-dat_nonski <- readRDS("dat/processed/dat_sd_delta_noski.rds")
+dat_reference <- readRDS("dat/processed/dat_sd_delta_noski.rds")
 
 # Load trained learners
 learner_ski <- readRDS("dat/interim/random_forest/ranger_trained_ski.rds")
