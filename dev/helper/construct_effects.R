@@ -13,5 +13,5 @@ construct_effects <- function(learner_nonski, learner_ski, feature) {
     feature = feature,
     method = "pdp+ice"
   )
-  list(nonski = effect_nonski, ski = effect_ski)
+  list(nonski = effect_nonski$results, ski = effect_ski$results)
 }

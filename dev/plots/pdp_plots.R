@@ -27,16 +27,12 @@ source("dev/helper/construct_effects.R")
 # Construct effects
 pasture <- construct_effects(learner_nonski, learner_ski, feature = "pasture")
 
-# Extract the data for plotting
-pasture_nonski_data <- pasture$nonski$results
-pasture_ski_data <- pasture$ski$results
 # Define custom colors
 custom_colors_ski <- c("no" = "#33ccff40", "low" = "#33ccff80", "medium" = "#33ccffBF", "intensive" = "#33ccff")
 custom_colors_ref <- c("no" = "#A2714640", "low" = "#A2714680", "medium" = "#A27146BF", "intensive" = "#A27146")
 
-
 # Create a boxplot with different colors for each factor level
-p1 <- ggplot(pasture_nonski_data, aes(x = pasture, y = .value, fill = pasture)) +
+p1 <- ggplot(pasture$nonski, aes(x = pasture, y = .value, fill = pasture)) +
   geom_boxplot() +
   theme_bw() +
   scale_x_discrete(labels = c("no", "low", "medium", "intensive")) +
@@ -49,7 +45,7 @@ p1 <- ggplot(pasture_nonski_data, aes(x = pasture, y = .value, fill = pasture)) 
   )) +
   theme(legend.position = "none")
 
-p2 <- ggplot(pasture_ski_data, aes(x = pasture, y = .value, fill = pasture)) +
+p2 <- ggplot(pasture$ski, aes(x = pasture, y = .value, fill = pasture)) +
   geom_boxplot() +
   theme_bw() +
   scale_x_discrete(labels = c("no", "low", "medium", "intensive")) +
