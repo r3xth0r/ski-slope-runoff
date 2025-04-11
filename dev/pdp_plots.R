@@ -1,8 +1,7 @@
-library("iml")
-library("mlr3")
-library("ggplot2")
+library("tidyverse")
 library("patchwork")
-library(tidyverse)
+library("mlr3")
+library("iml")
 
 # Get data for ski slopes and non-ski slopes
 dat_ski <- read_csv("dat/processed/dat_sd_delta_ski.csv")
