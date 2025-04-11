@@ -1,24 +1,30 @@
-library("iml")
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
+# Partial dependence plots
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
+
 library("mlr3")
 library("ggplot2")
 library("patchwork")
 library(tidyverse)
 
-# Get data for ski slopes and non-ski slopes
+# Get data for ski slopes and reference slopes
 dat_ski <- readRDS("dat/processed/dat_sd_delta_ski.rds")
 dat_nonski <- readRDS("dat/processed/dat_sd_delta_noski.rds")
 
-# Initialize learners
+# Load trained learners
 learner_ski <- readRDS("dat/interim/random_forest/ranger_trained_ski.rds")
 learner_nonski <- readRDS("dat/interim/random_forest/ranger_trained_noski.rds")
 
-# Helper function
+# Source helper functions
 source("dev/helper/construct_effects.R")
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
 # FEATURE GROUP: Land use
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
+
 # Pasture ----
+
+# Construct effects
 pasture <- construct_effects(learner_nonski, learner_ski, feature = "pasture")
 
 # Extract the data for plotting
@@ -57,8 +63,11 @@ p2 <- ggplot(pasture_ski_data, aes(x = pasture, y = .value, fill = pasture)) +
   theme(legend.position = "none")
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
+
 # Vegetation ----
+
 vc <- construct_effects(learner_nonski, learner_ski, feature = "vegetation_class")
+
 # Extract the data for plotting
 vc_nonski_data <- vc$nonski$results
 vc_ski_data <- vc$ski$results
@@ -94,10 +103,10 @@ p4 <- ggplot(vc_ski_data, aes(x = vegetation_class, y = .value, fill = vegetatio
     margin = margin(t = 10, b = 20, unit = "pt")
   )) +
   theme(legend.position = "none")
+
 # patchwork1 <- (p2 + p1) / (p4 + p3) / (p6 + p5) +
 patchwork1 <- (p2 + p1) / (p4 + p3) +
-  plot_annotation("Landuse feature variables", theme = theme(plot.title = element_text(hjust = 0.5, size = 16, face = "bold")))
-ggsave("plt/figski7.png", patchwork1, device = png, height = 20, width = 25, dpi = 300, units = "cm")
+
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
 # Ground cover ----
 # grcov <- construct_effects(learner_nonski, learner_ski, feature = "ground_cover")
