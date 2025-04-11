@@ -82,10 +82,13 @@ p2 <- ggplot(pasture$ski, aes(x = pasture, y = .value, fill = pasture)) +
 vc <- construct_effects(learner_reference, learner_ski, dat_reference, dat_ski, feature = "vegetation_class")
 
 # Extract the data for plotting
-vc_nonski_data <- vc$nonski$results
-vc_ski_data <- vc$ski$results
-vc_nonski_data$vegetation_class <- factor(vc_nonski_data$vegetation_class, levels = c("forest", "shrubs", "grassland"))
-vc_ski_data$vegetation_class <- factor(vc_ski_data$vegetation_class, levels = c("forest", "shrubs", "grassland"))
+vc_reference_data <- vc$reference |>
+  as_tibble() |>
+  mutate(vegetation_class = factor(vegetation_class, levels = c("forest", "shrubs", "grassland")))
+vc_ski_data <- vc$ski |>
+  as_tibble() |>
+  mutate(vegetation_class = factor(vegetation_class, levels = c("forest", "shrubs", "grassland")))
+
 # Define custom colors
 custom_colors_ski <- c("forest" = "#33ccff", "grassland" = "#33ccff", "shrubs" = "#33ccff")
 custom_colors_ref <- c("forest" = "#A27146", "grassland" = "#A27146", "shrubs" = "#A27146")
