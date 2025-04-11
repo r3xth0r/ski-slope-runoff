@@ -7,25 +7,25 @@ library("patchwork")
 
 all_dat <- read.csv("dat/raw/all_data.csv",
   header = T,
-  sep = ",",
-  dec = ".",
-  stringsAsFactors = FALSE
-) |>
-  mutate(toponym = recode_factor(
-    project_area,
-    "Dobratsch" = "D",
-    "Ehrwald" = "E",
-    "Golm" = "G",
-    "Hauser Kaibling" = "H",
-    "Ischgl" = "I",
-    "Meran2000" = "M",
-    "Nassfeld" = "N",
-    "Patscherkofel" = "P",
-    "Schladming" = "S",
-    "Sankt Anton" = "STA",
-    "See in Paznaun" = "SP",
-    "Wartschenbach" = "Z"
-  ), ski_slope = recode_factor(ski_slope, "yes" = "A", "no" = "B"))
+all_dat <- read_csv("dat/raw/all_data.csv") |>
+  mutate(
+    toponym = recode_factor(
+      project_area,
+      "Dobratsch" = "D",
+      "Ehrwald" = "E",
+      "Golm" = "G",
+      "Hauser Kaibling" = "H",
+      "Ischgl" = "I",
+      "Meran2000" = "M",
+      "Nassfeld" = "N",
+      "Patscherkofel" = "P",
+      "Schladming" = "S",
+      "Sankt Anton" = "STA",
+      "See in Paznaun" = "SP",
+      "Wartschenbach" = "Z"
+    ),
+    ski_slope = recode_factor(ski_slope, "yes" = "A", "no" = "B")
+  )
 
 dat_ski <- subset(all_dat, ski_slope == "A") |>
   select(-ski_slope)
