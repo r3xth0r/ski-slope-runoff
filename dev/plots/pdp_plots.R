@@ -163,16 +163,17 @@ ggsave("plt/fig_07.png", patchwork1, device = png, height = 20, width = 25, dpi 
 #   theme_ski()
 #
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
+
 # Slope ----
-slope <- construct_effects(learner_reference, learner_ski, feature = "slope")
-nonski_data <- slope$nonski$results
-ski_data <- slope$ski$results
+
+slope <- construct_effects(learner_reference, learner_ski, dat_reference, dat_ski, feature = "slope")
+
 # Calculate mean and median values
 summary_data <- nonski_data %>%
   group_by(slope) %>%
   summarize(mean_value = mean(.value), median_value = median(.value))
 
-p3 <- ggplot(nonski_data, aes(x = slope, y = .value)) +
+p5 <- ggplot(slope$reference, aes(x = slope, y = .value)) +
   geom_line(aes(group = .id), alpha = 0.3) + # ICE lines
   geom_line(data = summary_data, aes(y = mean_value), color = "#A27146", size = 1.2) + # Mean line
   geom_line(data = summary_data, aes(y = median_value), color = "#A2714680", size = 1.2, linetype = "dashed") + # Median line
@@ -181,11 +182,7 @@ p3 <- ggplot(nonski_data, aes(x = slope, y = .value)) +
   scale_x_continuous(limits = c(10, 30)) +
   theme_ski()
 
-summary_data <- ski_data %>%
-  group_by(slope) %>%
-  summarize(mean_value = mean(.value), median_value = median(.value))
-
-p4 <- ggplot(ski_data, aes(x = slope, y = .value)) +
+p6 <- ggplot(slope$ski, aes(x = slope, y = .value)) +
   geom_line(aes(group = .id), alpha = 0.3) + # ICE lines
   geom_line(data = summary_data, aes(y = mean_value), color = "#33ccff", size = 1.2) + # Mean line
   geom_line(data = summary_data, aes(y = median_value), color = "#33ccff80", size = 1.2, linetype = "dashed") + # Median line
@@ -194,23 +191,22 @@ p4 <- ggplot(ski_data, aes(x = slope, y = .value)) +
   scale_x_continuous(limits = c(10, 30)) +
   theme_ski()
 
-patchwork2 <- (p4 + p3) +
-  plot_annotation("Topographic feature variable", theme = theme(plot.title = element_text(hjust = 0.5, size = 16, face = "bold")))
-ggsave("plt/figski10.png", patchwork2, device = png, height = 10, width = 22.5, dpi = 300, units = "cm")
-
+patchwork2 <- (p6 + p5) +
+  plot_annotation("Topographic feature variables", theme = theme(plot.title = element_text(hjust = 0.5, size = 16, face = "bold")))
+ggsave("plt/fig_10.png", patchwork2, device = png, height = 10, width = 22.5, dpi = 300, units = "cm")
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
 # FEATURE GROUP: Geology
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
+
 # Geological class ----
-geol_class <- construct_effects(learner_reference, learner_ski, feature = "geol_class")
-geol_nonski_data <- geol_class$nonski$results
-geol_ski_data <- geol_class$ski$results
+geol_class <- construct_effects(learner_reference, learner_ski, dat_reference, dat_ski, feature = "geol_class")
+
 # Define custom colors
 custom_colors_ski <- c("Cover layer on metamorphic bedrock" = "#33ccff", "Glacial sediment" = "#33ccff", "Glacial sediment, potentially very loose" = "#33ccff", "Cover layer on carbonate sediment" = "#33ccff", "Cover layer on carbonate bedrock" = "#33ccff", "Talus/Scree" = "#33ccff", "Anthropogenic debris" = "#33ccff", "Glacial sediment, possibly solidified" = "#33ccff")
 custom_colors_ref <- c("Cover layer on metamorphic bedrock" = "#A27146", "Glacial sediment" = "#A27146", "Glacial sediment, potentially very loose" = "#A27146", "Cover layer on carbonate sediment" = "#A27146", "Cover layer on carbonate bedrock" = "#A27146", "Talus/Scree" = "#A27146", "Anthropogenic debris" = "#A27146", "Glacial sediment, possibly solidified" = "#A27146")
 
-p1 <- ggplot(geol_nonski_data, aes(x = geol_class, y = .value, fill = geol_class)) +
+p7 <- ggplot(geol_class$reference, aes(x = geol_class, y = .value, fill = geol_class)) +
   geom_boxplot() +
   scale_y_continuous(name = bquote(Psi[constant]), limits = c(0, 1), breaks = seq(from = 0, to = 1, by = 0.2)) +
   scale_x_discrete(labels = c("AnD", "CLC", "CLM", "GS", "GSps", "GSpl", "TS")) +
@@ -218,7 +214,7 @@ p1 <- ggplot(geol_nonski_data, aes(x = geol_class, y = .value, fill = geol_class
   labs(title = "reference", x = "geological class") +
   theme_ski()
 
-p2 <- ggplot(geol_ski_data, aes(x = geol_class, y = .value, fill = geol_class)) +
+p8 <- ggplot(geol_class$ski, aes(x = geol_class, y = .value, fill = geol_class)) +
   geom_boxplot() +
   scale_x_discrete(labels = c("AnD", "CLC", "CLM", "GS", "GSps", "GSpl", "TS")) +
   scale_y_continuous(name = bquote(Psi[constant]), limits = c(0, 1), breaks = seq(from = 0, to = 1, by = 0.2)) +
@@ -227,16 +223,17 @@ p2 <- ggplot(geol_ski_data, aes(x = geol_class, y = .value, fill = geol_class)) 
   theme_ski()
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
+
 # Skeleton ----
-skeleton <- construct_effects(learner_reference, learner_ski, feature = "skeleton")
-nonski_data <- skeleton$nonski$results
-ski_data <- skeleton$ski$results
+
+skeleton <- construct_effects(learner_reference, learner_ski, dat_reference, dat_ski, feature = "skeleton")
+
 # Calculate mean and median values
 summary_data <- nonski_data %>%
   group_by(skeleton) %>%
   summarize(mean_value = mean(.value), median_value = median(.value))
 
-p3 <- ggplot(nonski_data, aes(x = skeleton, y = .value)) +
+p9 <- ggplot(skeleton$reference, aes(x = skeleton, y = .value)) +
   geom_line(aes(group = .id), alpha = 0.3) + # ICE lines
   geom_line(data = summary_data, aes(y = mean_value), color = "#A27146", size = 1.2) + # Mean line
   geom_line(data = summary_data, aes(y = median_value), color = "#A2714680", size = 1.2, linetype = "dashed") + # Median line
@@ -249,7 +246,7 @@ summary_data <- ski_data %>%
   group_by(skeleton) %>%
   summarize(mean_value = mean(.value), median_value = median(.value))
 
-p4 <- ggplot(ski_data, aes(x = skeleton, y = .value)) +
+p10 <- ggplot(skeleton$ski, aes(x = skeleton, y = .value)) +
   geom_line(aes(group = .id), alpha = 0.3) + # ICE lines
   geom_line(data = summary_data, aes(y = mean_value), color = "#33ccff", size = 1.2) + # Mean line
   geom_line(data = summary_data, aes(y = median_value), color = "#33ccff80", size = 1.2, linetype = "dashed") + # Median line
@@ -259,46 +256,51 @@ p4 <- ggplot(ski_data, aes(x = skeleton, y = .value)) +
   theme_ski()
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
+
 # Soil texture ----
-soiltext <- construct_effects(learner_reference, learner_ski, feature = "soiltexture")
-soilt_nonski_data <- soiltext$nonski$results
-soilt_ski_data <- soiltext$ski$results
-soilt_nonski_data$soiltexture <- factor(soilt_nonski_data$soiltexture, levels = c("S", "uS", "lS", "sU", "U", "lU", "sL", "uL"))
-soilt_ski_data$soiltexture <- factor(soilt_ski_data$soiltexture, levels = c("S", "uS", "lS", "sU", "U", "lU", "sL", "uL"))
+
+soiltext <- construct_effects(learner_reference, learner_ski, dat_reference, dat_ski, feature = "soiltexture")
+
+soilt_reference <- soiltext$reference |>
+  mutate(soiltexture = factor(soiltexture, levels = c("S", "uS", "lS", "sU", "U", "lU", "sL", "uL")))
+
+soilt_ski <- soiltext$ski |>
+  mutate(soiltexture = factor(soiltexture, levels = c("S", "uS", "lS", "sU", "U", "lU", "sL", "uL")))
+
 # Define custom colors
 custom_colors_ski <- c("lS" = "#33ccff", "lU" = "#33ccff", "S" = "#33ccff", "sL" = "#33ccff", "sU" = "#33ccff", "uL" = "#33ccff", "uS" = "#33ccff")
 custom_colors_ref <- c("lS" = "#A27146", "lU" = "#A27146", "S" = "#A27146", "sL" = "#A27146", "sU" = "#A27146", "uL" = "#A27146", "uS" = "#A27146")
-p5 <- ggplot(soilt_nonski_data, aes(x = soiltexture, y = .value, fill = soiltexture)) +
+
+p11 <- ggplot(soilt_reference, aes(x = soiltexture, y = .value, fill = soiltexture)) +
   geom_boxplot() +
   scale_y_continuous(name = bquote(Psi[constant]), limits = c(0, 1), breaks = seq(from = 0, to = 1, by = 0.2)) +
   scale_fill_manual(values = custom_colors_ref) +
   labs(x = "texture") +
   theme_ski()
 
-p6 <- ggplot(soilt_ski_data, aes(x = soiltexture, y = .value, fill = soiltexture)) +
+p12 <- ggplot(soilt_ski, aes(x = soiltexture, y = .value, fill = soiltexture)) +
   geom_boxplot() +
   scale_y_continuous(name = bquote(Psi[constant]), limits = c(0, 1), breaks = seq(from = 0, to = 1, by = 0.2)) +
   scale_fill_manual(values = custom_colors_ski) +
   labs(x = "texture") +
   theme_ski()
 
-patchwork3 <- (p2 + p1) / (p4 + p3) / (p6 + p5) +
+patchwork3 <- (p8 + p7) / (p10 + p9) / (p12 + p11) +
   plot_annotation("Geological feature variables", theme = theme(plot.title = element_text(hjust = 0.5, size = 16, face = "bold")))
-ggsave("plt/figski8.png", patchwork3, device = png, height = 30, width = 25, dpi = 300, units = "cm")
+ggsave("plt/fig_08.png", patchwork3, device = png, height = 30, width = 25, dpi = 300, units = "cm")
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
 # GROUP: Soil
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
+
 # Soil structure ----
-erd <- construct_effects(learner_reference, learner_ski, feature = "embedded_rock_type")
-erd_nonski_data <- erd$nonski$results
-erd_ski_data <- erd$ski$results
+erd <- construct_effects(learner_reference, learner_ski, dat_reference, dat_ski, feature = "embedded_rock_type")
+
 # Define custom colors
 custom_colors_ski <- c("LOC" = "#33ccff", "EHO" = "#33ccff", "EGE" = "#33ccff", "GS" = "#33ccff")
 custom_colors_ref <- c("LOC" = "#A27146", "EHO" = "#A27146", "EGE" = "#A27146", "GS" = "#A27146")
 
-
-p1 <- ggplot(erd_nonski_data, aes(x = embedded_rock_type, y = .value, fill = embedded_rock_type)) +
+p13 <- ggplot(erd$reference, aes(x = embedded_rock_type, y = .value, fill = embedded_rock_type)) +
   geom_boxplot() +
   scale_y_continuous(name = bquote(Psi[constant]), limits = c(0, 1), breaks = seq(from = 0, to = 1, by = 0.2)) +
   scale_fill_manual(values = custom_colors_ref) +
@@ -306,7 +308,7 @@ p1 <- ggplot(erd_nonski_data, aes(x = embedded_rock_type, y = .value, fill = emb
   labs(title = "reference", x = "soil structure") +
   theme_ski()
 
-p2 <- ggplot(erd_ski_data, aes(x = embedded_rock_type, y = .value, fill = embedded_rock_type)) +
+p14 <- ggplot(erd$ski, aes(x = embedded_rock_type, y = .value, fill = embedded_rock_type)) +
   geom_boxplot() +
   scale_x_discrete(labels = c("cohesive", "intermediate", "loose")) +
   scale_y_continuous(name = bquote(Psi[constant]), limits = c(0, 1), breaks = seq(from = 0, to = 1, by = 0.2)) +
@@ -314,11 +316,12 @@ p2 <- ggplot(erd_ski_data, aes(x = embedded_rock_type, y = .value, fill = embedd
   labs(title = "ski slope", x = "soil structure") +
   theme_ski()
 
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
+
 # Soil class ----
 
-soilclass <- construct_effects(learner_reference, learner_ski, feature = "soil_class")
-soilcl_nonski_data <- soilclass$nonski$results
-soilcl_ski_data <- soilclass$ski$results
+soilclass <- construct_effects(learner_reference, learner_ski, dat_reference, dat_ski, feature = "soil_class")
+
 # Define custom colors
 custom_colors_ski <- c(
   "regosol_leptosol" = "#33ccff",
@@ -352,7 +355,7 @@ custom_colors_ref <- c(
   "subaquatic-fluvisol" = "#A27146", "unknown" = "#A27146"
 )
 
-p3 <- ggplot(soilcl_nonski_data, aes(x = soil_class, y = .value, fill = soil_class)) +
+p15 <- ggplot(soilclass$reference, aes(x = soil_class, y = .value, fill = soil_class)) +
   geom_boxplot() +
   scale_x_discrete(labels = c("APE", "CCP", "CCU", "DS", "PS", "RPUF")) +
   scale_y_continuous(name = bquote(Psi[constant]), limits = c(0, 1), breaks = seq(from = 0, to = 1, by = 0.2)) +
@@ -360,7 +363,7 @@ p3 <- ggplot(soilcl_nonski_data, aes(x = soil_class, y = .value, fill = soil_cla
   labs(x = "soil class") +
   theme_ski()
 
-p4 <- ggplot(soilcl_ski_data, aes(x = soil_class, y = .value, fill = soil_class)) +
+p16 <- ggplot(soilclass$ski, aes(x = soil_class, y = .value, fill = soil_class)) +
   geom_boxplot() +
   scale_x_discrete(labels = c("APE", "CCU", "DS")) +
   scale_y_continuous(name = bquote(Psi[constant]), limits = c(0, 1), breaks = seq(from = 0, to = 1, by = 0.2)) +
@@ -369,16 +372,16 @@ p4 <- ggplot(soilcl_ski_data, aes(x = soil_class, y = .value, fill = soil_class)
   theme_ski()
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
+
 # Saturation ----
-saturation <- construct_effects(learner_reference, learner_ski, feature = "sd_delta")
-nonski_data <- saturation$nonski$results
-ski_data <- saturation$ski$results
+saturation <- construct_effects(learner_reference, learner_ski, dat_reference, dat_ski, feature = "sd_delta")
+
 # Calculate mean and median values
 summary_data <- nonski_data %>%
   group_by(sd_delta) %>%
   summarize(mean_value = mean(.value), median_value = median(.value))
 
-p5 <- ggplot(nonski_data, aes(x = sd_delta, y = .value)) +
+p17 <- ggplot(saturation$reference, aes(x = sd_delta, y = .value)) +
   geom_line(aes(group = .id), alpha = 0.3) + # ICE lines
   geom_line(data = summary_data, aes(y = mean_value), color = "#A27146", size = 1.2) + # Mean line
   geom_line(data = summary_data, aes(y = median_value), color = "#A2714680", size = 1.2, linetype = "dashed") + # Median line
@@ -387,11 +390,7 @@ p5 <- ggplot(nonski_data, aes(x = sd_delta, y = .value)) +
   scale_x_continuous(limits = c(-0.5, 0)) +
   theme_ski()
 
-summary_data <- ski_data %>%
-  group_by(sd_delta) %>%
-  summarize(mean_value = mean(.value), median_value = median(.value))
-
-p6 <- ggplot(ski_data, aes(x = sd_delta, y = .value)) +
+p18 <- ggplot(saturation$ski, aes(x = sd_delta, y = .value)) +
   geom_line(aes(group = .id), alpha = 0.3) + # ICE lines
   geom_line(data = summary_data, aes(y = mean_value), color = "#33ccff", size = 1.2) + # Mean line
   geom_line(data = summary_data, aes(y = median_value), color = "#33ccff80", size = 1.2, linetype = "dashed") + # Median line
@@ -401,93 +400,13 @@ p6 <- ggplot(ski_data, aes(x = sd_delta, y = .value)) +
   scale_x_continuous(limits = c(-0.5, 0)) +
   theme_ski()
 
-patchwork5 <- (p2 + p1) / (p4 + p3) / (p6 + p5) +
+patchwork5 <- (p14 + p13) / (p16 + p15) / (p18 + p17) +
   plot_annotation("Soil feature variables", theme = theme(plot.title = element_text(hjust = 0.5, size = 16, face = "bold")))
-ggsave("plt/figski9.png", patchwork5, device = png, height = 30, width = 25, dpi = 300, units = "cm")
+ggsave("plt/fig_09.png", patchwork5, device = png, height = 30, width = 25, dpi = 300, units = "cm")
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
+
 # Humus Type ----
-# humus <- construct_effects(learner_reference, learner_ski, feature = "humus_type")
-#
-# humus_nonski_data <- humus$nonski$results
-# humus_ski_data <- humus$ski$results
-# # Define custom colors
-# custom_colors_ski <-c("moder"= "#33ccff", "mull"= "#33ccff", "mor"= "#33ccff", "none"= "#33ccff")
-#
-# custom_colors_ref <-c("moder"= "#A27146", "mull"= "#A27146", "mor"= "#A27146", "none"= "#A27146")
-#
-# p5 <- ggplot(humus_nonski_data, aes(x = humus_type, y = .value, fill = humus_type)) +
-#   geom_boxplot() +
-#   scale_y_continuous(name = bquote(~"predicted " ~ Psi), breaks = seq(from = 0, to = 1, by = 0.2)) +
-#   scale_fill_manual(values = custom_colors_ref) +
-#   labs(x = "humus type") +
-#   theme_ski()
-#
-# p6 <- ggplot(humus_ski_data, aes(x = humus_type, y = .value, fill = humus_type)) +
-#   geom_boxplot() +
-#   scale_y_continuous(name = bquote(~"predicted " ~ Psi), breaks = seq(from = 0, to = 1, by = 0.2)) +
-#   scale_fill_manual(values = custom_colors_ski) +
-#   labs(x = "humus type") +
-#   theme_ski()
-#
-# # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
-# # Soil depth ----
-#
-# soil_depth <- construct_effects(learner_reference, learner_ski, feature = "soil_depth")
-# soild_nonski_data <- soil_depth$nonski$results
-# soild_ski_data <- soil_depth$ski$results
-# # Define custom colors
-# custom_colors_ski <-c("flachgründig"= "#33ccff80", "mittelgründig"= "#33ccffBF", "sehr flachgründig"= "#33ccff40", "tiefgründig"= "#33ccff")
-# custom_colors_ref <-c("flachgründig"= "#A2714680", "mittelgründig"= "#A27146BF", "sehr flachgründig"= "#A2714640", "tiefgründig"= "#A27146")
-#
-# p1 <- ggplot(soild_nonski_data, aes(x = soil_depth, y = .value, fill = soil_depth)) +
-#   geom_boxplot() +
-#   scale_x_discrete(labels = c("very shallow soil", "shallow soil", "moderately deep soil", "deep soil")) +
-#   scale_y_continuous(name = bquote(~"predicted " ~ Psi), breaks = seq(from = 0, to = 1, by = 0.2)) +
-#   scale_fill_manual(values = custom_colors_ref) +
-#   labs(title = "reference slopes",x = "soil depth") +
-#   theme_ski()
-#
-# p2 <- ggplot(soild_ski_data, aes(x = soil_depth, y = .value, fill = soil_depth)) +
-#   geom_boxplot() +
-#   scale_x_discrete(labels = c("very shallow soil", "shallow soil", "moderately deep soil", "deep soil")) +
-#   scale_y_continuous(name = bquote(~"predicted " ~ Psi), breaks = seq(from = 0, to = 1, by = 0.2)) +
-#   scale_fill_manual(values = custom_colors_ski) +
-#   labs(title = "ski slopes",x = "soil depth") +
-#   theme_ski()
-#
-# # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
-# # Bulk density ----
-#
-# bd <- construct_effects(learner_reference, learner_ski, feature = "bulk_density")
-# nonski_data <- bd$nonski$results
-# ski_data <- bd$ski$results
-# # Calculate mean and median values
-# summary_data <- nonski_data %>%
-#   group_by(bulk_density) %>%
-#   summarize(mean_value = mean(.value), median_value = median(.value))
-#
-# p3 <- ggplot(nonski_data, aes(x = bulk_density, y = .value)) +
-#   geom_line(aes(group = .id), alpha = 0.3) +  # ICE lines
-#   geom_line(data = summary_data, aes(y = mean_value), color = "#A27146", size = 1.2) +  # Mean line
-#   geom_line(data = summary_data, aes(y = median_value), color = "#A2714680", size = 1.2, linetype = "dashed") +  # Median line
-#   scale_y_continuous(name = bquote(~"predicted " ~ Psi), breaks = seq(from = 0, to = 1, by = 0.2)) +
-#   labs(x = "bulk density") +
-#   theme_ski()
-#
-#
-# summary_data <- ski_data %>%
-#   group_by(bulk_density) %>%
-#   summarize(mean_value = mean(.value), median_value = median(.value))
-#
-# p4 <- ggplot(ski_data, aes(x = bulk_density, y = .value)) +
-#   geom_line(aes(group = .id), alpha = 0.3) +  # ICE lines
-#   geom_line(data = summary_data, aes(y = mean_value), color = "#33ccff", size = 1.2) +  # Mean line
-#   geom_line(data = summary_data, aes(y = median_value), color = "#33ccff80", size = 1.2, linetype = "dashed") +  # Median line
-#   scale_y_continuous(name = bquote(~"predicted " ~ Psi), breaks = seq(from = 0, to = 1, by = 0.2)) +
-#   labs(x = "bulk density") +
-#   theme_ski()
-#
-# patchwork6 <- (p2 + p1) / (p4 + p3) +
-#   plot_annotation("soil parameters (2)", theme = theme(plot.title = element_text(hjust = 0.5)))
-# ggsave("plt/figski6.png", patchwork6, device = png, height = 20, width = 25, dpi = 300, units = "cm")
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
+
+# Soil depth ----
