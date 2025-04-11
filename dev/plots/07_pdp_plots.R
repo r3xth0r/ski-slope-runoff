@@ -1,5 +1,5 @@
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
-# Partial dependence plots
+# Partial dependence plots (Fig. 07-09)
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
 
 library("mlr3")
@@ -19,9 +19,6 @@ learner_reference <- readRDS("dat/interim/random_forest/ranger_trained_noski.rds
 # Source helper functions
 source("dev/helper/construct_effects.R")
 source("dev/helper/theme_ski.R")
-
-ski_col <- "#33ccff"
-ref_col <- "#A27146"
 
 # Flag to construct all plots or only the ones included in the manuscript
 construct_all_plots <- FALSE
