@@ -26,14 +26,14 @@ source("dev/helper/construct_effects.R")
 # Pasture ----
 
 # Construct effects
-pasture <- construct_effects(learner_reference, learner_ski, feature = "pasture")
+pasture <- construct_effects(learner_reference, learner_ski, dat_reference, dat_ski, feature = "pasture")
 
 # Define custom colors
 custom_colors_ski <- c("no" = "#33ccff40", "low" = "#33ccff80", "medium" = "#33ccffBF", "intensive" = "#33ccff")
 custom_colors_ref <- c("no" = "#A2714640", "low" = "#A2714680", "medium" = "#A27146BF", "intensive" = "#A27146")
 
 # Create a boxplot with different colors for each factor level
-p1 <- ggplot(pasture$nonski, aes(x = pasture, y = .value, fill = pasture)) +
+p1 <- ggplot(pasture$reference, aes(x = pasture, y = .value, fill = pasture)) +
   geom_boxplot() +
   theme_bw() +
   scale_x_discrete(labels = c("no", "low", "medium", "intensive")) +
@@ -63,7 +63,7 @@ p2 <- ggplot(pasture$ski, aes(x = pasture, y = .value, fill = pasture)) +
 
 # Vegetation ----
 
-vc <- construct_effects(learner_reference, learner_ski, feature = "vegetation_class")
+vc <- construct_effects(learner_reference, learner_ski, dat_reference, dat_ski, feature = "vegetation_class")
 
 # Extract the data for plotting
 vc_nonski_data <- vc$nonski$results
@@ -74,7 +74,7 @@ vc_ski_data$vegetation_class <- factor(vc_ski_data$vegetation_class, levels = c(
 custom_colors_ski <- c("forest" = "#33ccff", "grassland" = "#33ccff", "shrubs" = "#33ccff")
 custom_colors_ref <- c("forest" = "#A27146", "grassland" = "#A27146", "shrubs" = "#A27146")
 
-p3 <- ggplot(vc_nonski_data, aes(x = vegetation_class, y = .value, fill = vegetation_class)) +
+p3 <- ggplot(vc_reference_data, aes(x = vegetation_class, y = .value, fill = vegetation_class)) +
   geom_boxplot() +
   # geom_jitter(width = 0.2, alpha = 0.5) +
   theme_bw() +
