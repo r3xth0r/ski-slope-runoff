@@ -14,7 +14,7 @@ dat_nonski <- readRDS("dat/processed/dat_sd_delta_noski.rds")
 
 # Load trained learners
 learner_ski <- readRDS("dat/interim/random_forest/ranger_trained_ski.rds")
-learner_nonski <- readRDS("dat/interim/random_forest/ranger_trained_noski.rds")
+learner_reference <- readRDS("dat/interim/random_forest/ranger_trained_noski.rds")
 
 # Source helper functions
 source("dev/helper/construct_effects.R")
@@ -26,7 +26,7 @@ source("dev/helper/construct_effects.R")
 # Pasture ----
 
 # Construct effects
-pasture <- construct_effects(learner_nonski, learner_ski, feature = "pasture")
+pasture <- construct_effects(learner_reference, learner_ski, feature = "pasture")
 
 # Define custom colors
 custom_colors_ski <- c("no" = "#33ccff40", "low" = "#33ccff80", "medium" = "#33ccffBF", "intensive" = "#33ccff")
@@ -63,7 +63,7 @@ p2 <- ggplot(pasture$ski, aes(x = pasture, y = .value, fill = pasture)) +
 
 # Vegetation ----
 
-vc <- construct_effects(learner_nonski, learner_ski, feature = "vegetation_class")
+vc <- construct_effects(learner_reference, learner_ski, feature = "vegetation_class")
 
 # Extract the data for plotting
 vc_nonski_data <- vc$nonski$results
@@ -106,7 +106,7 @@ patchwork1 <- (p2 + p1) / (p4 + p3) +
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
 # Ground cover ----
-# grcov <- construct_effects(learner_nonski, learner_ski, feature = "ground_cover")
+# grcov <- construct_effects(learner_reference, learner_ski, feature = "ground_cover")
 # # Extract data for plotting
 # nonski_data <- grcov$nonski$results
 # ski_data <- grcov$ski$results
@@ -140,7 +140,7 @@ patchwork1 <- (p2 + p1) / (p4 + p3) +
 # FEATURE GROUP: Topography
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
 # Geomorphon ----
-# geomorphon <- construct_effects(learner_nonski, learner_ski, feature = "geomorphon")
+# geomorphon <- construct_effects(learner_reference, learner_ski, feature = "geomorphon")
 #
 # geo_nonski_data <- geomorphon$nonski$results
 # geo_ski_data <- geomorphon$ski$results
@@ -174,7 +174,7 @@ patchwork1 <- (p2 + p1) / (p4 + p3) +
 #   theme(legend.position = "none")
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
 # Slope ----
-slope <- construct_effects(learner_nonski, learner_ski, feature = "slope")
+slope <- construct_effects(learner_reference, learner_ski, feature = "slope")
 nonski_data <- slope$nonski$results
 ski_data <- slope$ski$results
 # Calculate mean and median values
@@ -224,7 +224,7 @@ ggsave("plt/figski10.png", patchwork2, device = png, height = 10, width = 22.5, 
 # FEATURE GROUP: Geology
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
 # Geological class ----
-geol_class <- construct_effects(learner_nonski, learner_ski, feature = "geol_class")
+geol_class <- construct_effects(learner_reference, learner_ski, feature = "geol_class")
 geol_nonski_data <- geol_class$nonski$results
 geol_ski_data <- geol_class$ski$results
 # Define custom colors
@@ -259,7 +259,7 @@ p2 <- ggplot(geol_ski_data, aes(x = geol_class, y = .value, fill = geol_class)) 
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
 # Skeleton ----
-skeleton <- construct_effects(learner_nonski, learner_ski, feature = "skeleton")
+skeleton <- construct_effects(learner_reference, learner_ski, feature = "skeleton")
 nonski_data <- skeleton$nonski$results
 ski_data <- skeleton$ski$results
 # Calculate mean and median values
@@ -300,7 +300,7 @@ p4 <- ggplot(ski_data, aes(x = skeleton, y = .value)) +
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
 # Soil texture ----
-soiltext <- construct_effects(learner_nonski, learner_ski, feature = "soiltexture")
+soiltext <- construct_effects(learner_reference, learner_ski, feature = "soiltexture")
 soilt_nonski_data <- soiltext$nonski$results
 soilt_ski_data <- soiltext$ski$results
 soilt_nonski_data$soiltexture <- factor(soilt_nonski_data$soiltexture, levels = c("S", "uS", "lS", "sU", "U", "lU", "sL", "uL"))
@@ -339,7 +339,7 @@ ggsave("plt/figski8.png", patchwork3, device = png, height = 30, width = 25, dpi
 # GROUP: Soil
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
 # Soil structure ----
-erd <- construct_effects(learner_nonski, learner_ski, feature = "embedded_rock_type")
+erd <- construct_effects(learner_reference, learner_ski, feature = "embedded_rock_type")
 erd_nonski_data <- erd$nonski$results
 erd_ski_data <- erd$ski$results
 # Define custom colors
@@ -375,7 +375,7 @@ p2 <- ggplot(erd_ski_data, aes(x = embedded_rock_type, y = .value, fill = embedd
 
 # Soil class ----
 
-soilclass <- construct_effects(learner_nonski, learner_ski, feature = "soil_class")
+soilclass <- construct_effects(learner_reference, learner_ski, feature = "soil_class")
 soilcl_nonski_data <- soilclass$nonski$results
 soilcl_ski_data <- soilclass$ski$results
 # Define custom colors
@@ -439,7 +439,7 @@ p4 <- ggplot(soilcl_ski_data, aes(x = soil_class, y = .value, fill = soil_class)
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
 # Saturation ----
-saturation <- construct_effects(learner_nonski, learner_ski, feature = "sd_delta")
+saturation <- construct_effects(learner_reference, learner_ski, feature = "sd_delta")
 nonski_data <- saturation$nonski$results
 ski_data <- saturation$ski$results
 # Calculate mean and median values
@@ -484,7 +484,7 @@ ggsave("plt/figski9.png", patchwork5, device = png, height = 30, width = 25, dpi
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
 # Humus Type ----
-# humus <- construct_effects(learner_nonski, learner_ski, feature = "humus_type")
+# humus <- construct_effects(learner_reference, learner_ski, feature = "humus_type")
 #
 # humus_nonski_data <- humus$nonski$results
 # humus_ski_data <- humus$ski$results
@@ -520,7 +520,7 @@ ggsave("plt/figski9.png", patchwork5, device = png, height = 30, width = 25, dpi
 # # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
 # # Soil depth ----
 #
-# soil_depth <- construct_effects(learner_nonski, learner_ski, feature = "soil_depth")
+# soil_depth <- construct_effects(learner_reference, learner_ski, feature = "soil_depth")
 # soild_nonski_data <- soil_depth$nonski$results
 # soild_ski_data <- soil_depth$ski$results
 # # Define custom colors
@@ -556,7 +556,7 @@ ggsave("plt/figski9.png", patchwork5, device = png, height = 30, width = 25, dpi
 # # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
 # # Bulk density ----
 #
-# bd <- construct_effects(learner_nonski, learner_ski, feature = "bulk_density")
+# bd <- construct_effects(learner_reference, learner_ski, feature = "bulk_density")
 # nonski_data <- bd$nonski$results
 # ski_data <- bd$ski$results
 # # Calculate mean and median values
