@@ -5,8 +5,8 @@ library("patchwork")
 library(tidyverse)
 
 # Get data for ski slopes and non-ski slopes
-dat_ski <- readRDS("dat/processed/dat_sd_delta_ski.rds")
-dat_nonski <- readRDS("dat/processed/dat_sd_delta_noski.rds")
+dat_ski <- read_csv("dat/processed/dat_sd_delta_ski.csv")
+dat_nonski <- read_csv("dat/processed/dat_sd_delta_noski.csv")
 
 # Initialize learners
 learner_ski <- readRDS("dat/interim/random_forest/ranger_trained_ski.rds")
