@@ -14,7 +14,9 @@ imp <- imp %>%
   mutate(index = fct_recode(index, "soil structure" = "embedded rock type"))
 
 # Highlight top 6 features
-top6_noski <- imp %>% top_n(6, importance) %>% pull(index)
+top6_noski <- imp %>%
+  top_n(6, importance) %>%
+  pull(index)
 imp <- imp %>%
   mutate(color = if_else(index %in% top6_noski, "highlight", "normal"))
 
@@ -40,11 +42,13 @@ p_noski <- ggplot(
   geom_point(aes(color = point_type, fill = color), size = 6, stroke = 2) +
   scale_fill_manual(values = c("highlight" = "#A27146", "normal" = "#D3D3D3"), guide = "none") +
   scale_color_manual(values = c("land use" = "black", "topography" = "black", "geology" = "black", "soil" = "black"), guide = "none") +
-  scale_shape_manual(values = c("land use" = 21, "topography" = 22, "geology" = 23, "soil" = 24), 
-                     breaks = c("land use", "topography", "geology", "soil")) +
+  scale_shape_manual(
+    values = c("land use" = 21, "topography" = 22, "geology" = 23, "soil" = 24),
+    breaks = c("land use", "topography", "geology", "soil")
+  ) +
   coord_flip() +
   xlab("") +
-  ylab(expression(Importance~on~Psi[constant])) +
+  ylab(expression(Importance ~ on ~ Psi[constant])) +
   labs(title = paste0("reference")) +
   theme_minimal() +
   theme(
@@ -54,8 +58,8 @@ p_noski <- ggplot(
     axis.title.x = element_text(vjust = 0.5, size = 20),
     axis.title.y.right = element_text(angle = 0, vjust = 0.5),
     legend.position = "right",
-    legend.key.size = unit(1, "cm"),  # Adjust the size of the legend keys
-    legend.spacing.y = unit(0.5, "cm")  # Adjust the spacing between legend entries
+    legend.key.size = unit(1, "cm"), # Adjust the size of the legend keys
+    legend.spacing.y = unit(0.5, "cm") # Adjust the spacing between legend entries
   ) +
   guides(shape = guide_legend(title = NULL))
 
@@ -70,7 +74,9 @@ imp <- imp %>%
   mutate(index = fct_recode(index, "soil structure" = "embedded rock type"))
 
 # Highlight top 6 features
-top6_ski <- imp %>% top_n(6, importance) %>% pull(index)
+top6_ski <- imp %>%
+  top_n(6, importance) %>%
+  pull(index)
 imp <- imp %>%
   mutate(color = if_else(index %in% top6_ski, "highlight", "normal"))
 
@@ -80,7 +86,7 @@ imp <- imp %>%
     index %in% c("pasture", "vegetation class", "ground cover") ~ "land use",
     index %in% c("geomorphon", "slope") ~ "topography",
     index %in% c("skeleton", "geol class", "soiltexture") ~ "geology",
-    index %in% c("soil structure","humus type", "bulk density", "soil depth", "sd delta", "soil class") ~ "soil"
+    index %in% c("soil structure", "humus type", "bulk density", "soil depth", "sd delta", "soil class") ~ "soil"
   ))
 
 p_ski <- ggplot(
@@ -96,11 +102,13 @@ p_ski <- ggplot(
   geom_point(aes(color = point_type, fill = color), size = 6, stroke = 2) +
   scale_fill_manual(values = c("highlight" = "#33ccff", "normal" = "#D3D3D3"), guide = "none") +
   scale_color_manual(values = c("land use" = "black", "topography" = "black", "geology" = "black", "soil" = "black"), guide = "none") +
-  scale_shape_manual(values = c("land use" = 21, "topography" = 22, "geology" = 23, "soil" = 24), 
-                     breaks = c("land use", "topography", "geology", "soil")) +
+  scale_shape_manual(
+    values = c("land use" = 21, "topography" = 22, "geology" = 23, "soil" = 24),
+    breaks = c("land use", "topography", "geology", "soil")
+  ) +
   coord_flip() +
   xlab("") +
-  ylab(expression(Importance~on~Psi[constant])) +
+  ylab(expression(Importance ~ on ~ Psi[constant])) +
   labs(title = paste0("ski slope")) +
   theme_minimal() +
   theme(
@@ -110,8 +118,8 @@ p_ski <- ggplot(
     axis.title.x = element_text(vjust = 0.5, size = 20),
     axis.title.y.right = element_text(angle = 0, vjust = 0.5),
     legend.position = "right",
-    legend.key.size = unit(1, "cm"),  # Adjust the size of the legend keys
-    legend.spacing.y = unit(0.5, "cm")  # Adjust the spacing between legend entries
+    legend.key.size = unit(1, "cm"), # Adjust the size of the legend keys
+    legend.spacing.y = unit(0.5, "cm") # Adjust the spacing between legend entries
   ) +
   guides(shape = guide_legend(title = NULL))
 

@@ -1,11 +1,12 @@
 library("tidyverse")
 library("patchwork")
 
-all_dat<- read.csv("dat/raw/all_data.csv",
-                   header = T,
-                   sep = ",",
-                   dec = ".",
-                   stringsAsFactors=FALSE) |>
+all_dat <- read.csv("dat/raw/all_data.csv",
+  header = T,
+  sep = ",",
+  dec = ".",
+  stringsAsFactors = FALSE
+) |>
   mutate(toponym = recode_factor(
     project_area,
     "Dobratsch" = "D",
@@ -20,10 +21,10 @@ all_dat<- read.csv("dat/raw/all_data.csv",
     "Sankt Anton" = "STA",
     "See in Paznaun" = "SP",
     "Wartschenbach" = "Z"
-  ), ski_slope=recode_factor(ski_slope,"yes"="A","no"="B"))
+  ), ski_slope = recode_factor(ski_slope, "yes" = "A", "no" = "B"))
 
 ####################################
-#Boxplots for for ski and none-ski slopes
+# Boxplots for for ski and none-ski slopes
 ####################################
 dat_ski <- subset(all_dat, ski_slope == "A") |>
   select(-ski_slope)
@@ -46,9 +47,9 @@ p2 <- ggplot(dat_psi) +
     axis.title.x = element_text(vjust = 0.5, size = 16), axis.title.y.right = element_text(angle = 0, vjust = 0.5)
   ) +
   scale_y_continuous(limits = c(0, 1), breaks = scales::breaks_extended(n = 7)) +
-  scale_x_discrete(labels = c('ski slope','reference'))+
+  scale_x_discrete(labels = c("ski slope", "reference")) +
   labs(x = "", y = bquote(Psi[constant])) +
-  scale_color_manual(values = c("#33ccff", "#A27146"), labels=c("ski slope","reference"), name = "") +
-  scale_fill_manual(values = c("#33ccff", "#A27146"), labels=c("ski slope","reference"), name = "")
+  scale_color_manual(values = c("#33ccff", "#A27146"), labels = c("ski slope", "reference"), name = "") +
+  scale_fill_manual(values = c("#33ccff", "#A27146"), labels = c("ski slope", "reference"), name = "")
 
 ggsave("plt/fig4.png", plot = p2, device = png, height = 10, width = 19, dpi = 300, units = "cm")
