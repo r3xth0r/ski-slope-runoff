@@ -8,27 +8,9 @@ library("tidyverse")
 dat <- read_csv("dat/interim/plt_irrigation_example.csv")
 
 # Basic line plot with points
-p1 <- ggplot(data = dat, aes(x = t, y = AK, group = type)) +
-  theme_bw()
-p1 <- ggplot(data = dat, aes(x = t, y = AK, group = type)) +
-  theme_bw() +
-  theme(
-    text = element_text(size = 18),
-    legend.position = "none",
-    axis.title.y.right = element_text(color = "blue"),
-    axis.text.y.right = element_text(color = "blue"),
-    axis.line.y.right = element_line(color = "blue"),
-    axis.ticks.y.right = element_line(color = "blue")
-  ) +
-  xlab(expression(Time ~ "[min]")) +
-  ylab(expression(Psi ~ " [-]")) +
-  scale_y_continuous(expand = c(0, 0)) +
-  coord_cartesian(xlim = c(0, 71), ylim = c(0, 1)) +
+p <- ggplot(data = dat, aes(x = t, y = AK, group = type)) +
   geom_segment(aes(x = 32, xend = 64, y = 0.77, yend = 0.77), linetype = "solid", color = "red", size = 0.7) +
-  geom_smooth(aes(color = type, size = type, linetype = type), method = "loess", se = FALSE, span = 0.15) +
-  scale_linetype_manual(values = c("solid", "solid", "dashed")) +
-  scale_color_manual(values = c("black", "blue", "royalblue1")) +
-  scale_size_manual(values = c(0.7, 0.7, 0.7)) +
+  geom_smooth(aes(size = type, linetype = type), method = "loess", se = FALSE, span = 0.15, color = "black") +
   geom_vline(xintercept = 0, linetype = "dotted", color = "black", size = 0.5) +
   geom_vline(xintercept = 17.5, linetype = "dotted", color = "black", size = 0.5) +
   geom_vline(xintercept = 62, linetype = "dotted", color = "black", size = 0.5) +
@@ -46,6 +28,11 @@ p1 <- ggplot(data = dat, aes(x = t, y = AK, group = type)) +
   geom_segment(aes(x = 62.7, y = 0.15, xend = 69.2, yend = 0.15), size = 0.4, color = "grey54", arrow = arrow(length = unit(2, "mm"), ends = "both", type = "closed")) +
   annotate("text", x = 69.5, y = 0.25, label = bquote(italic(atop("follow-up", "time"))), size = 4.5, color = "grey54") +
   annotate("text", x = 13, y = 0.35, label = bquote(italic(atop("rising", "limb"))), size = 4.5, color = "grey54") +
-  geom_segment(aes(x = 10, y = 0.4, xend = 8.1, yend = 0.44), size = 0.2, color = "grey54", arrow = arrow(length = unit(1.5, "mm"), type = "closed"))
-ggsave("plt/fig_3.png", p1, device = png, height = 10, width = 19, dpi = 300, units = "cm")
-# p1
+  geom_segment(aes(x = 10, y = 0.4, xend = 8.1, yend = 0.44), size = 0.2, color = "grey54", arrow = arrow(length = unit(1.5, "mm"), type = "closed")) +
+  xlab(expression(Time ~ "[min]")) +
+  ylab(expression(Psi ~ " [-]")) +
+  scale_y_continuous(expand = c(0, 0)) +
+  scale_size_manual(values = c(0.7, 0.7, 0.7)) +
+  coord_cartesian(xlim = c(0, 71), ylim = c(0, 1)) +
+  theme_ski()
+ggsave("plt/fig_03.png", p1, device = png, height = 10, width = 19, dpi = 300, units = "cm")
