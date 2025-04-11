@@ -37,26 +37,42 @@ p1 <- ggplot(pasture$reference, aes(x = pasture, y = .value, fill = pasture)) +
   geom_boxplot() +
   theme_bw() +
   scale_x_discrete(labels = c("no", "low", "medium", "intensive")) +
-  scale_y_continuous(name = bquote(Psi[constant]), limits = c(0, 1), breaks = seq(from = 0, to = 1, by = 0.2)) +
+  scale_y_continuous(
+    name = bquote(Psi[constant]), limits = c(0, 1),
+    breaks = seq(from = 0, to = 1, by = 0.2)
+  ) +
   scale_fill_manual(values = custom_colors_ref) +
   labs(title = "reference", x = "pasture") +
-  theme(text = element_text(size = 16), axis.title.y = element_text(vjust = 0.5, size = 16), axis.title.x = element_text(vjust = 0.5, size = 16), plot.title = element_text(
-    size = rel(1.2), hjust = 0.5, # face = "bold",
-    margin = margin(t = 10, b = 20, unit = "pt")
-  )) +
+  theme(
+    text = element_text(size = 16),
+    axis.title.x = element_text(vjust = 0.5, size = 16),
+    axis.title.y = element_text(vjust = 0.5, size = 16),
+    plot.title = element_text(
+      size = rel(1.2), hjust = 0.5, # face = "bold",
+      margin = margin(t = 10, b = 20, unit = "pt")
+    )
+  ) +
   theme(legend.position = "none")
 
 p2 <- ggplot(pasture$ski, aes(x = pasture, y = .value, fill = pasture)) +
   geom_boxplot() +
   theme_bw() +
   scale_x_discrete(labels = c("no", "low", "medium", "intensive")) +
-  scale_y_continuous(name = bquote(Psi[constant]), limits = c(0, 1), breaks = seq(from = 0, to = 1, by = 0.2)) +
+  scale_y_continuous(
+    name = bquote(Psi[constant]), limits = c(0, 1),
+    breaks = seq(from = 0, to = 1, by = 0.2)
+  ) +
   scale_fill_manual(values = custom_colors_ski) +
   labs(title = "ski slope", x = "pasture") +
-  theme(text = element_text(size = 16), axis.title.y = element_text(vjust = 0.5, size = 16), axis.title.x = element_text(vjust = 0.5, size = 16), plot.title = element_text(
-    size = rel(1.2), hjust = 0.5, # face = "bold",
-    margin = margin(t = 10, b = 20, unit = "pt")
-  )) +
+  theme(
+    text = element_text(size = 16),
+    axis.title.x = element_text(vjust = 0.5, size = 16),
+    axis.title.y = element_text(vjust = 0.5, size = 16),
+    plot.title = element_text(
+      size = rel(1.2), hjust = 0.5, # face = "bold",
+      margin = margin(t = 10, b = 20, unit = "pt")
+    )
+  ) +
   theme(legend.position = "none")
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
@@ -78,13 +94,21 @@ p3 <- ggplot(vc_reference_data, aes(x = vegetation_class, y = .value, fill = veg
   geom_boxplot() +
   # geom_jitter(width = 0.2, alpha = 0.5) +
   theme_bw() +
-  scale_y_continuous(name = bquote(Psi[constant]), limits = c(0, 1), breaks = seq(from = 0, to = 1, by = 0.2)) +
+  scale_y_continuous(
+    name = bquote(Psi[constant]), limits = c(0, 1),
+    breaks = seq(from = 0, to = 1, by = 0.2)
+  ) +
   scale_fill_manual(values = custom_colors_ref) +
   labs(x = "vegetation class") +
-  theme(text = element_text(size = 16), axis.title.y = element_text(vjust = 0.5, size = 16), axis.title.x = element_text(vjust = 0.5, size = 16), plot.title = element_text(
-    size = rel(1.5), hjust = 0.5, # face = "bold",
-    margin = margin(t = 10, b = 20, unit = "pt")
-  )) +
+  theme(
+    text = element_text(size = 16),
+    axis.title.x = element_text(vjust = 0.5, size = 16),
+    axis.title.y = element_text(vjust = 0.5, size = 16),
+    plot.title = element_text(
+      size = rel(1.5), hjust = 0.5, # face = "bold",
+      margin = margin(t = 10, b = 20, unit = "pt")
+    )
+  ) +
   theme(legend.position = "none")
 
 p4 <- ggplot(vc_ski_data, aes(x = vegetation_class, y = .value, fill = vegetation_class)) +
@@ -92,17 +116,29 @@ p4 <- ggplot(vc_ski_data, aes(x = vegetation_class, y = .value, fill = vegetatio
   # geom_jitter(width = 0.2, alpha = 0.5) +
   theme_bw() +
   # scale_x_discrete(labels = c("no", "low", "medium", "intensive")) +
-  scale_y_continuous(name = bquote(Psi[constant]), limits = c(0, 1), breaks = seq(from = 0, to = 1, by = 0.2)) +
+  scale_y_continuous(
+    name = bquote(Psi[constant]), limits = c(0, 1),
+    breaks = seq(from = 0, to = 1, by = 0.2)
+  ) +
   scale_fill_manual(values = custom_colors_ski) +
   labs(x = "vegetation class") +
-  theme(text = element_text(size = 16), axis.title.y = element_text(vjust = 0.5, size = 16), axis.title.x = element_text(vjust = 0.5, size = 16), plot.title = element_text(
-    size = rel(1.5), hjust = 0.5, # face = "bold",
-    margin = margin(t = 10, b = 20, unit = "pt")
-  )) +
+  theme(
+    text = element_text(size = 16),
+    axis.title.x = element_text(vjust = 0.5, size = 16),
+    axis.title.y = element_text(vjust = 0.5, size = 16),
+    plot.title = element_text(
+      size = rel(1.5), hjust = 0.5, # face = "bold",
+      margin = margin(t = 10, b = 20, unit = "pt")
+    )
+  ) +
   theme(legend.position = "none")
 
 # patchwork1 <- (p2 + p1) / (p4 + p3) / (p6 + p5) +
 patchwork1 <- (p2 + p1) / (p4 + p3) +
+  plot_annotation("Landuse feature variables",
+    theme = theme(plot.title = element_text(hjust = 0.5, size = 16, face = "bold"))
+  )
+ggsave("plt/fig_07.png", patchwork1, device = png, height = 20, width = 25, dpi = 300, units = "cm")
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
 # Ground cover ----
