@@ -1,0 +1,43 @@
+psi_intervall,geol_class,soil_class,humus_type,vegetation_class,pasture,ground_cover,slope,geomorphon,soil_depth,skeleton,embedded_rock_type,soiltexture,bulk_density,sd_delta
+0,Cover layer on carbonate bedrock,cambisol_cambic-phaeozem_cambic-umbrisol,mull,forest,low,90,17.99,mid-slope,mittelgründig,30,LOC,uL,0.8,-0.2841747859462651
+0.79,Cover layer on metamorphic bedrock,disturbed_soil,none,grassland,no,95,20.62,mid-slope,sehr flachgründig,26.5,EGE,S,1.19,-0.08706830062558912
+0.01,Cover layer on metamorphic bedrock,cambisol_cambic-phaeozem_cambic-umbrisol,moder,forest,no,80,22.16,mid-slope,mittelgründig,10,EHO,sU,0.48,-0.2541047693510555
+0.09,Cover layer on metamorphic bedrock,cambisol_cambic-phaeozem_cambic-umbrisol,mor,forest,no,100,22.55,mid-slope,mittelgründig,20,LOC,uS,0.73,-0.45397759721717446
+0.49,Cover layer on metamorphic bedrock,cambisol_cambic-phaeozem_cambic-umbrisol,moder,forest,no,90,23.04,mid-slope,mittelgründig,6.4,EHO,lS,0.49,-0.15857741036524053
+0.02,Cover layer on metamorphic bedrock,cambisol_cambic-phaeozem_cambic-umbrisol,moder,forest,no,10,27.62,plateau,mittelgründig,8,LOC,lS,0.5,-0.35264549487176566
+0,Talus/Scree,cambisol_cambic-phaeozem_cambic-umbrisol,moder,forest,no,100,20.27,mid-slope,mittelgründig,22.5,LOC,lS,0.64,-0.425414364640884
+0,Talus/Scree,cambisol_cambic-phaeozem_cambic-umbrisol,mor,forest,no,100,22.9,mid-slope,mittelgründig,40,EHO,uS,0.6,-0.3610619469026548
+1.01,"Glacial sediment, possibly solidified",disturbed_soil,mull,grassland,intensive,100,13.47,mid-slope,mittelgründig,3,EHO,uS,1.03,-0.3207373271889401
+0.53,"Glacial sediment, possibly solidified",disturbed_soil,mull,grassland,no,100,16.85,mid-slope,mittelgründig,12.2,EGE,lS,0.58,-0.505997210599721
+0.45,"Glacial sediment, possibly solidified",cambisol_cambic-phaeozem_cambic-umbrisol,mull,grassland,low,100,14.04,mid-slope,mittelgründig,6.4,EGE,uS,0.59,-0.163412870571222
+0.91,Anthropogenic debris,disturbed_soil,mull,grassland,intensive,100,7.68,slope-flattening,mittelgründig,3,EHO,uS,0.39,-0.0605690228831397
+0.35,Anthropogenic debris,disturbed_soil,mull,grassland,no,98,20.87,mid-slope,mittelgründig,5,EHO,lS,0.66,-0.36012719071212007
+0,Glacial sediment,disturbed_soil,none,grassland,no,85,21.06,trench,sehr flachgründig,60,LOC,S,1.19,-0.3891265880795376
+0.23,Glacial sediment,disturbed_soil,mull,grassland,no,90,20.79,mid-slope,flachgründig,30,LOC,lS,1.37,-0.1197252208047106
+0.77,Glacial sediment,regosol_phaeozem_umbrisol_folic-histosol,mull,grassland,intensive,99,19.05,mid-slope,mittelgründig,5,EHO,lS,0.44,-0.05656590231737735
+0.01,Anthropogenic debris,cambisol_cambic-phaeozem_cambic-umbrisol,none,grassland,no,90,31.95,escarpment,mittelgründig,45,LOC,lS,1.17,-0.20501778693128625
+0.67,Talus/Scree,disturbed_soil,mull,grassland,medium,100,12.54,mid-slope,mittelgründig,5,EHO,sL,0.61,-0.179752756431674
+0.04,Anthropogenic debris,disturbed_soil,none,grassland,no,90,27.92,trench,mittelgründig,30,LOC,S,1.07,-0.2802480070859168
+0,Anthropogenic debris,regosol_phaeozem_umbrisol_folic-histosol,none,grassland,no,80,20.57,mid-slope,mittelgründig,40,LOC,lS,1.23,-0.27985451606385137
+0.37,"Glacial sediment, potentially very loose",regosol_phaeozem_umbrisol_folic-histosol,moder,shrubs,low,100,27.37,lower-slope,mittelgründig,5,LOC,sU,0.45,-0.0024568356204126562
+0.25,"Glacial sediment, potentially very loose",regosol_phaeozem_umbrisol_folic-histosol,moder,shrubs,low,100,27.37,lower-slope,mittelgründig,12.5,LOC,sU,0.59,-0.158079863329614
+0.21,"Glacial sediment, potentially very loose",cambisol_cambic-phaeozem_cambic-umbrisol,moder,forest,medium,50,29.25,escarpment,mittelgründig,5,EHO,sU,0.56,-0.22228849581790755
+0.04,"Glacial sediment, potentially very loose",cambisol_cambic-phaeozem_cambic-umbrisol,moder,forest,medium,50,29.25,escarpment,mittelgründig,3,EHO,sU,0.49,-0.05643950634002948
+0.64,"Glacial sediment, possibly solidified",planosol-stagnosol,mull,grassland,medium,100,23.37,escarpment,tiefgründig,12.5,EGE,lU,0.89,0.0026016824212989897
+0.03,Glacial sediment,albic-podzol_entic-podzol,moder,shrubs,no,100,32.02,escarpment,tiefgründig,15,LOC,lS,0.58,-0.299226575377203
+0.52,Glacial sediment,cambisol_cambic-phaeozem_cambic-umbrisol,moder,forest,no,50,30.63,mid-slope,mittelgründig,14,LOC,lS,0.74,-0.34951923076923075
+0,Talus/Scree,cambisol_cambic-phaeozem_cambic-umbrisol,moder,forest,no,99,36.33,mid-slope,mittelgründig,85.32258065,EHO,uS,0.48,-0.1197252208047106
+0,Talus/Scree,cambisol_cambic-phaeozem_cambic-umbrisol,moder,forest,no,99,32.6,escarpment,mittelgründig,85.32258065,EHO,uS,0.33,-0.45146961597261204
+0.38,Glacial sediment,cambisol_cambic-phaeozem_cambic-umbrisol,moder,shrubs,no,80,10.57,plateau,mittelgründig,50.88,EHO,uS,0.69,-0.38998435054773084
+0.01,Glacial sediment,cambisol_cambic-phaeozem_cambic-umbrisol,moder,forest,no,20,11.22,plateau,mittelgründig,45.56,LOC,uS,0.33,-0.2826234861885971
+0.03,Glacial sediment,cambisol_cambic-phaeozem_cambic-umbrisol,moder,forest,no,90,16.63,plateau,mittelgründig,29.1,EHO,uS,0.56,-0.34995071116744125
+0.68,Talus/Scree,disturbed_soil,none,grassland,no,70,23.69,plateau,mittelgründig,28.95,EHO,S,1.23,-0.18809657495788878
+0,Glacial sediment,cambisol_cambic-phaeozem_cambic-umbrisol,mull,shrubs,no,100,15.48,plateau,mittelgründig,45.17,EHO,S,0.73,-0.5758460203518182
+0,Glacial sediment,albic-podzol_entic-podzol,mor,shrubs,no,100,28.85,escarpment,mittelgründig,10,EHO,S,0.8,-0.37206664303438497
+0.63,Glacial sediment,cambisol_cambic-phaeozem,none,grassland,intensive,95,17.8,mid-slope,mittelgründig,22.5,EGE,uL,0.82,-0.15968379446640313
+0,Cover layer on carbonate bedrock,cambisol_cambic-phaeozem,mull,forest,no,100,13.49,mid-slope,mittelgründig,30.22,LOC,lU,0.81,-0.212577502214349
+0.69,Cover layer on carbonate bedrock,cambisol_cambic-phaeozem,none,grassland,intensive,100,10.58,escarpment,mittelgründig,30,EGE,uL,0.76,-0.08173913043478254
+0.66,Cover layer on carbonate bedrock,cambisol_cambic-phaeozem,none,grassland,intensive,100,10.58,escarpment,mittelgründig,30,EGE,uL,0.76,-0.06245059288537547
+0.03,Cover layer on carbonate bedrock,regosol_phaeozem_umbrisol_folic-histosol,none,shrubs,medium,80,13.03,mid-slope,sehr flachgründig,60,LOC,uL,0.6,-0.20195350116934918
+0.85,Cover layer on carbonate bedrock,cambisol_cambic-phaeozem,none,grassland,intensive,90,28.83,escarpment,mittelgründig,30,EGE,uL,0.82,-0.1802149765072777
+0.81,Cover layer on carbonate bedrock,cambisol_cambic-phaeozem,none,grassland,intensive,90,28.83,escarpment,mittelgründig,30,EGE,uL,0.82,-0.14066002009428857
