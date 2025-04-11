@@ -5,6 +5,7 @@
 library("tidyverse")
 library("patchwork")
 
+source("dev/helper/theme_ski.R")
 
 all_dat <- read_csv("dat/raw/all_data.csv") |>
   mutate(
@@ -30,13 +31,11 @@ all_dat <- read_csv("dat/raw/all_data.csv") |>
 p <- ggplot(all_dat, aes(x = toponym, y = psi_intervall, color = as.factor(ski_slope), fill = as.factor(ski_slope))) +
   geom_boxplot(alpha = 0.4, outlier.shape = NA, width = 0.8) +
   stat_summary(aes(group = as.factor(ski_slope), color = as.factor(ski_slope)), fun = median, geom = "point", shape = 20, size = 3, position = position_dodge2(width = 0.8)) +
-  theme_bw() +
-  theme(
-    legend.position = "top", legend.text = element_text(size = 16), text = element_text(size = 16), axis.title.y = element_text(angle = 90, vjust = 0.5, size = 16), axis.text.x = element_text(angle = 0, hjust = 0.5, vjust = 0.5),
-    axis.title.x = element_text(vjust = 0.5, size = 16), axis.title.y.right = element_text(angle = 0, vjust = 0.5)
-  ) +
+  theme_ski() +
   scale_y_continuous(breaks = scales::breaks_extended(n = 7)) +
   labs(x = "Ski regions", y = expression(Psi[italic(constant)])) +
+  scale_color_manual(values = c(ski_col, ref_col), labels = c("ski slope", "reference"), name = "") +
+  scale_fill_manual(values = c(ski_col, ref_col), labels = c("ski slope", "reference"), name = "") +
   geom_vline(xintercept = seq(1.5, 11.5, 1), linetype = "dashed", colour = "black", size = 0.7)
 
-ggsave("plt/fig5.png", plot = p1, device = png, height = 10, width = 19, dpi = 300, units = "cm")
+ggsave("plt/fig_05.png", plot = p, device = png, height = 10, width = 19, dpi = 300, units = "cm")
