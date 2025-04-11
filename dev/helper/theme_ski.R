@@ -1,3 +1,6 @@
+ski_col <- "#33ccff"
+ref_col <- "#A27146"
+
 theme_ski <- function(...) {
   th <- theme_bw(...) +
     theme(
