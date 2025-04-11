@@ -169,14 +169,17 @@ ggsave("plt/fig_07.png", patchwork1, device = png, height = 20, width = 25, dpi 
 slope <- construct_effects(learner_reference, learner_ski, dat_reference, dat_ski, feature = "slope")
 
 # Calculate mean and median values
-summary_data <- nonski_data %>%
-  group_by(slope) %>%
+ref_summary <- slope$reference |>
+  group_by(slope) |>
+  summarize(mean_value = mean(.value), median_value = median(.value))
+ski_summary <- slope$ski |>
+  group_by(slope) |>
   summarize(mean_value = mean(.value), median_value = median(.value))
 
 p5 <- ggplot(slope$reference, aes(x = slope, y = .value)) +
   geom_line(aes(group = .id), alpha = 0.3) + # ICE lines
-  geom_line(data = summary_data, aes(y = mean_value), color = "#A27146", size = 1.2) + # Mean line
-  geom_line(data = summary_data, aes(y = median_value), color = "#A2714680", size = 1.2, linetype = "dashed") + # Median line
+  geom_line(data = ref_summary, aes(y = mean_value), color = "#A27146", linewidth = 1.2) + # Mean line
+  geom_line(data = ref_summary, aes(y = median_value), color = "#A2714680", linewidth = 1.2, linetype = "dashed") + # Median line
   scale_y_continuous(name = bquote(Psi[constant]), limits = c(0, 1), breaks = seq(from = 0, to = 1, by = 0.2)) +
   labs(title = "reference", x = "slope") +
   scale_x_continuous(limits = c(10, 30)) +
@@ -184,8 +187,8 @@ p5 <- ggplot(slope$reference, aes(x = slope, y = .value)) +
 
 p6 <- ggplot(slope$ski, aes(x = slope, y = .value)) +
   geom_line(aes(group = .id), alpha = 0.3) + # ICE lines
-  geom_line(data = summary_data, aes(y = mean_value), color = "#33ccff", size = 1.2) + # Mean line
-  geom_line(data = summary_data, aes(y = median_value), color = "#33ccff80", size = 1.2, linetype = "dashed") + # Median line
+  geom_line(data = ski_summary, aes(y = mean_value), color = "#33ccff", linewidth = 1.2) + # Mean line
+  geom_line(data = ski_summary, aes(y = median_value), color = "#33ccff80", linewidth = 1.2, linetype = "dashed") + # Median line
   scale_y_continuous(name = bquote(Psi[constant]), limits = c(0, 1), breaks = seq(from = 0, to = 1, by = 0.2)) +
   labs(title = "ski slope", x = "slope") +
   scale_x_continuous(limits = c(10, 30)) +
@@ -229,27 +232,27 @@ p8 <- ggplot(geol_class$ski, aes(x = geol_class, y = .value, fill = geol_class))
 skeleton <- construct_effects(learner_reference, learner_ski, dat_reference, dat_ski, feature = "skeleton")
 
 # Calculate mean and median values
-summary_data <- nonski_data %>%
-  group_by(skeleton) %>%
+ref_summary <- skeleton$reference |>
+  group_by(skeleton) |>
+  summarize(mean_value = mean(.value), median_value = median(.value))
+ski_summary <- skeleton$ski |>
+  group_by(skeleton) |>
   summarize(mean_value = mean(.value), median_value = median(.value))
 
 p9 <- ggplot(skeleton$reference, aes(x = skeleton, y = .value)) +
   geom_line(aes(group = .id), alpha = 0.3) + # ICE lines
-  geom_line(data = summary_data, aes(y = mean_value), color = "#A27146", size = 1.2) + # Mean line
-  geom_line(data = summary_data, aes(y = median_value), color = "#A2714680", size = 1.2, linetype = "dashed") + # Median line
+  geom_line(data = ref_summary, aes(y = mean_value), color = "#A27146", size = 1.2) + # Mean line
+  geom_line(data = ref_summary, aes(y = median_value), color = "#A2714680", size = 1.2, linetype = "dashed") + # Median line
   scale_y_continuous(name = bquote(Psi[constant]), limits = c(0, 1), breaks = seq(from = 0, to = 1, by = 0.2)) +
   labs(x = "skeleton [Vol.%]") +
   scale_x_continuous(limits = c(0, 60)) +
   theme_ski()
 
-summary_data <- ski_data %>%
-  group_by(skeleton) %>%
-  summarize(mean_value = mean(.value), median_value = median(.value))
 
 p10 <- ggplot(skeleton$ski, aes(x = skeleton, y = .value)) +
   geom_line(aes(group = .id), alpha = 0.3) + # ICE lines
-  geom_line(data = summary_data, aes(y = mean_value), color = "#33ccff", size = 1.2) + # Mean line
-  geom_line(data = summary_data, aes(y = median_value), color = "#33ccff80", size = 1.2, linetype = "dashed") + # Median line
+  geom_line(data = ski_summary, aes(y = mean_value), color = "#33ccff", size = 1.2) + # Mean line
+  geom_line(data = ski_summary, aes(y = median_value), color = "#33ccff80", size = 1.2, linetype = "dashed") + # Median line
   scale_y_continuous(name = bquote(Psi[constant]), limits = c(0, 1), breaks = seq(from = 0, to = 1, by = 0.2)) +
   labs(x = "skeleton [Vol.%]") +
   scale_x_continuous(limits = c(0, 60)) +
@@ -377,14 +380,17 @@ p16 <- ggplot(soilclass$ski, aes(x = soil_class, y = .value, fill = soil_class))
 saturation <- construct_effects(learner_reference, learner_ski, dat_reference, dat_ski, feature = "sd_delta")
 
 # Calculate mean and median values
-summary_data <- nonski_data %>%
-  group_by(sd_delta) %>%
+ref_summary <- saturation$reference |>
+  group_by(sd_delta) |>
+  summarize(mean_value = mean(.value), median_value = median(.value))
+ski_summary <- saturation$ski |>
+  group_by(sd_delta) |>
   summarize(mean_value = mean(.value), median_value = median(.value))
 
 p17 <- ggplot(saturation$reference, aes(x = sd_delta, y = .value)) +
   geom_line(aes(group = .id), alpha = 0.3) + # ICE lines
-  geom_line(data = summary_data, aes(y = mean_value), color = "#A27146", size = 1.2) + # Mean line
-  geom_line(data = summary_data, aes(y = median_value), color = "#A2714680", size = 1.2, linetype = "dashed") + # Median line
+  geom_line(data = ref_summary, aes(y = mean_value), color = "#A27146", size = 1.2) + # Mean line
+  geom_line(data = ref_summary, aes(y = median_value), color = "#A2714680", size = 1.2, linetype = "dashed") + # Median line
   scale_y_continuous(name = bquote(Psi[constant]), limits = c(0, 1), breaks = seq(from = 0, to = 1, by = 0.2)) +
   labs(x = "saturation deficit difference [Vol.%]") +
   scale_x_continuous(limits = c(-0.5, 0)) +
@@ -392,8 +398,8 @@ p17 <- ggplot(saturation$reference, aes(x = sd_delta, y = .value)) +
 
 p18 <- ggplot(saturation$ski, aes(x = sd_delta, y = .value)) +
   geom_line(aes(group = .id), alpha = 0.3) + # ICE lines
-  geom_line(data = summary_data, aes(y = mean_value), color = "#33ccff", size = 1.2) + # Mean line
-  geom_line(data = summary_data, aes(y = median_value), color = "#33ccff80", size = 1.2, linetype = "dashed") + # Median line
+  geom_line(data = ski_summary, aes(y = mean_value), color = "#33ccff", size = 1.2) + # Mean line
+  geom_line(data = ski_summary, aes(y = median_value), color = "#33ccff80", size = 1.2, linetype = "dashed") + # Median line
   # geom_rug(sides = "b", position="jitter", alpha = 0.5) +
   scale_y_continuous(name = bquote(Psi[constant]), limits = c(0, 1), breaks = seq(from = 0, to = 1, by = 0.2)) +
   labs(x = "saturation deficit difference [Vol.%]") +
