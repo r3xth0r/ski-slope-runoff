@@ -46,27 +46,29 @@ p1 <- ggplot(pasture_nonski_data, aes(x = pasture, y = .value, fill = pasture)) 
   geom_boxplot() +
   theme_bw()+
   scale_x_discrete(labels = c("no", "low", "medium", "intensive")) +
-  scale_y_continuous(name = bquote(Psi[constant]), limits = c(0, 1), breaks = seq(from = 0, to = 1, by = 0.2)) +
+  scale_y_continuous(name = bquote(italic(C[constant])), limits = c(0, 1), breaks = seq(from = 0, to = 1, by = 0.2)) +
   scale_fill_manual(values = custom_colors_ref) +
   labs(title = "reference", x = "pasture") +
-  theme(text = element_text(size=16),axis.title.y = element_text(vjust = 0.5,size = 16),axis.title.x = element_text(vjust = 0.5,size = 16),plot.title = element_text(
-    size = rel(1.2),  hjust = 0.5,#face = "bold",
+  theme(text = element_text(size=9),axis.title.y = element_text(vjust = 0.5,size = 9),axis.title.x = element_text(vjust = 0.5,size = 9),plot.title = element_text(
+    size = rel(1),  hjust = 0.5,#face = "bold",
     margin = margin(t = 10, b = 20, unit = "pt")
   )) +
-  theme(legend.position = "none")
+  theme(legend.position = "none",panel.grid.major = element_line(size = 0.3), 
+        panel.grid.minor = element_line(size = 0.15))
 
 p2 <- ggplot(pasture_ski_data, aes(x = pasture, y = .value, fill = pasture)) +
   geom_boxplot() +
   theme_bw()+
   scale_x_discrete(labels = c("no", "low", "medium", "intensive")) +
-  scale_y_continuous(name = bquote(Psi[constant]), limits = c(0, 1), breaks = seq(from = 0, to = 1, by = 0.2)) +
+  scale_y_continuous(name = bquote(italic(C[constant])), limits = c(0, 1), breaks = seq(from = 0, to = 1, by = 0.2)) +
   scale_fill_manual(values = custom_colors_ski) +
   labs(title = "ski slope", x = "pasture") +
-  theme(text = element_text(size=16),axis.title.y = element_text(vjust = 0.5,size = 16),axis.title.x = element_text(vjust = 0.5,size = 16),plot.title = element_text(
-    size = rel(1.2),  hjust = 0.5,#face = "bold",
+  theme(text = element_text(size=9),axis.title.y = element_text(vjust = 0.5,size = 9),axis.title.x = element_text(vjust = 0.5,size = 9),plot.title = element_text(
+    size = rel(1),  hjust = 0.5,#face = "bold",
     margin = margin(t = 10, b = 20, unit = "pt")
   )) +
-  theme(legend.position = "none")
+  theme(legend.position = "none",panel.grid.major = element_line(size = 0.3), 
+        panel.grid.minor = element_line(size = 0.15))
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
 # Vegetation ----
@@ -84,32 +86,34 @@ p3 <- ggplot(vc_nonski_data, aes(x = vegetation_class, y = .value, fill = vegeta
   geom_boxplot() +
   #geom_jitter(width = 0.2, alpha = 0.5) +
   theme_bw()+
-  scale_y_continuous(name = bquote(Psi[constant]), limits = c(0, 1), breaks = seq(from = 0, to = 1, by = 0.2)) +
+  scale_y_continuous(name = bquote(italic(C[constant])), limits = c(0, 1), breaks = seq(from = 0, to = 1, by = 0.2)) +
   scale_fill_manual(values = custom_colors_ref) +
   labs( x = "vegetation class") +
-  theme(text = element_text(size=16),axis.title.y = element_text(vjust = 0.5,size = 16),axis.title.x = element_text(vjust = 0.5,size = 16),plot.title = element_text(
-    size = rel(1.5),  hjust = 0.5,#face = "bold",
+  theme(text = element_text(size=9),axis.title.y = element_text(vjust = 0.5,size = 9),axis.title.x = element_text(vjust = 0.5,size = 9),plot.title = element_text(
+    size = rel(1),  hjust = 0.5,#face = "bold",
     margin = margin(t = 10, b = 20, unit = "pt")
   )) +
-  theme(legend.position = "none")
+  theme(legend.position = "none",panel.grid.major = element_line(size = 0.3), 
+        panel.grid.minor = element_line(size = 0.15))
 
 p4 <- ggplot(vc_ski_data, aes(x = vegetation_class, y = .value, fill = vegetation_class)) +
   geom_boxplot() +
   #geom_jitter(width = 0.2, alpha = 0.5) +
   theme_bw()+
   #scale_x_discrete(labels = c("no", "low", "medium", "intensive")) +
-  scale_y_continuous(name = bquote(Psi[constant]), limits = c(0, 1), breaks = seq(from = 0, to = 1, by = 0.2)) +
+  scale_y_continuous(name = bquote(italic(C[constant])), limits = c(0, 1), breaks = seq(from = 0, to = 1, by = 0.2)) +
   scale_fill_manual(values = custom_colors_ski) +
   labs( x = "vegetation class") +
-  theme(text = element_text(size=16),axis.title.y = element_text(vjust = 0.5,size = 16),axis.title.x = element_text(vjust = 0.5,size = 16),plot.title = element_text(
-    size = rel(1.5), hjust = 0.5,# face = "bold",
+  theme(text = element_text(size=9),axis.title.y = element_text(vjust = 0.5,size = 9),axis.title.x = element_text(vjust = 0.5,size = 9),plot.title = element_text(
+    size = rel(1), hjust = 0.5,# face = "bold",
     margin = margin(t = 10, b = 20, unit = "pt")
   )) +
-  theme(legend.position = "none")
+  theme(legend.position = "none",panel.grid.major = element_line(size = 0.3), 
+        panel.grid.minor = element_line(size = 0.15))
 #patchwork1 <- (p2 + p1) / (p4 + p3) / (p6 + p5) +
   patchwork1 <- (p2 + p1) / (p4 + p3)  +
-  plot_annotation("Landuse feature variables", theme = theme(plot.title = element_text(hjust = 0.5, size = 16,face = "bold")))
-ggsave("plt/figski7.png", patchwork1, device = png, height = 20, width = 25, dpi = 300, units = "cm")
+  plot_annotation("Landuse feature variables", theme = theme(plot.title = element_text(hjust = 0.5, size = 9,face = "bold")))
+ggsave("plt/figski7.png", patchwork1, device = png,  dpi = 300, units = "cm")
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
 # Ground cover ----
 # grcov <- construct_effects(learner_nonski, learner_ski, feature = "ground_cover")
@@ -190,17 +194,18 @@ summary_data <- nonski_data %>%
 
 p3 <- ggplot(nonski_data, aes(x = slope, y = .value)) +
   theme_bw()+
-  geom_line(aes(group = .id), alpha = 0.3) +  # ICE lines
-  geom_line(data = summary_data, aes(y = mean_value), color = "#A27146", size = 1.2) +  # Mean line
-  geom_line(data = summary_data, aes(y = median_value), color = "#A2714680", size = 1.2, linetype = "dashed") +  # Median line
-  scale_y_continuous(name = bquote(Psi[constant]), limits = c(0, 1), breaks = seq(from = 0, to = 1, by = 0.2)) +
+  geom_line(aes(group = .id), alpha = 0.3,size = 0.25) +  # ICE lines
+  geom_line(data = summary_data, aes(y = mean_value), color = "#A27146", size = 0.5) +  # Mean line
+  geom_line(data = summary_data, aes(y = median_value), color = "#A2714680", size = 0.5, linetype = "dashed") +  # Median line
+  scale_y_continuous(name = bquote(italic(C[constant])), limits = c(0, 1), breaks = seq(from = 0, to = 1, by = 0.2)) +
   labs(title = "reference",x = "slope")+
   scale_x_continuous(limits = c(10, 30))+
-  theme(text = element_text(size=16),axis.title.y = element_text(vjust = 0.5,size = 16),axis.title.x = element_text(vjust = 0.5,size = 16),plot.title = element_text(
-    size = rel(1.1), hjust = 0.5,# face = "bold",
+  theme(text = element_text(size=9),axis.title.y = element_text(vjust = 0.5,size = 9),axis.title.x = element_text(vjust = 0.5,size = 9),plot.title = element_text(
+    size = rel(1), hjust = 0.5,# face = "bold",
     margin = margin(t = 10, b = 20, unit = "pt")
   )) +
-  theme(legend.position = "none")
+  theme(legend.position = "none",panel.grid.major = element_line(size = 0.3), 
+        panel.grid.minor = element_line(size = 0.15))
 
 summary_data <- ski_data %>%
   group_by(slope) %>%
@@ -208,22 +213,23 @@ summary_data <- ski_data %>%
 
 p4 <- ggplot(ski_data, aes(x = slope, y = .value)) +
   theme_bw()+
-  geom_line(aes(group = .id), alpha = 0.3) +  # ICE lines
-  geom_line(data = summary_data, aes(y = mean_value), color = "#33ccff", size = 1.2) +  # Mean line
-  geom_line(data = summary_data, aes(y = median_value), color = "#33ccff80", size = 1.2, linetype = "dashed") +  # Median line
-  scale_y_continuous(name = bquote(Psi[constant]), limits = c(0, 1), breaks = seq(from = 0, to = 1, by = 0.2)) +
+  geom_line(aes(group = .id), alpha = 0.3,size = 0.25) +  # ICE lines
+  geom_line(data = summary_data, aes(y = mean_value), color = "#33ccff", size = 0.5) +  # Mean line
+  geom_line(data = summary_data, aes(y = median_value), color = "#33ccff80", size = 0.5, linetype = "dashed") +  # Median line
+  scale_y_continuous(name = bquote(italic(C[constant])), limits = c(0, 1), breaks = seq(from = 0, to = 1, by = 0.2)) +
   labs(title = "ski slope",x = "slope")+
   scale_x_continuous(limits = c(10, 30))+
-  theme(text = element_text(size=16),axis.title.y = element_text(vjust = 0.5,size = 16),axis.title.x = element_text(vjust = 0.5,size = 16),plot.title = element_text(
-    size = rel(1.1), hjust = 0.5,# face = "bold",
+  theme(text = element_text(size=9),axis.title.y = element_text(vjust = 0.5,size = 9),axis.title.x = element_text(vjust = 0.5,size = 9),plot.title = element_text(
+    size = rel(1), hjust = 0.5,# face = "bold",
     margin = margin(t = 10, b = 20, unit = "pt")
   )) +
-  theme(legend.position = "none")
+  theme(legend.position = "none",panel.grid.major = element_line(size = 0.3),  # Change major grid line size
+        panel.grid.minor = element_line(size = 0.15))
 
 
 patchwork2 <- (p4 + p3) +
-  plot_annotation("Topographic feature variable", theme = theme(plot.title = element_text(hjust = 0.5, size = 16,face = "bold")))
-ggsave("plt/figski10.png", patchwork2, device = png, height = 10, width = 22.5, dpi = 300, units = "cm")
+  plot_annotation("Topographic feature variable", theme = theme(plot.title = element_text(hjust = 0.5, size = 9,face = "bold")))
+ggsave("plt/figski10.png", patchwork2, device = png, height = 6.7, width = 12.4, dpi = 300, units = "cm")
 
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
@@ -240,28 +246,30 @@ custom_colors_ref <- c("Cover layer on metamorphic bedrock"= "#A27146", "Glacial
 p1 <- ggplot(geol_nonski_data, aes(x = geol_class, y = .value, fill = geol_class)) +
   geom_boxplot() +
   theme_bw()+
-  scale_y_continuous(name = bquote(Psi[constant]), limits = c(0, 1), breaks = seq(from = 0, to = 1, by = 0.2)) +
+  scale_y_continuous(name = bquote(italic(C[constant])), limits = c(0, 1), breaks = seq(from = 0, to = 1, by = 0.2)) +
   scale_x_discrete(labels = c("AnD", "CLC", "CLM", "GS", "GSps", "GSpl", "TS"))+
   scale_fill_manual(values = custom_colors_ref) +
   labs(title = "reference", x = "geological class") +
-  theme(text = element_text(size=16),axis.title.y = element_text(vjust = 0.5,size = 16),axis.title.x = element_text(vjust = 0.5,size = 16),plot.title = element_text(
-    size = rel(1.1),  hjust = 0.5,#face = "bold",
+  theme(text = element_text(size=9),axis.title.y = element_text(vjust = 0.5,size = 9),axis.title.x = element_text(vjust = 0.5,size = 9),plot.title = element_text(
+    size = rel(1),  hjust = 0.5,#face = "bold",
     margin = margin(t = 10, b = 20, unit = "pt")
   )) +
-  theme(legend.position = "none")
+  theme(legend.position = "none",panel.grid.major = element_line(size = 0.3), 
+        panel.grid.minor = element_line(size = 0.15))
 
 p2 <- ggplot(geol_ski_data, aes(x = geol_class, y = .value, fill = geol_class)) +
   geom_boxplot() +
   theme_bw()+
   scale_x_discrete(labels = c("AnD", "CLC", "CLM", "GS", "GSps", "GSpl", "TS"))+
-  scale_y_continuous(name = bquote(Psi[constant]), limits = c(0, 1), breaks = seq(from = 0, to = 1, by = 0.2)) +
+  scale_y_continuous(name = bquote(italic(C[constant])), limits = c(0, 1), breaks = seq(from = 0, to = 1, by = 0.2)) +
   scale_fill_manual(values = custom_colors_ski) +
   labs(title = "ski slope", x = "geological class") +
-  theme(text = element_text(size=16),axis.title.y = element_text(vjust = 0.5,size = 16),axis.title.x = element_text(vjust = 0.5,size = 16),plot.title = element_text(
-    size = rel(1.1),  hjust = 0.5,#face = "bold",
+  theme(text = element_text(size=9),axis.title.y = element_text(vjust = 0.5,size = 9),axis.title.x = element_text(vjust = 0.5,size = 9),plot.title = element_text(
+    size = rel(1),  hjust = 0.5,#face = "bold",
     margin = margin(t = 10, b = 20, unit = "pt")
   )) +
-  theme(legend.position = "none")
+  theme(legend.position = "none",panel.grid.major = element_line(size = 0.3), 
+        panel.grid.minor = element_line(size = 0.15))
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
 # Skeleton ----
@@ -275,34 +283,36 @@ summary_data <- nonski_data %>%
 
 p3 <- ggplot(nonski_data, aes(x = skeleton, y = .value)) +
   theme_bw()+
-  geom_line(aes(group = .id), alpha = 0.3) +  # ICE lines
-  geom_line(data = summary_data, aes(y = mean_value), color = "#A27146", size = 1.2) +  # Mean line
-  geom_line(data = summary_data, aes(y = median_value), color = "#A2714680", size = 1.2, linetype = "dashed") +  # Median line
-  scale_y_continuous(name = bquote(Psi[constant]), limits = c(0, 1), breaks = seq(from = 0, to = 1, by = 0.2)) +
-  labs(x = "skeleton [Vol.%]")+
+  geom_line(aes(group = .id), alpha = 0.3, size = 0.25) +  # ICE lines
+  geom_line(data = summary_data, aes(y = mean_value), color = "#A27146", size = 0.5) +  # Mean line
+  geom_line(data = summary_data, aes(y = median_value), color = "#A2714680", size = 0.5, linetype = "dashed") +  # Median line
+  scale_y_continuous(name = bquote(italic(C[constant])), limits = c(0, 1), breaks = seq(from = 0, to = 1, by = 0.2)) +
+  labs(x = "skeleton [vol.%]")+
   scale_x_continuous(limits = c(0, 60))+
-  theme(text = element_text(size=16),axis.title.y = element_text(vjust = 0.5,size = 16),axis.title.x = element_text(vjust = 0.5,size = 16),plot.title = element_text(
-  size = rel(1.1), hjust = 0.5,# face = "bold",
+  theme(text = element_text(size=9),axis.title.y = element_text(vjust = 0.5,size = 9),axis.title.x = element_text(vjust = 0.5,size = 9),plot.title = element_text(
+  size = rel(1), hjust = 0.5,# face = "bold",
   margin = margin(t = 10, b = 20, unit = "pt")
   )) +
-  theme(legend.position = "none")
+  theme(legend.position = "none",panel.grid.major = element_line(size = 0.3), 
+        panel.grid.minor = element_line(size = 0.15))
 summary_data <- ski_data %>%
   group_by(skeleton) %>%
   summarize(mean_value = mean(.value), median_value = median(.value))
 
 p4 <- ggplot(ski_data, aes(x = skeleton, y = .value)) +
   theme_bw()+
-  geom_line(aes(group = .id), alpha = 0.3) +  # ICE lines
-  geom_line(data = summary_data, aes(y = mean_value), color = "#33ccff", size = 1.2) +  # Mean line
-  geom_line(data = summary_data, aes(y = median_value), color = "#33ccff80", size = 1.2, linetype = "dashed") +  # Median line
-  scale_y_continuous(name = bquote(Psi[constant]), limits = c(0, 1), breaks = seq(from = 0, to = 1, by = 0.2)) +
-  labs(x = "skeleton [Vol.%]")+
+  geom_line(aes(group = .id), alpha = 0.3, size = 0.25) +  # ICE lines
+  geom_line(data = summary_data, aes(y = mean_value), color = "#33ccff", size = 0.5) +  # Mean line
+  geom_line(data = summary_data, aes(y = median_value), color = "#33ccff80", size = 0.5, linetype = "dashed") +  # Median line
+  scale_y_continuous(name = bquote(italic(C[constant])), limits = c(0, 1), breaks = seq(from = 0, to = 1, by = 0.2)) +
+  labs(x = "skeleton [vol.%]")+
   scale_x_continuous(limits = c(0, 60))+
-  theme(text = element_text(size=16),axis.title.y = element_text(vjust = 0.5,size = 16),axis.title.x = element_text(vjust = 0.5,size = 16),plot.title = element_text(
-  size = rel(1.1), hjust = 0.5,# face = "bold",
+  theme(text = element_text(size=9),axis.title.y = element_text(vjust = 0.5,size = 9),axis.title.x = element_text(vjust = 0.5,size = 9),plot.title = element_text(
+  size = rel(1), hjust = 0.5,# face = "bold",
   margin = margin(t = 10, b = 20, unit = "pt")
   )) +
-  theme(legend.position = "none")
+  theme(legend.position = "none",panel.grid.major = element_line(size = 0.3), 
+        panel.grid.minor = element_line(size = 0.15))
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
 # Soil texture ----
@@ -317,29 +327,31 @@ custom_colors_ref <- c("lS"= "#A27146", "lU"= "#A27146", "S"= "#A27146", "sL"= "
 p5 <- ggplot(soilt_nonski_data, aes(x = soiltexture, y = .value, fill = soiltexture)) +
   geom_boxplot() +
   theme_bw()+
-  scale_y_continuous(name = bquote(Psi[constant]), limits = c(0, 1), breaks = seq(from = 0, to = 1, by = 0.2)) +
+  scale_y_continuous(name = bquote(italic(C[constant])), limits = c(0, 1), breaks = seq(from = 0, to = 1, by = 0.2)) +
   scale_fill_manual(values = custom_colors_ref) +
   labs(x = "texture") +
-  theme(text = element_text(size=16),axis.title.y = element_text(vjust = 0.5,size = 16),axis.title.x = element_text(vjust = 0.5,size = 16),plot.title = element_text(
-    size = rel(1.1), hjust = 0.5,# face = "bold",
+  theme(text = element_text(size=9),axis.title.y = element_text(vjust = 0.5,size = 9),axis.title.x = element_text(vjust = 0.5,size = 9),plot.title = element_text(
+    size = rel(1), hjust = 0.5,# face = "bold",
     margin = margin(t = 10, b = 20, unit = "pt")
   )) +
-  theme(legend.position = "none")
+  theme(legend.position = "none",panel.grid.major = element_line(size = 0.3), 
+        panel.grid.minor = element_line(size = 0.15))
 
 p6 <- ggplot(soilt_ski_data, aes(x = soiltexture, y = .value, fill = soiltexture)) +
   geom_boxplot() +
   theme_bw()+
-  scale_y_continuous(name = bquote(Psi[constant]), limits = c(0, 1), breaks = seq(from = 0, to = 1, by = 0.2)) +
+  scale_y_continuous(name = bquote(italic(C[constant])), limits = c(0, 1), breaks = seq(from = 0, to = 1, by = 0.2)) +
   scale_fill_manual(values = custom_colors_ski) +
   labs(x = "texture") +
-  theme(text = element_text(size=16),axis.title.y = element_text(vjust = 0.5,size = 16),axis.title.x = element_text(vjust = 0.5,size = 16),plot.title = element_text(
-    size = rel(1.1), hjust = 0.5,# face = "bold",
+  theme(text = element_text(size=9),axis.title.y = element_text(vjust = 0.5,size = 9),axis.title.x = element_text(vjust = 0.5,size = 9),plot.title = element_text(
+    size = rel(1), hjust = 0.5,# face = "bold",
     margin = margin(t = 10, b = 20, unit = "pt")
   )) +
-  theme(legend.position = "none")
+  theme(legend.position = "none",panel.grid.major = element_line(size = 0.3), 
+        panel.grid.minor = element_line(size = 0.15))
 patchwork3 <- (p2 + p1) / (p4 + p3)/ (p6 + p5) +
-  plot_annotation("Geological feature variables", theme = theme(plot.title = element_text(hjust = 0.5, size = 16,face = "bold")))
-ggsave("plt/figski8.png", patchwork3, device = png, height = 30, width = 25, dpi = 300, units = "cm")
+  plot_annotation("Geological feature variables", theme = theme(plot.title = element_text(hjust = 0.5, size = 9,face = "bold")))
+ggsave("plt/figski8.png", patchwork3, device = png, height = 18.6, width = 13.3, dpi = 300, units = "cm")
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
 # GROUP: Soil
@@ -356,28 +368,30 @@ custom_colors_ref <- c("LOC"= "#A27146", "EHO"= "#A27146", "EGE"= "#A27146", "GS
 p1 <- ggplot(erd_nonski_data, aes(x = embedded_rock_type, y = .value, fill = embedded_rock_type)) +
   geom_boxplot() +
   theme_bw()+
-  scale_y_continuous(name = bquote(Psi[constant]), limits = c(0, 1), breaks = seq(from = 0, to = 1, by = 0.2)) +
+  scale_y_continuous(name = bquote(italic(C[constant])), limits = c(0, 1), breaks = seq(from = 0, to = 1, by = 0.2)) +
   scale_fill_manual(values = custom_colors_ref) +
   scale_x_discrete(labels = c("cohesive", "intermediate", "loose"))+
   labs(title = "reference", x = "soil structure") +
-  theme(text = element_text(size=16),axis.title.y = element_text(vjust = 0.5,size = 16),axis.title.x = element_text(vjust = 0.5,size = 16),plot.title = element_text(
-    size = rel(1.1), hjust = 0.5,# face = "bold",
+  theme(text = element_text(size=9),axis.title.y = element_text(vjust = 0.5,size = 9),axis.title.x = element_text(vjust = 0.5,size = 9),plot.title = element_text(
+    size = rel(1), hjust = 0.5,# face = "bold",
     margin = margin(t = 10, b = 20, unit = "pt")
   )) +
-  theme(legend.position = "none")
+  theme(legend.position = "none",panel.grid.major = element_line(size = 0.3), 
+        panel.grid.minor = element_line(size = 0.15))
 
 p2 <- ggplot(erd_ski_data, aes(x = embedded_rock_type, y = .value, fill = embedded_rock_type)) +
   geom_boxplot() +
   theme_bw()+
   scale_x_discrete(labels = c("cohesive", "intermediate", "loose")) +
-  scale_y_continuous(name = bquote(Psi[constant]), limits = c(0, 1), breaks = seq(from = 0, to = 1, by = 0.2)) +
+  scale_y_continuous(name = bquote(italic(C[constant])), limits = c(0, 1), breaks = seq(from = 0, to = 1, by = 0.2)) +
   scale_fill_manual(values = custom_colors_ski) +
   labs(title = "ski slope", x = "soil structure") +
-  theme(text = element_text(size=16),axis.title.y = element_text(vjust = 0.5,size = 16),axis.title.x = element_text(vjust = 0.5,size = 16),plot.title = element_text(
-    size = rel(1.1), hjust = 0.5,# face = "bold",
+  theme(text = element_text(size=9),axis.title.y = element_text(vjust = 0.5,size = 9),axis.title.x = element_text(vjust = 0.5,size = 9),plot.title = element_text(
+    size = rel(1), hjust = 0.5,# face = "bold",
     margin = margin(t = 10, b = 20, unit = "pt")
   )) +
-  theme(legend.position = "none")
+  theme(legend.position = "none",panel.grid.major = element_line(size = 0.3), 
+        panel.grid.minor = element_line(size = 0.15))
 
 # Soil class ----
 
@@ -417,27 +431,29 @@ p3 <- ggplot(soilcl_nonski_data, aes(x = soil_class, y = .value, fill = soil_cla
   geom_boxplot() +
   theme_bw()+
   scale_x_discrete(labels = c("APE", "CCP", "CCU", "DS", "PS", "RPUF")) +
-  scale_y_continuous(name = bquote(Psi[constant]), limits = c(0, 1), breaks = seq(from = 0, to = 1, by = 0.2)) +
+  scale_y_continuous(name = bquote(italic(C[constant])), limits = c(0, 1), breaks = seq(from = 0, to = 1, by = 0.2)) +
   scale_fill_manual(values = custom_colors_ref) +
   labs(x = "soil class") +
-  theme(text = element_text(size=16),axis.title.y = element_text(vjust = 0.5,size = 16),axis.title.x = element_text(vjust = 0.5,size = 16),plot.title = element_text(
-    size = rel(1.1), hjust = 0.5,# face = "bold",
+  theme(text = element_text(size=9),axis.title.y = element_text(vjust = 0.5,size = 9),axis.title.x = element_text(vjust = 0.5,size = 9),plot.title = element_text(
+    size = rel(1), hjust = 0.5,# face = "bold",
     margin = margin(t = 10, b = 20, unit = "pt")
   )) +
-  theme(legend.position = "none")
+  theme(legend.position = "none",panel.grid.major = element_line(size = 0.3), 
+        panel.grid.minor = element_line(size = 0.15))
 
 p4 <- ggplot(soilcl_ski_data, aes(x = soil_class, y = .value, fill = soil_class)) +
   geom_boxplot() +
   theme_bw()+
   scale_x_discrete(labels = c("APE", "CCU", "DS")) +
-  scale_y_continuous(name = bquote(Psi[constant]), limits = c(0, 1), breaks = seq(from = 0, to = 1, by = 0.2)) +
+  scale_y_continuous(name = bquote(italic(C[constant])), limits = c(0, 1), breaks = seq(from = 0, to = 1, by = 0.2)) +
   scale_fill_manual(values = custom_colors_ski) +
   labs(x = "soil class") +
-  theme(text = element_text(size=16),axis.title.y = element_text(vjust = 0.5,size = 16),axis.title.x = element_text(vjust = 0.5,size = 16),plot.title = element_text(
-    size = rel(1.1), hjust = 0.5,# face = "bold",
+  theme(text = element_text(size=9),axis.title.y = element_text(vjust = 0.5,size = 9),axis.title.x = element_text(vjust = 0.5,size = 9),plot.title = element_text(
+    size = rel(1), hjust = 0.5,# face = "bold",
     margin = margin(t = 10, b = 20, unit = "pt")
   )) +
-  theme(legend.position = "none")
+  theme(legend.position = "none",panel.grid.major = element_line(size = 0.3), 
+        panel.grid.minor = element_line(size = 0.15))
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
 # Saturation ----
@@ -451,38 +467,40 @@ summary_data <- nonski_data %>%
 
 p5 <- ggplot(nonski_data, aes(x = sd_delta, y = .value)) +
   theme_bw()+
-  geom_line(aes(group = .id), alpha = 0.3) +  # ICE lines
-  geom_line(data = summary_data, aes(y = mean_value), color = "#A27146", size = 1.2) +  # Mean line
-  geom_line(data = summary_data, aes(y = median_value), color = "#A2714680", size = 1.2, linetype = "dashed") +  # Median line
-  scale_y_continuous(name = bquote(Psi[constant]), limits = c(0, 1), breaks = seq(from = 0, to = 1, by = 0.2)) +
-  labs(x = "saturation deficit difference [Vol.%]")+
+  geom_line(aes(group = .id), alpha = 0.3, size = 0.25) +  # ICE lines
+  geom_line(data = summary_data, aes(y = mean_value), color = "#A27146", size = 0.5) +  # Mean line
+  geom_line(data = summary_data, aes(y = median_value), color = "#A2714680", size = 0.5, linetype = "dashed") +  # Median line
+  scale_y_continuous(name = bquote(italic(C[constant])), limits = c(0, 1), breaks = seq(from = 0, to = 1, by = 0.2)) +
+  labs(x = "SDD [vol.%]")+
   scale_x_continuous(limits = c(-0.5, 0))+
-  theme(text = element_text(size=16),axis.title.y = element_text(vjust = 0.5,size = 16),axis.title.x = element_text(vjust = 0.5,size = 16),plot.title = element_text(
-  size = rel(1.1), hjust = 0.5,# face = "bold",
+  theme(text = element_text(size=9),axis.title.y = element_text(vjust = 0.5,size = 9),axis.title.x = element_text(vjust = 0.5,size = 9),plot.title = element_text(
+  size = rel(1), hjust = 0.5,# face = "bold",
   margin = margin(t = 10, b = 20, unit = "pt")
 )) +
-  theme(legend.position = "none")
+  theme(legend.position = "none",panel.grid.major = element_line(size = 0.3), 
+        panel.grid.minor = element_line(size = 0.15))
 summary_data <- ski_data %>%
   group_by(sd_delta) %>%
   summarize(mean_value = mean(.value), median_value = median(.value))
 
 p6 <- ggplot(ski_data, aes(x = sd_delta, y = .value)) +
   theme_bw()+
-  geom_line(aes(group = .id), alpha = 0.3) +  # ICE lines
-  geom_line(data = summary_data, aes(y = mean_value), color = "#33ccff", size = 1.2) +  # Mean line
-  geom_line(data = summary_data, aes(y = median_value), color = "#33ccff80", size = 1.2, linetype = "dashed") +  # Median line
+  geom_line(aes(group = .id), alpha = 0.3, size = 0.25) +  # ICE lines
+  geom_line(data = summary_data, aes(y = mean_value), color = "#33ccff", size = 0.5) +  # Mean line
+  geom_line(data = summary_data, aes(y = median_value), color = "#33ccff80", size = 0.5, linetype = "dashed") +  # Median line
   #geom_rug(sides = "b", position="jitter", alpha = 0.5) +
-  scale_y_continuous(name = bquote(Psi[constant]), limits = c(0, 1), breaks = seq(from = 0, to = 1, by = 0.2)) +
-  labs(x = "saturation deficit difference [Vol.%]")+
+  scale_y_continuous(name = bquote(italic(C[constant])), limits = c(0, 1), breaks = seq(from = 0, to = 1, by = 0.2)) +
+  labs(x = "SDD [vol.%]")+
   scale_x_continuous(limits = c(-0.5, 0))+
-  theme(text = element_text(size=16),axis.title.y = element_text(vjust = 0.5,size = 16),axis.title.x = element_text(vjust = 0.5,size = 16),plot.title = element_text(
-    size = rel(1.1), hjust = 0.5,# face = "bold",
+  theme(text = element_text(size=9),axis.title.y = element_text(vjust = 0.5,size = 9),axis.title.x = element_text(vjust = 0.5,size = 9),plot.title = element_text(
+    size = rel(1), hjust = 0.5,# face = "bold",
     margin = margin(t = 10, b = 20, unit = "pt")
   )) +
-  theme(legend.position = "none")
-patchwork5 <- (p2 + p1) / (p4 + p3)/ (p6 + p5) +
-  plot_annotation("Soil feature variables", theme = theme(plot.title = element_text(hjust = 0.5, size = 16,face = "bold")))
-ggsave("plt/figski9.png", patchwork5, device = png, height = 30, width = 25, dpi = 300, units = "cm")
+  theme(legend.position = "none",panel.grid.major = element_line(size = 0.3), 
+        panel.grid.minor = element_line(size = 0.15))
+patchwork5 <- (p2 + p1) / (p6 + p5) +
+  plot_annotation("Soil feature variables", theme = theme(plot.title = element_text(hjust = 0.5, size = 9,face = "bold")))
+ggsave("plt/figski9.png", patchwork5, device = png,  dpi = 300, units = "cm")
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
 # Humus Type ----

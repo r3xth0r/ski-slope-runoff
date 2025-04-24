@@ -36,7 +36,7 @@ p1 <- ggplot(allplots, aes(x=toponym, y=psi_intervall,color=as.factor(ski_slope)
   theme(legend.position="top",legend.text=element_text(size=16),text = element_text(size=16),axis.title.y = element_text(angle = 90, vjust = 0.5,size = 16),axis.text.x = element_text(angle = 0,hjust = 0.5, vjust = 0.5),
         axis.title.x = element_text(vjust = 0.5,size = 16),axis.title.y.right = element_text(angle = 0, vjust = 0.5))+
   scale_y_continuous(breaks = scales::breaks_extended(n = 7))+
-  labs( x="Ski regions",y = expression(Psi[italic(constant)]))+
+  labs( x="Ski regions",y = expression(italic(C[constant])))+
   scale_color_manual(values = c("#33ccff", "#A27146"),labels=c("ski slope","reference"), name = "")+
   scale_fill_manual(values = c("#33ccff", "#A27146"),labels=c("ski slope","reference"), name = "")+
   geom_vline(aes(xintercept=1.5),linetype="dashed",colour="black",size=0.7)+

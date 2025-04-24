@@ -14,7 +14,7 @@ imp <- imp %>%
   mutate(index = fct_recode(index, "soil structure" = "embedded rock type"))
 
 # Highlight top 6 features
-top6_noski <- imp %>% top_n(6, importance) %>% pull(index)
+top6_noski <- imp %>% top_n(5, importance) %>% pull(index)
 imp <- imp %>%
   mutate(color = if_else(index %in% top6_noski, "highlight", "normal"))
 
@@ -44,7 +44,8 @@ p_noski <- ggplot(
                      breaks = c("land use", "topography", "geology", "soil")) +
   coord_flip() +
   xlab("") +
-  ylab(expression(Importance~on~Psi[constant])) +
+  ylab(expression(Importance~on~italic(C[constant]))) +
+  scale_y_continuous(breaks = seq(0, 4, by = 1), limits = c(0, 4)) +  # Set y-axis to integer values from 0 to 4
   labs(title = paste0("reference")) +
   theme_minimal() +
   theme(
@@ -100,7 +101,8 @@ p_ski <- ggplot(
                      breaks = c("land use", "topography", "geology", "soil")) +
   coord_flip() +
   xlab("") +
-  ylab(expression(Importance~on~Psi[constant])) +
+  ylab(expression(Importance~on~italic(C[constant]))) +
+  scale_y_continuous(breaks = seq(0, 4, by = 1), limits = c(0, 4)) +  # Set y-axis to integer values from 0 to 4
   labs(title = paste0("ski slope")) +
   theme_minimal() +
   theme(
