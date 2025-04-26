@@ -80,7 +80,7 @@ p3 <- ggplot(vc_reference_data, aes(x = vegetation_class, y = .value, fill = veg
     name = bquote(italic(C[constant])), limits = c(0, 1),
     breaks = seq(from = 0, to = 1, by = 0.2)
   ) +
-  labs(x = "vegetation class") +
+  labs(x = "vegetation") +
   theme_pdp()
 
 p4 <- ggplot(vc_ski_data, aes(x = vegetation_class, y = .value, fill = vegetation_class)) +
@@ -91,7 +91,7 @@ p4 <- ggplot(vc_ski_data, aes(x = vegetation_class, y = .value, fill = vegetatio
     name = bquote(italic(C[constant])), limits = c(0, 1),
     breaks = seq(from = 0, to = 1, by = 0.2)
   ) +
-  labs(x = "vegetation class") +
+  labs(x = "vegetation") +
   theme_pdp()
 
 patchwork1 <- (p2 + p1) / (p4 + p3) +
@@ -279,21 +279,21 @@ ggsave("plt/fig_08.png", patchwork3, device = png, height = 18.6, width = 13.3, 
 # GROUP: Soil
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
 
-# Soil structure ----
+# Coarse fraction embedment ----
 erd <- construct_effects(learner_reference, learner_ski, dat_reference, dat_ski, feature = "embedded_rock_type")
 
 p13 <- ggplot(erd$reference, aes(x = embedded_rock_type, y = .value, fill = embedded_rock_type)) +
   geom_boxplot(fill = ref_col) +
   scale_y_continuous(name = bquote(italic(C[constant])), limits = c(0, 1), breaks = seq(from = 0, to = 1, by = 0.2)) +
   scale_x_discrete(labels = c("cohesive", "intermediate", "loose")) +
-  labs(title = "reference", x = "soil structure") +
+  labs(title = "reference", x = "coarse fraction embedment") +
   theme_pdp()
 
 p14 <- ggplot(erd$ski, aes(x = embedded_rock_type, y = .value, fill = embedded_rock_type)) +
   geom_boxplot(fill = ski_col) +
   scale_x_discrete(labels = c("cohesive", "intermediate", "loose")) +
   scale_y_continuous(name = bquote(italic(C[constant])), limits = c(0, 1), breaks = seq(from = 0, to = 1, by = 0.2)) +
-  labs(title = "ski slope", x = "soil structure") +
+  labs(title = "ski slope", x = "coarse fraction embedment") +
   theme_pdp()
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
