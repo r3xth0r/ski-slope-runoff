@@ -1,0 +1,76 @@
+---
+title: "Ski slope surface runoff"
+subtitle: "Quick exploratory data analysis"
+author: "Matthias Schlögl"
+date: "`r Sys.Date()`"
+format:
+  html:
+    page-layout: full
+    embed-resources: true
+---
+
+```{r setup, include = FALSE}
+library("tidyverse")
+library("gt")
+library("knitr")
+library("moments")
+library("glue")
+```
+
+
+```{r data, include = TRUE,  eval = TRUE, message = FALSE}
+#| tbl-cap: "Input Data"
+
+dat <- read_csv("../dat/raw/all_data.csv", locale = locale(encoding = "iso-8859-1")) |>
+  rename_with(~ tolower(gsub("-", "_", .x, fixed = TRUE))) |>
+  mutate(exp_date = as.Date(exp_date, format = "%d.%m.%Y")) |>
+  mutate(across(.cols = starttime:endtime, ~ as_datetime(.x))) |>
+  mutate(across(where(is.character), ~ as.factor(.x)))
+
+rmarkdown::paged_table(dat)
+```
+
+```{r funs, include = TRUE, eval = TRUE}
+create_hist <- function(x) {
+  # calculate hist (separate hist calculation and plotting, in order not to store raw data in the ggplot object)
+  hist_tmp <- hist(x, plot = FALSE)
+  tibble(
+    mids = hist_tmp$mids,
+    values = hist_tmp$counts
+  ) |>
+    ggplot() +
+    geom_col(aes(mids, values)) +
+    theme_void()
+}
+
+create_summary <- function(x) {
+  smry <- c(summary(x), SD = sd(x, na.rm = TRUE), Skew = skewness(x, na.rm = TRUE))
+  smry <- round(smry, 3)
+  plt <- create_hist(x)
+  list(plots = plt, summaries = smry)
+}
+```
+
+```{r summary, include = TRUE, eval = TRUE}
+tmp <- dat |>
+  select(where(is.numeric)) |>
+  map(create_summary) |>
+  transpose()
+
+summaries <- tmp$summaries |>
+  bind_rows(.id = "indicator") |>
+  mutate(histogram = NA, .after = 1)
+```
+
+# Results
+```{r res, eval = TRUE, echo = TRUE, warning = FALSE, message = FALSE}
+summaries |>
+  gt() |>
+  text_transform(
+    locations = cells_body(columns = histogram),
+    fn = function(x) {
+      tmp$plots |>
+        ggplot_image(height = px(70), aspect_ratio = 3)
+    }
+  )
+```
