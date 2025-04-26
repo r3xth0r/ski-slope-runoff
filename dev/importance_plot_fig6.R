@@ -11,8 +11,12 @@ imp <- get_importance(learner_ski) |>
 
 # Rename factor level
 imp <- imp %>%
-  mutate(index = fct_recode(index, "soil structure" = "embedded rock type"))
-
+  mutate(index = fct_recode(index, "coarse fraction embedment" = "embedded rock type"))%>%
+  mutate(index = fct_recode(index, "saturation deficit difference" = "sd delta"))%>%
+  mutate(index = fct_recode(index, "geological class" = "geol class"))%>%
+  mutate(index = fct_recode(index, "texture" = "soiltexture"))%>%
+  mutate(index = fct_recode(index, "humustype" = "humus type"))%>%
+  mutate(index = fct_recode(index, "vegetation" = "vegetation class"))
 # Highlight top 6 features
 top6_noski <- imp %>% top_n(5, importance) %>% pull(index)
 imp <- imp %>%
@@ -21,10 +25,10 @@ imp <- imp %>%
 # Classify point types
 imp <- imp %>%
   mutate(point_type = case_when(
-    index %in% c("pasture", "vegetation class", "ground cover") ~ "land use",
+    index %in% c("pasture", "vegetation", "ground cover") ~ "land use",
     index %in% c("geomorphon", "slope") ~ "topography",
-    index %in% c("skeleton", "geol class", "soiltexture") ~ "geology",
-    index %in% c("soil structure", "humus type", "bulk density", "soil depth", "sd delta", "soil class") ~ "soil"
+    index %in% c("skeleton", "geological class", "texture") ~ "geology",
+    index %in% c("coarse fraction embedment", "humustype", "bulk density", "soil depth", "saturation deficit difference", "soil class") ~ "soil"
   ))
 
 p_noski <- ggplot(
@@ -68,20 +72,25 @@ imp <- get_importance(learner_ski) |>
 
 # Rename factor level
 imp <- imp %>%
-  mutate(index = fct_recode(index, "soil structure" = "embedded rock type"))
+  mutate(index = fct_recode(index, "coarse fraction embedment" = "embedded rock type"))%>%
+  mutate(index = fct_recode(index, "saturation deficit difference" = "sd delta"))%>%
+  mutate(index = fct_recode(index, "geological class" = "geol class"))%>%
+  mutate(index = fct_recode(index, "texture" = "soiltexture"))%>%
+  mutate(index = fct_recode(index, "humustype" = "humus type"))%>%
+  mutate(index = fct_recode(index, "vegetation" = "vegetation class"))
 
 # Highlight top 6 features
 top6_ski <- imp %>% top_n(6, importance) %>% pull(index)
 imp <- imp %>%
   mutate(color = if_else(index %in% top6_ski, "highlight", "normal"))
 
-# Classify point types
+#  Classify point types
 imp <- imp %>%
   mutate(point_type = case_when(
-    index %in% c("pasture", "vegetation class", "ground cover") ~ "land use",
+    index %in% c("pasture", "vegetation", "ground cover") ~ "land use",
     index %in% c("geomorphon", "slope") ~ "topography",
-    index %in% c("skeleton", "geol class", "soiltexture") ~ "geology",
-    index %in% c("soil structure","humus type", "bulk density", "soil depth", "sd delta", "soil class") ~ "soil"
+    index %in% c("skeleton", "geological class", "texture") ~ "geology",
+    index %in% c("coarse fraction embedment", "humustype", "bulk density", "soil depth", "saturation deficit difference", "soil class") ~ "soil"
   ))
 
 p_ski <- ggplot(

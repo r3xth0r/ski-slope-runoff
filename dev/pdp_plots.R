@@ -88,7 +88,7 @@ p3 <- ggplot(vc_nonski_data, aes(x = vegetation_class, y = .value, fill = vegeta
   theme_bw()+
   scale_y_continuous(name = bquote(italic(C[constant])), limits = c(0, 1), breaks = seq(from = 0, to = 1, by = 0.2)) +
   scale_fill_manual(values = custom_colors_ref) +
-  labs( x = "vegetation class") +
+  labs( x = "vegetation") +
   theme(text = element_text(size=9),axis.title.y = element_text(vjust = 0.5,size = 9),axis.title.x = element_text(vjust = 0.5,size = 9),plot.title = element_text(
     size = rel(1),  hjust = 0.5,#face = "bold",
     margin = margin(t = 10, b = 20, unit = "pt")
@@ -103,7 +103,7 @@ p4 <- ggplot(vc_ski_data, aes(x = vegetation_class, y = .value, fill = vegetatio
   #scale_x_discrete(labels = c("no", "low", "medium", "intensive")) +
   scale_y_continuous(name = bquote(italic(C[constant])), limits = c(0, 1), breaks = seq(from = 0, to = 1, by = 0.2)) +
   scale_fill_manual(values = custom_colors_ski) +
-  labs( x = "vegetation class") +
+  labs( x = "vegetation") +
   theme(text = element_text(size=9),axis.title.y = element_text(vjust = 0.5,size = 9),axis.title.x = element_text(vjust = 0.5,size = 9),plot.title = element_text(
     size = rel(1), hjust = 0.5,# face = "bold",
     margin = margin(t = 10, b = 20, unit = "pt")
@@ -356,7 +356,7 @@ ggsave("plt/figski8.png", patchwork3, device = png, height = 18.6, width = 13.3,
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
 # GROUP: Soil
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
-# Soil structure ----
+# coarse fraction embedment ----
 erd <- construct_effects(learner_nonski, learner_ski, feature = "embedded_rock_type")
 erd_nonski_data <- erd$nonski$results
 erd_ski_data <- erd$ski$results
@@ -371,7 +371,7 @@ p1 <- ggplot(erd_nonski_data, aes(x = embedded_rock_type, y = .value, fill = emb
   scale_y_continuous(name = bquote(italic(C[constant])), limits = c(0, 1), breaks = seq(from = 0, to = 1, by = 0.2)) +
   scale_fill_manual(values = custom_colors_ref) +
   scale_x_discrete(labels = c("cohesive", "intermediate", "loose"))+
-  labs(title = "reference", x = "soil structure") +
+  labs(title = "reference", x = "coarse fraction embedment") +
   theme(text = element_text(size=9),axis.title.y = element_text(vjust = 0.5,size = 9),axis.title.x = element_text(vjust = 0.5,size = 9),plot.title = element_text(
     size = rel(1), hjust = 0.5,# face = "bold",
     margin = margin(t = 10, b = 20, unit = "pt")
@@ -385,7 +385,7 @@ p2 <- ggplot(erd_ski_data, aes(x = embedded_rock_type, y = .value, fill = embedd
   scale_x_discrete(labels = c("cohesive", "intermediate", "loose")) +
   scale_y_continuous(name = bquote(italic(C[constant])), limits = c(0, 1), breaks = seq(from = 0, to = 1, by = 0.2)) +
   scale_fill_manual(values = custom_colors_ski) +
-  labs(title = "ski slope", x = "soil structure") +
+  labs(title = "ski slope", x = "coarse fraction embedment") +
   theme(text = element_text(size=9),axis.title.y = element_text(vjust = 0.5,size = 9),axis.title.x = element_text(vjust = 0.5,size = 9),plot.title = element_text(
     size = rel(1), hjust = 0.5,# face = "bold",
     margin = margin(t = 10, b = 20, unit = "pt")
