@@ -20,7 +20,7 @@ imp <- get_importance(learner_ref) |>
 
 # Highlight top 6 features
 top6_ref <- imp |>
-  top_n(6, importance) |>
+  top_n(5, importance) |>
   pull(index)
 imp <- imp |>
   mutate(color = if_else(index %in% top6_ref, "highlight", "normal"))
@@ -46,14 +46,20 @@ p_ref <- ggplot(
   geom_col(width = 0.1) +
   geom_point(aes(color = point_type, fill = color), size = 6, stroke = 2) +
   scale_fill_manual(values = c("highlight" = ref_col, "normal" = "#D3D3D3"), guide = "none") +
-  scale_color_manual(values = c("land use" = "black", "topography" = "black", "geology" = "black", "soil" = "black"), guide = "none") +
+  scale_color_manual(
+    values = c("land use" = "black", "topography" = "black", "geology" = "black", "soil" = "black"),
+    guide = "none"
+  ) +
   scale_shape_manual(
     values = c("land use" = 21, "topography" = 22, "geology" = 23, "soil" = 24),
     breaks = c("land use", "topography", "geology", "soil")
   ) +
   coord_flip() +
   xlab("") +
-  ylab(expression(Importance ~ on ~ Psi[constant])) +
+  scale_y_continuous(
+    name = expression(Importance ~ on ~ italic(C[constant])),
+    breaks = seq(0, 4, by = 1), limits = c(0, 4)
+  ) +
   labs(title = paste0("reference")) +
   theme_minimal() +
   theme(
@@ -106,14 +112,20 @@ p_ski <- ggplot(
   geom_col(width = 0.1) +
   geom_point(aes(color = point_type, fill = color), size = 6, stroke = 2) +
   scale_fill_manual(values = c("highlight" = ski_col, "normal" = "#D3D3D3"), guide = "none") +
-  scale_color_manual(values = c("land use" = "black", "topography" = "black", "geology" = "black", "soil" = "black"), guide = "none") +
+  scale_color_manual(
+    values = c("land use" = "black", "topography" = "black", "geology" = "black", "soil" = "black"),
+    guide = "none"
+  ) +
   scale_shape_manual(
     values = c("land use" = 21, "topography" = 22, "geology" = 23, "soil" = 24),
     breaks = c("land use", "topography", "geology", "soil")
   ) +
   coord_flip() +
   xlab("") +
-  ylab(expression(Importance ~ on ~ Psi[constant])) +
+  scale_y_continuous(
+    name = expression(Importance ~ on ~ italic(C[constant])),
+    breaks = seq(0, 4, by = 1), limits = c(0, 4)
+  ) +
   labs(title = paste0("ski slope")) +
   theme_minimal() +
   theme(
@@ -131,7 +143,7 @@ p_ski <- ggplot(
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
 
 # Compose plot ----
-patchwork <- (p_ski) / (p_noski)
+patchwork <- (p_ski) / (p_ref)
 ggsave("plt/fig_06.png", patchwork, device = png, height = 28, width = 30, dpi = 300, units = "cm")
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #

@@ -33,7 +33,7 @@ p <- ggplot(all_dat, aes(x = toponym, y = psi_intervall, color = as.factor(ski_s
   stat_summary(aes(group = as.factor(ski_slope), color = as.factor(ski_slope)), fun = median, geom = "point", shape = 20, size = 3, position = position_dodge2(width = 0.8)) +
   theme_ski() +
   scale_y_continuous(breaks = scales::breaks_extended(n = 7)) +
-  labs(x = "Ski regions", y = expression(Psi[italic(constant)])) +
+  labs(x = "Ski regions", y = expression(italic(C[constant]))) +
   scale_color_manual(values = c(ski_col, ref_col), labels = c("ski slope", "reference"), name = "") +
   scale_fill_manual(values = c(ski_col, ref_col), labels = c("ski slope", "reference"), name = "") +
   geom_vline(xintercept = seq(1.5, 11.5, 1), linetype = "dashed", colour = "black", size = 0.7)
