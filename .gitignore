@@ -6,7 +6,8 @@
 .Rhistory
 .RData
 .Ruserdata
-# Output
+# Plotting output
+/plt/
 *.pdf
 *.png
 # Data
