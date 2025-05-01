@@ -49,7 +49,7 @@ p_ref <- ggplot(
   )
 ) +
   geom_col(width = 0.1) +
-  geom_point(aes(color = point_type, fill = color), size = 6, stroke = 2) +
+  geom_point(aes(color = point_type, fill = color), size = 3, stroke = 1) +
   scale_fill_manual(values = c("highlight" = ref_col, "normal" = "#D3D3D3"), guide = "none") +
   scale_color_manual(
     values = c("land use" = "black", "topography" = "black", "geology" = "black", "soil" = "black"),
@@ -68,14 +68,17 @@ p_ref <- ggplot(
   labs(title = paste0("reference")) +
   theme_minimal() +
   theme(
-    text = element_text(size = 20),
-    axis.title.y = element_text(angle = 90, vjust = 0.5, size = 20),
+    text = element_text(size = 12),
+    axis.title.y = element_text(angle = 90, vjust = 0.5, size = 12),
     axis.text.x = element_text(angle = 0, hjust = 0.5, vjust = 0.5),
-    axis.title.x = element_text(vjust = 0.5, size = 20),
+    axis.title.x = element_text(vjust = 0.5, size = 12),
     axis.title.y.right = element_text(angle = 0, vjust = 0.5),
-    legend.position = "right",
-    legend.key.size = unit(1, "cm"), # Adjust the size of the legend keys
-    legend.spacing.y = unit(0.5, "cm") # Adjust the spacing between legend entries
+    legend.position = "inside",
+    legend.justification.inside = c(1, 0.1),
+    legend.margin = margin(0, 0, 0, 0),
+    legend.background = element_rect(colour = "white"),
+    legend.key.size = unit(7, "mm"), # Adjust the size of the legend keys
+    legend.spacing.y = unit(3, "mm") # Adjust the spacing between legend entries
   ) +
   guides(shape = guide_legend(title = NULL))
 
@@ -120,7 +123,7 @@ p_ski <- ggplot(
   )
 ) +
   geom_col(width = 0.1) +
-  geom_point(aes(color = point_type, fill = color), size = 6, stroke = 2) +
+  geom_point(aes(color = point_type, fill = color), size = 3, stroke = 1) +
   scale_fill_manual(values = c("highlight" = ski_col, "normal" = "#D3D3D3"), guide = "none") +
   scale_color_manual(
     values = c("land use" = "black", "topography" = "black", "geology" = "black", "soil" = "black"),
@@ -139,14 +142,17 @@ p_ski <- ggplot(
   labs(title = paste0("ski slope")) +
   theme_minimal() +
   theme(
-    text = element_text(size = 20),
-    axis.title.y = element_text(angle = 90, vjust = 0.5, size = 20),
+    text = element_text(size = 12),
+    axis.title.y = element_text(angle = 90, vjust = 0.5, size = 12),
     axis.text.x = element_text(angle = 0, hjust = 0.5, vjust = 0.5),
-    axis.title.x = element_text(vjust = 0.5, size = 20),
+    axis.title.x = element_text(vjust = 0.5, size = 12),
     axis.title.y.right = element_text(angle = 0, vjust = 0.5),
-    legend.position = "right",
-    legend.key.size = unit(1, "cm"), # Adjust the size of the legend keys
-    legend.spacing.y = unit(0.5, "cm") # Adjust the spacing between legend entries
+    legend.position = "inside",
+    legend.justification.inside = c(1, 0.1),
+    legend.margin = margin(0, 0, 0, 0),
+    legend.background = element_rect(colour = "white"),
+    legend.key.size = unit(7, "mm"), # Adjust the size of the legend keys
+    legend.spacing.y = unit(3, "mm") # Adjust the spacing between legend entries
   ) +
   guides(shape = guide_legend(title = NULL))
 
@@ -154,6 +160,6 @@ p_ski <- ggplot(
 
 # Compose plot ----
 patchwork <- (p_ski) / (p_ref)
-ggsave("plt/fig_06.png", patchwork, device = png, height = 28, width = 30, dpi = 300, units = "cm")
+ggsave("plt/fig_06.png", patchwork, device = png, height = 157.8, width = 140, dpi = 300, units = "mm")
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #

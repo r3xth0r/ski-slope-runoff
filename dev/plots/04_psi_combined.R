@@ -8,24 +8,7 @@ library("patchwork")
 source("dev/helper/theme_ski.R")
 
 all_dat <- read_csv("dat/raw/all_data.csv") |>
-  mutate(
-    toponym = recode_factor(
-      project_area,
-      "Dobratsch" = "D",
-      "Ehrwald" = "E",
-      "Golm" = "G",
-      "Hauser Kaibling" = "H",
-      "Ischgl" = "I",
-      "Meran2000" = "M",
-      "Nassfeld" = "N",
-      "Patscherkofel" = "P",
-      "Schladming" = "S",
-      "Sankt Anton" = "STA",
-      "See in Paznaun" = "SP",
-      "Wartschenbach" = "Z"
-    ),
-    ski_slope = recode_factor(ski_slope, "yes" = "A", "no" = "B")
-  )
+  mutate(ski_slope = recode_factor(ski_slope, "yes" = "A", "no" = "B"))
 
 dat_ski <- all_dat |>
   filter(ski_slope == "A") |>
@@ -42,14 +25,16 @@ psi_ref <- dat_ref |>
   mutate(type = "B")
 dat_psi <- bind_rows(psi_ski, psi_ref)
 
-p <- ggplot(dat_psi) +
-  geom_violin(aes(x = type, y = psi_intervall), linetype = 2, width = .6) +
-  geom_boxplot(aes(x = type, y = psi_intervall, fill = as.factor(type)), width = .1) +
+p <- ggplot(dat_psi, aes(x = type, y = psi_intervall, fill = as.factor(type))) +
+  geom_violin(alpha = 0.35, color = NA,width=0.5) +  # Fill the violin shapes with color
+  geom_boxplot(width = 0.1, fill = NA, color = "black") +  # Add boxplot with no fill and black outline
+  geom_point(aes(color = as.factor(type)), alpha=1.3,shape = 1, position = position_jitter(width = 0.1, height = 0), size = 1.5) +  # Minimal vertical jitter, no horizontal jitter
   scale_x_discrete(labels = c("ski slope", "reference")) +
-  scale_y_continuous(limits = c(0, 1), breaks = scales::breaks_extended(n = 7)) +
-  scale_color_manual(values = c(ski_col, ref_col), labels = c("ski slope", "reference"), name = "") +
+  scale_y_continuous(limits = c(0, 1.2), breaks = scales::breaks_extended(n = 7)) +
   scale_fill_manual(values = c(ski_col, ref_col), labels = c("ski slope", "reference"), name = "") +
-  labs(x = "", y = bquote(Psi[constant])) +
-  theme_ski()
+  scale_color_manual(values = c(ski_col, ref_col), labels = c("ski slope", "reference"), name = "") +
+  labs(x = "", y = bquote(italic(C[constant]))) +  # Add y-axis label
+  #coord_flip() +  # Rotate the plot 90°
+  theme_ski() 
 
-ggsave("plt/fig_04.png", plot = p, device = png, height = 10, width = 19, dpi = 300, units = "cm")
+ggsave("plt/fig_04.png", plot = p, device = png, height = 78.9, width = 140, dpi = 300, units = "mm")
