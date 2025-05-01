@@ -32,15 +32,20 @@ construct_all_plots <- FALSE
 
 # Construct effects
 pasture <- construct_effects(learner_reference, learner_ski, dat_reference, dat_ski, feature = "pasture")
-
+pasture_reference_data <- pasture$reference |>
+  as_tibble() |>
+  mutate(pasture = factor(pasture, levels = c("no", "low" ,"medium", "intensive")))
+pasture_ski_data <- pasture$ski |>
+  as_tibble() |>
+  mutate(pasture = factor(pasture, levels = c("no", "low" ,"medium", "intensive")))
 # Define custom colors
 custom_colors_ski <- c("no" = "#33ccff40", "low" = "#33ccff80", "medium" = "#33ccffBF", "intensive" = ski_col)
 custom_colors_ref <- c("no" = "#A2714640", "low" = "#A2714680", "medium" = "#A27146BF", "intensive" = ref_col)
 
 # Create a boxplot with different colors for each factor level
-p1 <- ggplot(pasture$reference, aes(x = pasture, y = .value, fill = pasture)) +
+p1 <- ggplot(pasture_reference_data, aes(x = pasture, y = .value, fill = pasture)) +
   geom_boxplot() +
-  scale_x_discrete(labels = c("no", "low", "medium", "intensive")) +
+  scale_x_discrete(labels = c("no", "low", "medium", "inten.")) +
   scale_y_continuous(
     name = bquote(italic(C[constant])), limits = c(0, 1),
     breaks = seq(from = 0, to = 1, by = 0.2)
@@ -49,9 +54,9 @@ p1 <- ggplot(pasture$reference, aes(x = pasture, y = .value, fill = pasture)) +
   labs(title = "reference", x = "pasture") +
   theme_pdp()
 
-p2 <- ggplot(pasture$ski, aes(x = pasture, y = .value, fill = pasture)) +
+p2 <- ggplot(pasture_ski_data, aes(x = pasture, y = .value, fill = pasture)) +
   geom_boxplot() +
-  scale_x_discrete(labels = c("no", "low", "medium", "intensive")) +
+  scale_x_discrete(labels = c("no", "low", "medium", "inten.")) +
   scale_y_continuous(
     name = bquote(italic(C[constant])), limits = c(0, 1),
     breaks = seq(from = 0, to = 1, by = 0.2)
@@ -97,9 +102,9 @@ p4 <- ggplot(vc_ski_data, aes(x = vegetation_class, y = .value, fill = vegetatio
 
 patchwork1 <- (p2 + p1) / (p4 + p3) +
   plot_annotation("Landuse feature variables",
-    theme = theme(plot.title = element_text(hjust = 0.5, size = 9, face = "bold"))
+    theme = theme(plot.title = element_text(hjust = 0.5, size = 12, face = "bold"))
   )
-ggsave("plt/fig_07.png", patchwork1, device = png, dpi = 300, units = "cm")
+ggsave("plt/fig_07.png", patchwork1, device = png,height = 157.8, width = 140, dpi = 300, units = "mm")
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
 
@@ -190,8 +195,8 @@ p6 <- ggplot(slope$ski, aes(x = slope, y = .value)) +
   theme_pdp()
 
 patchwork2 <- (p6 + p5) +
-  plot_annotation("Topographic feature variables", theme = theme(plot.title = element_text(hjust = 0.5, size = 16, face = "bold")))
-ggsave("plt/fig_10.png", patchwork2, device = png, height = 6.7, width = 12.4, dpi = 300, units = "cm")
+  plot_annotation("Topographic feature variables", theme = theme(plot.title = element_text(hjust = 0.5, size = 12, face = "bold")))
+ggsave("plt/fig_10.png", patchwork2, device = png, height = 78.9, width = 140, dpi = 300, units = "mm")
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
 # FEATURE GROUP: Geology
@@ -206,14 +211,14 @@ p7 <- ggplot(geol_class$reference, aes(x = geol_class, y = .value, fill = geol_c
   scale_x_discrete(labels = c("AnD", "CLC", "CLM", "GS", "GSps", "GSpl", "TS")) +
   scale_fill_manual(values = custom_colors_ref) +
   labs(title = "reference", x = "geological class") +
-  theme_pdp()
+  theme_pdpgeo()
 
 p8 <- ggplot(geol_class$ski, aes(x = geol_class, y = .value, fill = geol_class)) +
   geom_boxplot(fill = ski_col) +
   scale_x_discrete(labels = c("AnD", "CLC", "CLM", "GS", "GSps", "GSpl", "TS")) +
   scale_y_continuous(name = bquote(italic(C[constant])), limits = c(0, 1), breaks = seq(from = 0, to = 1, by = 0.2)) +
   labs(title = "ski slope", x = "geological class") +
-  theme_pdp()
+  theme_pdpgeo()
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
 
@@ -273,8 +278,8 @@ p12 <- ggplot(soilt_ski, aes(x = soiltexture, y = .value, fill = soiltexture)) +
   theme_pdp()
 
 patchwork3 <- (p8 + p7) / (p10 + p9) / (p12 + p11) +
-  plot_annotation("Geological feature variables", theme = theme(plot.title = element_text(hjust = 0.5, size = 16, face = "bold")))
-ggsave("plt/fig_08.png", patchwork3, device = png, height = 18.6, width = 13.3, dpi = 300, units = "cm")
+  plot_annotation("Geological feature variables", theme = theme(plot.title = element_text(hjust = 0.5, size = 12, face = "bold")))
+ggsave("plt/fig_08.png", patchwork3, device = png, height = 210, width = 140, dpi = 300, units = "mm")
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
 # GROUP: Soil
@@ -335,7 +340,7 @@ p17 <- ggplot(saturation$reference, aes(x = sd_delta, y = .value)) +
   geom_line(data = ref_summary, aes(y = mean_value), color = ref_col, size = 1.2) + # Mean line
   geom_line(data = ref_summary, aes(y = median_value), color = "#A2714680", size = 1.2, linetype = "dashed") + # Median line
   scale_y_continuous(name = bquote(italic(C[constant])), limits = c(0, 1), breaks = seq(from = 0, to = 1, by = 0.2)) +
-  labs(x = "SDD [vol.%]") +
+  labs(x = bquote(Delta~"SD [vol.%]"))+
   scale_x_continuous(limits = c(-0.5, 0)) +
   theme_pdp()
 
@@ -345,13 +350,13 @@ p18 <- ggplot(saturation$ski, aes(x = sd_delta, y = .value)) +
   geom_line(data = ski_summary, aes(y = median_value), color = "#33ccff80", size = 1.2, linetype = "dashed") + # Median line
   # geom_rug(sides = "b", position="jitter", alpha = 0.5) +
   scale_y_continuous(name = bquote(italic(C[constant])), limits = c(0, 1), breaks = seq(from = 0, to = 1, by = 0.2)) +
-  labs(x = "SDD [vol.%]") +
+  labs(x = bquote(Delta~"SD [vol.%]")) +
   scale_x_continuous(limits = c(-0.5, 0)) +
   theme_pdp()
 
 patchwork5 <- (p14 + p13) / (p16 + p15) / (p18 + p17) +
-  plot_annotation("Soil feature variables", theme = theme(plot.title = element_text(hjust = 0.5, size = 16, face = "bold")))
-ggsave("plt/fig_09.png", patchwork5, device = png, dpi = 300, units = "cm")
+  plot_annotation("Soil feature variables", theme = theme(plot.title = element_text(hjust = 0.5, size = 12, face = "bold")))
+ggsave("plt/fig_09.png", patchwork5, device = png,   height = 210, width = 140, dpi = 300, units = "mm")
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
 
@@ -440,8 +445,8 @@ if (construct_all_plots) {
     theme_pdp()
 
   patchwork_o2 <- (po6 + po5) / (po8 + po7) / (po0 + po9) +
-    plot_annotation("additional soil  parameters", theme = theme(plot.title = element_text(hjust = 0.5)))
-  ggsave("plt/fig_effects_soil.png", patchwork_o2, device = png, height = 30, width = 25, dpi = 300, units = "cm")
+    plot_annotation("additional soil  parameters", theme = theme(plot.title = element_text(hjust = 0.5, size = 12, face = "bold")))
+  ggsave("plt/fig_effects_soil.png", patchwork_o2, device = png,  height = 210, width = 140, dpi = 300, units = "mm")
 }
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #

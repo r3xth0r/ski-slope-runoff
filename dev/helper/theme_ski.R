@@ -18,11 +18,11 @@ theme_ski <- function(...) {
 theme_pdp <- function(...) {
   th <- theme_bw(...) +
     theme(
-      text = element_text(size = 12),
-      axis.title.x = element_text(vjust = 0.5, size = 8),
-      axis.title.y = element_text(vjust = 0.5, size = 8),
+      text = element_text(size = 11),
+      axis.title.x = element_text(vjust = 0.5, size = 11),
+      axis.title.y = element_text(vjust = 0.5, size = 11),
       plot.title = element_text(
-        size = rel(1), hjust = 0.5,
+        size = 12, hjust = 0.5,
         margin = margin(t = 10, b = 20, unit = "pt")
       ),
       legend.position = "none",
@@ -35,10 +35,10 @@ theme_pdpgeo <- function(...) {
     th <- theme_bw(...) +
       theme(
         text = element_text(size = 11),
-        axis.title.x = element_text(vjust = 0.5, size = 8),
-        axis.title.y = element_text(vjust = 0.5, size = 8),
+        axis.title.x = element_text(vjust = 0.5, size = 11),
+        axis.title.y = element_text(vjust = 0.5, size = 11),
         plot.title = element_text(
-          size = rel(1), hjust = 0.5,
+          size = 12, hjust = 0.5,
           margin = margin(t = 10, b = 20, unit = "pt")
         ),
         legend.position = "none",
