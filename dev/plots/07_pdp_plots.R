@@ -211,14 +211,14 @@ p7 <- ggplot(geol_class$reference, aes(x = geol_class, y = .value, fill = geol_c
   scale_x_discrete(labels = c("AnD", "CLC", "CLM", "GS", "GSps", "GSpl", "TS")) +
   scale_fill_manual(values = custom_colors_ref) +
   labs(title = "reference", x = "geological class") +
-  theme_pdpgeo()
+  theme_pdp()
 
 p8 <- ggplot(geol_class$ski, aes(x = geol_class, y = .value, fill = geol_class)) +
   geom_boxplot(fill = ski_col) +
   scale_x_discrete(labels = c("AnD", "CLC", "CLM", "GS", "GSps", "GSpl", "TS")) +
   scale_y_continuous(name = bquote(italic(C[constant])), limits = c(0, 1), breaks = seq(from = 0, to = 1, by = 0.2)) +
   labs(title = "ski slope", x = "geological class") +
-  theme_pdpgeo()
+  theme_pdp()
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
 
