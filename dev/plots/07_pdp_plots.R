@@ -34,10 +34,10 @@ construct_all_plots <- FALSE
 pasture <- construct_effects(learner_reference, learner_ski, dat_reference, dat_ski, feature = "pasture")
 pasture_reference_data <- pasture$reference |>
   as_tibble() |>
-  mutate(pasture = factor(pasture, levels = c("no", "low" ,"medium", "intensive")))
+  mutate(pasture = factor(pasture, levels = c("no", "low", "medium", "intensive")))
 pasture_ski_data <- pasture$ski |>
   as_tibble() |>
-  mutate(pasture = factor(pasture, levels = c("no", "low" ,"medium", "intensive")))
+  mutate(pasture = factor(pasture, levels = c("no", "low", "medium", "intensive")))
 # Define custom colors
 custom_colors_ski <- c("no" = "#33ccff40", "low" = "#33ccff80", "medium" = "#33ccffBF", "intensive" = ski_col)
 custom_colors_ref <- c("no" = "#A2714640", "low" = "#A2714680", "medium" = "#A27146BF", "intensive" = ref_col)
@@ -104,7 +104,7 @@ patchwork1 <- (p2 + p1) / (p4 + p3) +
   plot_annotation("Landuse feature variables",
     theme = theme(plot.title = element_text(hjust = 0.5, size = 12, face = "bold"))
   )
-ggsave("plt/fig_07.png", patchwork1, device = png,height = 157.8, width = 140, dpi = 300, units = "mm")
+ggsave("plt/fig_07.png", patchwork1, device = png, height = 157.8, width = 140, dpi = 300, units = "mm")
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
 
@@ -340,7 +340,7 @@ p17 <- ggplot(saturation$reference, aes(x = sd_delta, y = .value)) +
   geom_line(data = ref_summary, aes(y = mean_value), color = ref_col, size = 1.2) + # Mean line
   geom_line(data = ref_summary, aes(y = median_value), color = "#A2714680", size = 1.2, linetype = "dashed") + # Median line
   scale_y_continuous(name = bquote(italic(C[constant])), limits = c(0, 1), breaks = seq(from = 0, to = 1, by = 0.2)) +
-  labs(x = bquote(Delta~"SD [vol.%]"))+
+  labs(x = bquote(Delta ~ "SD [vol.%]")) +
   scale_x_continuous(limits = c(-0.5, 0)) +
   theme_pdp()
 
@@ -350,13 +350,13 @@ p18 <- ggplot(saturation$ski, aes(x = sd_delta, y = .value)) +
   geom_line(data = ski_summary, aes(y = median_value), color = "#33ccff80", size = 1.2, linetype = "dashed") + # Median line
   # geom_rug(sides = "b", position="jitter", alpha = 0.5) +
   scale_y_continuous(name = bquote(italic(C[constant])), limits = c(0, 1), breaks = seq(from = 0, to = 1, by = 0.2)) +
-  labs(x = bquote(Delta~"SD [vol.%]")) +
+  labs(x = bquote(Delta ~ "SD [vol.%]")) +
   scale_x_continuous(limits = c(-0.5, 0)) +
   theme_pdp()
 
 patchwork5 <- (p14 + p13) / (p16 + p15) / (p18 + p17) +
   plot_annotation("Soil feature variables", theme = theme(plot.title = element_text(hjust = 0.5, size = 12, face = "bold")))
-ggsave("plt/fig_09.png", patchwork5, device = png,   height = 210, width = 140, dpi = 300, units = "mm")
+ggsave("plt/fig_09.png", patchwork5, device = png, height = 210, width = 140, dpi = 300, units = "mm")
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
 
@@ -446,7 +446,7 @@ if (construct_all_plots) {
 
   patchwork_o2 <- (po6 + po5) / (po8 + po7) / (po0 + po9) +
     plot_annotation("additional soil  parameters", theme = theme(plot.title = element_text(hjust = 0.5, size = 12, face = "bold")))
-  ggsave("plt/fig_effects_soil.png", patchwork_o2, device = png,  height = 210, width = 140, dpi = 300, units = "mm")
+  ggsave("plt/fig_effects_soil.png", patchwork_o2, device = png, height = 210, width = 140, dpi = 300, units = "mm")
 }
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #

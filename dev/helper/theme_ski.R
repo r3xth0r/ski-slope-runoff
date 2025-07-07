@@ -30,5 +30,4 @@ theme_pdp <- function(...) {
       panel.grid.minor = element_line(size = 0.15)
     )
   return(th)
-}  
-
+}

@@ -29,9 +29,9 @@ p <- ggplot(data = dat, aes(x = t, y = AK, group = type)) +
   annotate("text", x = 13, y = 0.35, label = bquote(italic(atop("rising", "limb"))), size = 3.5, color = "grey50") +
   geom_segment(aes(x = 10, y = 0.4, xend = 8.1, yend = 0.44), size = 0.2, color = "grey50", arrow = arrow(length = unit(1.5, "mm"), type = "closed")) +
   xlab(expression(italic(t) ~ "[min]")) +
-  ylab(expression(italic(C)~ " [-]")) +
-  scale_y_continuous(limits = c(0, 1.2), breaks = scales::breaks_extended(n = 7), expand=c(0,0)) +
+  ylab(expression(italic(C) ~ " [-]")) +
+  scale_y_continuous(limits = c(0, 1.2), breaks = scales::breaks_extended(n = 7), expand = c(0, 0)) +
   scale_size_manual(values = c(0.7, 0.7, 0.7)) +
   coord_cartesian(xlim = c(0, 62), ylim = c(0, 1)) +
-  theme_ski() 
+  theme_ski()
 ggsave("plt/fig_03.png", p, device = png, height = 78.9, width = 140, dpi = 300, units = "mm")
