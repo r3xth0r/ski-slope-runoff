@@ -29,10 +29,10 @@ p <- ggplot(dat_psi, aes(x = type, y = psi_intervall, fill = as.factor(type))) +
   geom_violin(alpha = 0.35, color = NA, width = 0.5) +
   geom_boxplot(width = 0.1, fill = NA, color = "black") +
   geom_point(aes(color = as.factor(type)), alpha = 1.3, shape = 1, position = position_jitter(width = 0.1, height = 0, seed = 42), size = 1.5) +
-  scale_x_discrete(labels = c("ski slope", "reference slope")) +
+  scale_x_discrete(labels = c("ski slopes", "reference areas")) +
   scale_y_continuous(limits = c(0, 1.2), breaks = scales::breaks_extended(n = 7)) +
-  scale_fill_manual(values = c(ski_col, ref_col), labels = c("ski slope", "reference slope"), name = "") +
-  scale_color_manual(values = c(ski_col, ref_col), labels = c("ski slope", "reference slope"), name = "") +
+  scale_fill_manual(values = c(ski_col, ref_col), labels = c("ski slopes", "reference areas"), name = "") +
+  scale_color_manual(values = c(ski_col, ref_col), labels = c("ski slopes", "reference areas"), name = "") +
   labs(x = "", y = bquote(italic(C[const.]))) +
   # coord_flip() +
   theme_ski()

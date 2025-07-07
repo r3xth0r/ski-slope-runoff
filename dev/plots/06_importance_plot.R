@@ -87,12 +87,12 @@ plot_importance <- function(imp, title, highlight_color) {
 # Reference slopes ----
 learner_ref <- read_rds("dat/interim/random_forest/ranger_trained_noski.rds")
 imp_ref <- process_importance(learner_ref, 6)
-p_ref <- plot_importance(imp_ref, "reference slope", ref_col)
+p_ref <- plot_importance(imp_ref, "reference areas", ref_col)
 
 # Ski slopes ----
 learner_ski <- read_rds("dat/interim/random_forest/ranger_trained_ski.rds")
 imp_ski <- process_importance(learner_ski, 6)
-p_ski <- plot_importance(imp_ski, "ski slope", ski_col)
+p_ski <- plot_importance(imp_ski, "ski slopes", ski_col)
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
 

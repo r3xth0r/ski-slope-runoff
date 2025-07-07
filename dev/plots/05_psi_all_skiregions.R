@@ -33,8 +33,8 @@ p <- ggplot(all_dat, aes(x = toponym, y = psi_intervall, color = ski_slope, fill
   theme_ski() +
   scale_y_continuous(breaks = scales::breaks_extended(n = 7)) +
   labs(x = "Ski region", y = expression(italic(C[const.]))) +
-  scale_color_manual(values = c(ski_col, ref_col), labels = c("ski slope", "reference slope"), name = "") +
-  scale_fill_manual(values = c(ski_col, ref_col), labels = c("ski slope", "reference slope"), name = "") +
+  scale_color_manual(values = c(ski_col, ref_col), labels = c("ski slopes", "reference areas"), name = "") +
+  scale_fill_manual(values = c(ski_col, ref_col), labels = c("ski slopes", "reference areas"), name = "") +
   geom_vline(xintercept = seq(1.5, 11.5, 1), linetype = "dashed", colour = "black", linewidth = 0.7)
 
 ggsave("plt/fig_05.png", plot = p, device = png, height = 80, width = 140, dpi = 300, units = "mm")
