@@ -11,8 +11,8 @@ dat <- read_csv("dat/interim/plt_irrigation_example.csv")
 
 # Basic line plot with points
 p <- ggplot(data = dat, aes(x = t, y = AK, group = type)) +
-  geom_vline(xintercept = 0, linetype = "dotted", color = "black", size = 0.5) +
   geom_smooth(method = "loess", se = FALSE, span = 0.15, color = "black") +
+  geom_vline(xintercept = 0, linetype = "dotted", color = "black", linewidth = 0.5) +
   geom_segment(aes(x = 50, xend = 60, y = 0.77, yend = 0.77), linetype = "solid", color = "red", size = 0.7) +
   geom_segment(aes(x = 50, y = 0.70, xend = 50, yend = 1), size = 0.5, color = "black", linetype = "dotted") +
   geom_segment(aes(x = 60, y = 0.70, xend = 60, yend = 1), size = 0.5, color = "black", linetype = "dotted") +
