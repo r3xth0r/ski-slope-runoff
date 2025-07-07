@@ -283,29 +283,28 @@ p14 <- ggplot(cfe_ski_data, aes(x = embedded_rock_type, y = .value, fill = embed
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
 
 # Soil class ----
+if (construct_all_plots) {
+  soilclass <- construct_effects(learner_reference, learner_ski, dat_reference, dat_ski, feature = "soil_class")
 
-soilclass <- construct_effects(learner_reference, learner_ski, dat_reference, dat_ski, feature = "soil_class")
+  po11 <- ggplot(soilclass$reference, aes(x = soil_class, y = .value)) +
+    geom_boxplot(fill = ref_col) +
+    scale_x_discrete(name = "soil class", labels = c("APE", "CCP", "CCU", "DS", "PS", "RPUF")) +
+    scale_y_continuous(name = bquote(italic(C[const.])), limits = c(0, 1), breaks = seq(from = 0, to = 1, by = 0.2)) +
+    theme_pdp()
 
-p15 <- ggplot(soilclass$reference, aes(x = soil_class, y = .value)) +
-  geom_boxplot(fill = ref_col) +
-  scale_x_discrete(labels = c("APE", "CCP", "CCU", "DS", "PS", "RPUF")) +
-  scale_y_continuous(name = bquote(italic(C[const.])), limits = c(0, 1), breaks = seq(from = 0, to = 1, by = 0.2)) +
-  labs(x = "soil class") +
-  theme_pdp()
-
-p16 <- ggplot(soilclass$ski, aes(x = soil_class, y = .value)) +
-  geom_boxplot(fill = ski_col) +
-  scale_x_discrete(labels = c("APE", "CCU", "DS")) +
-  scale_y_continuous(name = bquote(italic(C[const.])), limits = c(0, 1), breaks = seq(from = 0, to = 1, by = 0.2)) +
-  labs(x = "soil class") +
-  theme_pdp()
+  po12 <- ggplot(soilclass$ski, aes(x = soil_class, y = .value)) +
+    geom_boxplot(fill = ski_col) +
+    scale_x_discrete(name = "soil class", labels = c("APE", "CCU", "DS")) +
+    scale_y_continuous(name = bquote(italic(C[const.])), limits = c(0, 1), breaks = seq(from = 0, to = 1, by = 0.2)) +
+    theme_pdp()
+}
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
 
 # Saturation ----
 saturation <- construct_effects(learner_reference, learner_ski, dat_reference, dat_ski, feature = "sd_delta")
 
-p17 <- ggplot(saturation$reference, aes(x = sd_delta, y = .value)) +
+p15 <- ggplot(saturation$reference, aes(x = sd_delta, y = .value)) +
   geom_line(aes(group = .id), alpha = 0.3, linewidth = 0.25) +
   geom_line(data = pdpd(saturation$reference), color = ref_col, linewidth = 1) +
   scale_y_continuous(name = bquote(italic(C[const.])), limits = c(0, 1), breaks = seq(from = 0, to = 1, by = 0.2)) +
@@ -313,7 +312,7 @@ p17 <- ggplot(saturation$reference, aes(x = sd_delta, y = .value)) +
   scale_x_continuous(limits = c(-0.5, 0)) +
   theme_pdp()
 
-p18 <- ggplot(saturation$ski, aes(x = sd_delta, y = .value)) +
+p16 <- ggplot(saturation$ski, aes(x = sd_delta, y = .value)) +
   geom_line(aes(group = .id), alpha = 0.3, linewidth = 0.25) +
   geom_line(data = pdpd(saturation$ski), color = ski_col, linewidth = 1) +
   scale_y_continuous(name = bquote(italic(C[const.])), limits = c(0, 1), breaks = seq(from = 0, to = 1, by = 0.2)) +
@@ -321,7 +320,7 @@ p18 <- ggplot(saturation$ski, aes(x = sd_delta, y = .value)) +
   scale_x_continuous(limits = c(-0.5, 0)) +
   theme_pdp()
 
-patchwork5 <- (p14 + p13) / (p18 + p17) &
+patchwork5 <- (p14 + p13) / (p16 + p15) &
   theme(plot.title = element_text(face = "bold", margin = margin(0, 0, 10, 0)))
 ggsave("plt/fig_09.png", patchwork5, device = png, height = 150, width = 140, dpi = 300, units = "mm")
 
@@ -335,13 +334,13 @@ if (construct_all_plots) {
   po5 <- ggplot(humus$reference, aes(x = humus_type, y = .value)) +
     geom_boxplot(fill = ref_col) +
     scale_y_continuous(name = bquote(~"predicted " ~ Psi), breaks = seq(from = 0, to = 1, by = 0.2)) +
-    labs(x = "humus type") +
+    labs(title = "reference areas", x = "humus type") +
     theme_pdp()
 
   po6 <- ggplot(humus$ski, aes(x = humus_type, y = .value)) +
     geom_boxplot(fill = ski_col) +
     scale_y_continuous(name = bquote(~"predicted " ~ Psi), breaks = seq(from = 0, to = 1, by = 0.2)) +
-    labs(x = "humus type") +
+    labs(title = "ski slopes", x = "humus type") +
     theme_pdp()
 }
 
@@ -350,32 +349,36 @@ if (construct_all_plots) {
 # Soil depth ----
 
 if (construct_all_plots) {
-  soil_depth <- construct_effects(learner_reference, learner_ski, dat_reference, dat_ski, feature = "soil_depth")
+  soil_depth <- construct_effects(learner_reference, learner_ski, dat_reference, dat_ski, feature = "soil_depth") |>
+    purrr::map(\(x) x |> mutate(
+      soil_depth = factor(soil_depth,
+        levels = c("sehr flachgründig", "flachgründig", "mittelgründig", "tiefgründig"),
+        ordered = TRUE
+      )
+    ))
 
   # Define custom colors
   c_col_sd_ski <- c(
-    "flachgründig" = "#33ccff80", "mittelgründig" = "#33ccffBF",
-    "sehr flachgründig" = "#33ccff40", "tiefgründig" = ski_col
+    "sehr flachgründig" = "#33ccff40", "flachgründig" = "#33ccff80",
+    "mittelgründig" = "#33ccffBF", "tiefgründig" = ski_col
   )
   c_col_sd_ref <- c(
-    "flachgründig" = "#A2714680", "mittelgründig" = "#A27146BF",
-    "sehr flachgründig" = "#A2714640", "tiefgründig" = ref_col
+    "sehr flachgründig" = "#A2714640", "flachgründig" = "#A2714680",
+    "mittelgründig" = "#A27146BF", "tiefgründig" = ref_col
   )
 
   po7 <- ggplot(soil_depth$reference, aes(x = soil_depth, y = .value, fill = soil_depth)) +
     geom_boxplot() +
-    scale_x_discrete(labels = c("very shallow soil", "shallow soil", "moderately deep soil", "deep soil")) +
+    scale_x_discrete(name = "soil depth", labels = c("very\nshallow\nsoil", "shallow\nsoil", "moderately\ndeep\nsoil", "deep\nsoil")) +
     scale_y_continuous(name = bquote(~"predicted " ~ Psi), breaks = seq(from = 0, to = 1, by = 0.2)) +
     scale_fill_manual(values = c_col_sd_ref) +
-    labs(title = "reference areas", x = "soil depth") +
     theme_pdp()
 
   po8 <- ggplot(soil_depth$ski, aes(x = soil_depth, y = .value, fill = soil_depth)) +
     geom_boxplot() +
-    scale_x_discrete(labels = c("very shallow soil", "shallow soil", "moderately deep soil", "deep soil")) +
+    scale_x_discrete(name = "soil depth", labels = c("very\nshallow\nsoil", "shallow\nsoil", "moderately\ndeep\nsoil", "deep\nsoil")) +
     scale_y_continuous(name = bquote(~"predicted " ~ Psi), breaks = seq(from = 0, to = 1, by = 0.2)) +
     scale_fill_manual(values = c_col_sd_ski) +
-    labs(title = "ski slopes", x = "soil depth") +
     theme_pdp()
 }
 
@@ -399,9 +402,9 @@ if (construct_all_plots) {
     labs(x = "bulk density") +
     theme_pdp()
 
-  patchwork_o2 <- (po6 + po5) / (po8 + po7) / (po0 + po9) &
+  patchwork_o2 <- (po6 + po5) / (po8 + po7) / (po0 + po9) / (po12 + po11) &
     theme(plot.title = element_text(face = "bold", margin = margin(0, 0, 10, 0)))
-  ggsave("plt/fig_effects_soil.png", patchwork_o2, device = png, height = 210, width = 140, dpi = 300, units = "mm")
+  ggsave("plt/fig_effects_soil.png", patchwork_o2, device = png, height = 300, width = 160, dpi = 300, units = "mm")
 }
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
