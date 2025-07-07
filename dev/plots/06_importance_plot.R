@@ -76,8 +76,8 @@ plot_importance <- function(imp, title, highlight_color) {
       legend.justification.inside = c(1, 0.1),
       legend.margin = margin(0, 0, 0, 0),
       legend.background = element_rect(color = "white"),
-      legend.key.size = unit(7, "mm"), # Adjust the size of the legend keys
-      legend.spacing.y = unit(3, "mm") # Adjust the spacing between legend entries
+      legend.key.size = unit(7, "mm"),
+      legend.spacing.y = unit(3, "mm")
     ) +
     guides(shape = guide_legend(title = NULL))
 }
