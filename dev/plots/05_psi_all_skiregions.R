@@ -28,9 +28,12 @@ all_dat <- read_csv("dat/raw/all_data.csv") |>
   ) |>
   select("toponym", "ski_slope", "psi_intervall")
 
-p <- ggplot(all_dat, aes(x = toponym, y = psi_intervall, color = as.factor(ski_slope), fill = as.factor(ski_slope))) +
+p <- ggplot(all_dat, aes(x = toponym, y = psi_intervall, color = ski_slope, fill = ski_slope)) +
   geom_boxplot(alpha = 0.4, outlier.shape = NA, width = 0.8) +
-  stat_summary(aes(group = as.factor(ski_slope), color = as.factor(ski_slope)), fun = median, geom = "point", shape = 20, size = 3, position = position_dodge2(width = 0.8)) +
+  stat_summary(
+    aes(group = ski_slope, color = ski_slope),
+    fun = median, geom = "point", shape = 20, size = 3, position = position_dodge2(width = 0.8)
+  ) +
   theme_ski() +
   scale_y_continuous(breaks = scales::breaks_extended(n = 7)) +
   labs(x = "Ski region", y = expression(italic(C[const.]))) +
