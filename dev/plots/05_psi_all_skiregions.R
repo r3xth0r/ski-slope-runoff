@@ -33,9 +33,9 @@ p <- ggplot(all_dat, aes(x = toponym, y = psi_intervall, color = as.factor(ski_s
   stat_summary(aes(group = as.factor(ski_slope), color = as.factor(ski_slope)), fun = median, geom = "point", shape = 20, size = 3, position = position_dodge2(width = 0.8)) +
   theme_ski() +
   scale_y_continuous(breaks = scales::breaks_extended(n = 7)) +
-  labs(x = "Ski regions", y = expression(italic(C[constant]))) +
-  scale_color_manual(values = c(ski_col, ref_col), labels = c("ski slope", "reference"), name = "") +
-  scale_fill_manual(values = c(ski_col, ref_col), labels = c("ski slope", "reference"), name = "") +
-  geom_vline(xintercept = seq(1.5, 11.5, 1), linetype = "dashed", colour = "black", size = 0.7)
+  labs(x = "Ski region", y = expression(italic(C[const.]))) +
+  scale_color_manual(values = c(ski_col, ref_col), labels = c("ski slope", "reference slope"), name = "") +
+  scale_fill_manual(values = c(ski_col, ref_col), labels = c("ski slope", "reference slope"), name = "") +
+  geom_vline(xintercept = seq(1.5, 11.5, 1), linetype = "dashed", colour = "black", linewidth = 0.7)
 
 ggsave("plt/fig_05.png", plot = p, device = png, height = 78.9, width = 140, dpi = 300, units = "mm")
