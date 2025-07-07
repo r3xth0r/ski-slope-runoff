@@ -33,4 +33,4 @@ p <- ggplot(data = dat, aes(x = t, y = AK, group = type)) +
   scale_size_manual(values = c(0.7, 0.7, 0.7)) +
   coord_cartesian(xlim = c(0, 62), ylim = c(0, 1)) +
   theme_ski()
-ggsave("plt/fig_03.png", p, device = png, height = 78.9, width = 140, dpi = 300, units = "mm")
+ggsave("plt/fig_03.png", p, device = png, height = 80, width = 140, dpi = 300, units = "mm")
