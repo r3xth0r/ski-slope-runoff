@@ -47,7 +47,7 @@ p1 <- ggplot(pasture_reference_data, aes(x = pasture, y = .value, fill = pasture
   geom_boxplot() +
   scale_x_discrete(labels = c("no", "low", "medium", "inten.")) +
   scale_y_continuous(
-    name = bquote(italic(C[constant])), limits = c(0, 1),
+    name = bquote(italic(C[const.])), limits = c(0, 1),
     breaks = seq(from = 0, to = 1, by = 0.2)
   ) +
   scale_fill_manual(values = custom_colors_ref) +
@@ -58,7 +58,7 @@ p2 <- ggplot(pasture_ski_data, aes(x = pasture, y = .value, fill = pasture)) +
   geom_boxplot() +
   scale_x_discrete(labels = c("no", "low", "medium", "inten.")) +
   scale_y_continuous(
-    name = bquote(italic(C[constant])), limits = c(0, 1),
+    name = bquote(italic(C[const.])), limits = c(0, 1),
     breaks = seq(from = 0, to = 1, by = 0.2)
   ) +
   scale_fill_manual(values = custom_colors_ski) +
@@ -83,7 +83,7 @@ p3 <- ggplot(vc_reference_data, aes(x = vegetation_class, y = .value, fill = veg
   geom_boxplot(fill = ref_col) +
   # geom_jitter(width = 0.2, alpha = 0.5) +
   scale_y_continuous(
-    name = bquote(italic(C[constant])), limits = c(0, 1),
+    name = bquote(italic(C[const.])), limits = c(0, 1),
     breaks = seq(from = 0, to = 1, by = 0.2)
   ) +
   labs(x = "vegetation") +
@@ -94,7 +94,7 @@ p4 <- ggplot(vc_ski_data, aes(x = vegetation_class, y = .value, fill = vegetatio
   # geom_jitter(width = 0.2, alpha = 0.5) +
   # scale_x_discrete(labels = c("no", "low", "medium", "intensive")) +
   scale_y_continuous(
-    name = bquote(italic(C[constant])), limits = c(0, 1),
+    name = bquote(italic(C[const.])), limits = c(0, 1),
     breaks = seq(from = 0, to = 1, by = 0.2)
   ) +
   labs(x = "vegetation") +
@@ -150,14 +150,14 @@ if (construct_all_plots) {
 
   po3 <- ggplot(geomorphon$reference, aes(x = geomorphon, y = .value, fill = geomorphon)) +
     geom_boxplot(fill = ref_col) +
-    scale_y_continuous(name = bquote(italic(C[constant])), limits = c(0, 1), breaks = seq(from = 0, to = 1, by = 0.2)) +
+    scale_y_continuous(name = bquote(italic(C[const.])), limits = c(0, 1), breaks = seq(from = 0, to = 1, by = 0.2)) +
     labs(title = "reference", x = "geomorphon") +
     theme_pdp()
 
   po4 <- ggplot(geomorphon$ski, aes(x = geomorphon, y = .value, fill = geomorphon)) +
     geom_boxplot(fill = ski_col) +
     # scale_x_discrete(labels = c("no", "low", "medium", "intensive")) +
-    scale_y_continuous(name = bquote(italic(C[constant])), limits = c(0, 1), breaks = seq(from = 0, to = 1, by = 0.2)) +
+    scale_y_continuous(name = bquote(italic(C[const.])), limits = c(0, 1), breaks = seq(from = 0, to = 1, by = 0.2)) +
     labs(title = "ski slopes", x = "geomorphon") +
     theme_pdp()
 }
@@ -180,7 +180,7 @@ p5 <- ggplot(slope$reference, aes(x = slope, y = .value)) +
   geom_line(aes(group = .id), alpha = 0.3, linewidth = 0.25) + # ICE lines
   geom_line(data = ref_summary, aes(y = mean_value), color = ref_col, linewidth = 0.5) + # Mean line
   geom_line(data = ref_summary, aes(y = median_value), color = "#A2714680", linewidth = 0.5, linetype = "dashed") + # Median line
-  scale_y_continuous(name = bquote(italic(C[constant])), limits = c(0, 1), breaks = seq(from = 0, to = 1, by = 0.2)) +
+  scale_y_continuous(name = bquote(italic(C[const.])), limits = c(0, 1), breaks = seq(from = 0, to = 1, by = 0.2)) +
   labs(title = "reference", x = "slope") +
   scale_x_continuous(limits = c(10, 30)) +
   theme_pdp()
@@ -189,7 +189,7 @@ p6 <- ggplot(slope$ski, aes(x = slope, y = .value)) +
   geom_line(aes(group = .id), alpha = 0.3, linewidth = 0.25) + # ICE lines
   geom_line(data = ski_summary, aes(y = mean_value), color = ski_col, linewidth = 0.5) + # Mean line
   geom_line(data = ski_summary, aes(y = median_value), color = "#33ccff80", linewidth = 0.5, linetype = "dashed") + # Median line
-  scale_y_continuous(name = bquote(italic(C[constant])), limits = c(0, 1), breaks = seq(from = 0, to = 1, by = 0.2)) +
+  scale_y_continuous(name = bquote(italic(C[const.])), limits = c(0, 1), breaks = seq(from = 0, to = 1, by = 0.2)) +
   labs(title = "ski slope", x = "slope") +
   scale_x_continuous(limits = c(10, 30)) +
   theme_pdp()
@@ -207,7 +207,7 @@ geol_class <- construct_effects(learner_reference, learner_ski, dat_reference, d
 
 p7 <- ggplot(geol_class$reference, aes(x = geol_class, y = .value, fill = geol_class)) +
   geom_boxplot(fill = ref_col) +
-  scale_y_continuous(name = bquote(italic(C[constant])), limits = c(0, 1), breaks = seq(from = 0, to = 1, by = 0.2)) +
+  scale_y_continuous(name = bquote(italic(C[const.])), limits = c(0, 1), breaks = seq(from = 0, to = 1, by = 0.2)) +
   scale_x_discrete(labels = c("AnD", "CLC", "CLM", "GS", "GSps", "GSpl", "TS")) +
   scale_fill_manual(values = custom_colors_ref) +
   labs(title = "reference", x = "geological class") +
@@ -216,7 +216,7 @@ p7 <- ggplot(geol_class$reference, aes(x = geol_class, y = .value, fill = geol_c
 p8 <- ggplot(geol_class$ski, aes(x = geol_class, y = .value, fill = geol_class)) +
   geom_boxplot(fill = ski_col) +
   scale_x_discrete(labels = c("AnD", "CLC", "CLM", "GS", "GSps", "GSpl", "TS")) +
-  scale_y_continuous(name = bquote(italic(C[constant])), limits = c(0, 1), breaks = seq(from = 0, to = 1, by = 0.2)) +
+  scale_y_continuous(name = bquote(italic(C[const.])), limits = c(0, 1), breaks = seq(from = 0, to = 1, by = 0.2)) +
   labs(title = "ski slope", x = "geological class") +
   theme_pdp()
 
@@ -238,7 +238,7 @@ p9 <- ggplot(skeleton$reference, aes(x = skeleton, y = .value)) +
   geom_line(aes(group = .id), alpha = 0.3, linewidth = 0.25) + # ICE lines
   geom_line(data = ref_summary, aes(y = mean_value), color = ref_col, size = 1.2) + # Mean line
   geom_line(data = ref_summary, aes(y = median_value), color = "#A2714680", size = 1.2, linetype = "dashed") + # Median line
-  scale_y_continuous(name = bquote(italic(C[constant])), limits = c(0, 1), breaks = seq(from = 0, to = 1, by = 0.2)) +
+  scale_y_continuous(name = bquote(italic(C[const.])), limits = c(0, 1), breaks = seq(from = 0, to = 1, by = 0.2)) +
   labs(x = "skeleton [Vol.%]") +
   scale_x_continuous(limits = c(0, 60)) +
   theme_pdp()
@@ -248,7 +248,7 @@ p10 <- ggplot(skeleton$ski, aes(x = skeleton, y = .value)) +
   geom_line(aes(group = .id), alpha = 0.3, linewidth = 0.25) + # ICE lines
   geom_line(data = ski_summary, aes(y = mean_value), color = ski_col, size = 1.2) + # Mean line
   geom_line(data = ski_summary, aes(y = median_value), color = "#33ccff80", size = 1.2, linetype = "dashed") + # Median line
-  scale_y_continuous(name = bquote(italic(C[constant])), limits = c(0, 1), breaks = seq(from = 0, to = 1, by = 0.2)) +
+  scale_y_continuous(name = bquote(italic(C[const.])), limits = c(0, 1), breaks = seq(from = 0, to = 1, by = 0.2)) +
   labs(x = "skeleton [Vol.%]") +
   scale_x_continuous(limits = c(0, 60)) +
   theme_pdp()
@@ -267,13 +267,13 @@ soilt_ski <- soiltext$ski |>
 
 p11 <- ggplot(soilt_reference, aes(x = soiltexture, y = .value, fill = soiltexture)) +
   geom_boxplot(fill = ref_col) +
-  scale_y_continuous(name = bquote(italic(C[constant])), limits = c(0, 1), breaks = seq(from = 0, to = 1, by = 0.2)) +
+  scale_y_continuous(name = bquote(italic(C[const.])), limits = c(0, 1), breaks = seq(from = 0, to = 1, by = 0.2)) +
   labs(x = "texture") +
   theme_pdp()
 
 p12 <- ggplot(soilt_ski, aes(x = soiltexture, y = .value, fill = soiltexture)) +
   geom_boxplot(fill = ski_col) +
-  scale_y_continuous(name = bquote(italic(C[constant])), limits = c(0, 1), breaks = seq(from = 0, to = 1, by = 0.2)) +
+  scale_y_continuous(name = bquote(italic(C[const.])), limits = c(0, 1), breaks = seq(from = 0, to = 1, by = 0.2)) +
   labs(x = "texture") +
   theme_pdp()
 
@@ -290,7 +290,7 @@ erd <- construct_effects(learner_reference, learner_ski, dat_reference, dat_ski,
 
 p13 <- ggplot(erd$reference, aes(x = embedded_rock_type, y = .value, fill = embedded_rock_type)) +
   geom_boxplot(fill = ref_col) +
-  scale_y_continuous(name = bquote(italic(C[constant])), limits = c(0, 1), breaks = seq(from = 0, to = 1, by = 0.2)) +
+  scale_y_continuous(name = bquote(italic(C[const.])), limits = c(0, 1), breaks = seq(from = 0, to = 1, by = 0.2)) +
   scale_x_discrete(labels = c("cohesive", "intermediate", "loose")) +
   labs(title = "reference", x = "coarse fraction embedment") +
   theme_pdp()
@@ -298,7 +298,7 @@ p13 <- ggplot(erd$reference, aes(x = embedded_rock_type, y = .value, fill = embe
 p14 <- ggplot(erd$ski, aes(x = embedded_rock_type, y = .value, fill = embedded_rock_type)) +
   geom_boxplot(fill = ski_col) +
   scale_x_discrete(labels = c("cohesive", "intermediate", "loose")) +
-  scale_y_continuous(name = bquote(italic(C[constant])), limits = c(0, 1), breaks = seq(from = 0, to = 1, by = 0.2)) +
+  scale_y_continuous(name = bquote(italic(C[const.])), limits = c(0, 1), breaks = seq(from = 0, to = 1, by = 0.2)) +
   labs(title = "ski slope", x = "coarse fraction embedment") +
   theme_pdp()
 
@@ -311,14 +311,14 @@ soilclass <- construct_effects(learner_reference, learner_ski, dat_reference, da
 p15 <- ggplot(soilclass$reference, aes(x = soil_class, y = .value, fill = soil_class)) +
   geom_boxplot(fill = ref_col) +
   scale_x_discrete(labels = c("APE", "CCP", "CCU", "DS", "PS", "RPUF")) +
-  scale_y_continuous(name = bquote(italic(C[constant])), limits = c(0, 1), breaks = seq(from = 0, to = 1, by = 0.2)) +
+  scale_y_continuous(name = bquote(italic(C[const.])), limits = c(0, 1), breaks = seq(from = 0, to = 1, by = 0.2)) +
   labs(x = "soil class") +
   theme_pdp()
 
 p16 <- ggplot(soilclass$ski, aes(x = soil_class, y = .value, fill = soil_class)) +
   geom_boxplot(fill = ski_col) +
   scale_x_discrete(labels = c("APE", "CCU", "DS")) +
-  scale_y_continuous(name = bquote(italic(C[constant])), limits = c(0, 1), breaks = seq(from = 0, to = 1, by = 0.2)) +
+  scale_y_continuous(name = bquote(italic(C[const.])), limits = c(0, 1), breaks = seq(from = 0, to = 1, by = 0.2)) +
   labs(x = "soil class") +
   theme_pdp()
 
@@ -339,7 +339,7 @@ p17 <- ggplot(saturation$reference, aes(x = sd_delta, y = .value)) +
   geom_line(aes(group = .id), alpha = 0.3, linewidth = 0.25) + # ICE lines
   geom_line(data = ref_summary, aes(y = mean_value), color = ref_col, size = 1.2) + # Mean line
   geom_line(data = ref_summary, aes(y = median_value), color = "#A2714680", size = 1.2, linetype = "dashed") + # Median line
-  scale_y_continuous(name = bquote(italic(C[constant])), limits = c(0, 1), breaks = seq(from = 0, to = 1, by = 0.2)) +
+  scale_y_continuous(name = bquote(italic(C[const.])), limits = c(0, 1), breaks = seq(from = 0, to = 1, by = 0.2)) +
   labs(x = bquote(Delta ~ "SD [vol.%]")) +
   scale_x_continuous(limits = c(-0.5, 0)) +
   theme_pdp()
@@ -349,7 +349,7 @@ p18 <- ggplot(saturation$ski, aes(x = sd_delta, y = .value)) +
   geom_line(data = ski_summary, aes(y = mean_value), color = ski_col, size = 1.2) + # Mean line
   geom_line(data = ski_summary, aes(y = median_value), color = "#33ccff80", size = 1.2, linetype = "dashed") + # Median line
   # geom_rug(sides = "b", position="jitter", alpha = 0.5) +
-  scale_y_continuous(name = bquote(italic(C[constant])), limits = c(0, 1), breaks = seq(from = 0, to = 1, by = 0.2)) +
+  scale_y_continuous(name = bquote(italic(C[const.])), limits = c(0, 1), breaks = seq(from = 0, to = 1, by = 0.2)) +
   labs(x = bquote(Delta ~ "SD [vol.%]")) +
   scale_x_continuous(limits = c(-0.5, 0)) +
   theme_pdp()
