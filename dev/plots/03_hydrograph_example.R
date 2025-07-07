@@ -20,14 +20,14 @@ p <- ggplot(data = dat, aes(x = t, y = AK, group = type)) +
   annotate("text", x = 36, y = 0.90, label = expression(italic(C[peak])), size = 4) +
   geom_segment(aes(x = 55, y = 0.845, xend = 57.5, yend = 0.78), size = 0.2, color = "red", arrow = arrow(length = unit(1.5, "mm"), type = "closed")) +
   annotate("text", x = 55, y = 0.89, label = expression(italic(C[const.])), size = 4, color = "red") +
-  geom_segment(aes(x = 3.4, y = 0.20, xend = 3.8, yend = 0.03), size = 0.2, color = "grey54", arrow = arrow(length = unit(1.5, "mm"), type = "closed")) +
-  annotate("text", x = 3.5, y = 0.30, label = bquote(italic(atop("start", "time"))), size = 3.5, color = "grey54") +
-  geom_segment(aes(x = 0.7, y = 0.82, xend = 17, yend = 0.82), size = 0.4, color = "grey54", arrow = arrow(length = unit(1.7, "mm"), ends = "both", type = "closed")) +
-  annotate("text", x = 8.3, y = 0.82, label = bquote(italic(atop("accumulation", "time"))), size = 3.5, color = "grey54") +
-  geom_segment(aes(x = 50.5, y = 0.73, xend = 59.5, yend = 0.73), size = 0.4, color = "grey54", arrow = arrow(length = unit(1.7, "mm"), ends = "both", type = "closed")) +
-  annotate("text", x = 55, y = 0.58, label = bquote(italic(atop("time of constant", "discharge"))), size = 3.5, color = "grey54") +
-  annotate("text", x = 13, y = 0.35, label = bquote(italic(atop("rising", "limb"))), size = 3.5, color = "grey54") +
-  geom_segment(aes(x = 10, y = 0.4, xend = 8.1, yend = 0.44), size = 0.2, color = "grey54", arrow = arrow(length = unit(1.5, "mm"), type = "closed")) +
+  geom_segment(aes(x = 3.4, y = 0.20, xend = 3.8, yend = 0.03), size = 0.2, color = "grey50", arrow = arrow(length = unit(1.5, "mm"), type = "closed")) +
+  annotate("text", x = 3.5, y = 0.30, label = bquote(italic(atop("start", "time"))), size = 3.5, color = "grey50") +
+  geom_segment(aes(x = 0.5, y = 0.98, xend = 27.5, yend = 0.98), size = 0.4, color = "grey50", arrow = arrow(length = unit(1.7, "mm"), ends = "both", type = "closed")) +
+  annotate("text", x = 13.5, y = 0.95, label = bquote(italic("accumulation time")), size = 3.5, color = "grey50") +
+  geom_segment(aes(x = 50.5, y = 0.73, xend = 59.5, yend = 0.73), size = 0.4, color = "grey50", arrow = arrow(length = unit(1.7, "mm"), ends = "both", type = "closed")) +
+  annotate("text", x = 55, y = 0.58, label = bquote(italic(atop("time of constant", "discharge"))), size = 3.5, color = "grey50") +
+  annotate("text", x = 13, y = 0.35, label = bquote(italic(atop("rising", "limb"))), size = 3.5, color = "grey50") +
+  geom_segment(aes(x = 10, y = 0.4, xend = 8.1, yend = 0.44), size = 0.2, color = "grey50", arrow = arrow(length = unit(1.5, "mm"), type = "closed")) +
   xlab(expression(italic(t) ~ "[min]")) +
   ylab(expression(italic(C)~ " [-]")) +
   scale_y_continuous(limits = c(0, 1.2), breaks = scales::breaks_extended(n = 7), expand=c(0,0)) +
