@@ -38,6 +38,7 @@ pasture_reference_data <- pasture$reference |>
 pasture_ski_data <- pasture$ski |>
   as_tibble() |>
   mutate(pasture = factor(pasture, levels = c("no", "low", "medium", "intensive")))
+
 # Define custom colors
 c_col_past_ski <- c("no" = "#33ccff40", "low" = "#33ccff80", "medium" = "#33ccffBF", "intensive" = ski_col)
 c_col_past_ref <- c("no" = "#A2714640", "low" = "#A2714680", "medium" = "#A27146BF", "intensive" = ref_col)
@@ -111,27 +112,16 @@ ggsave("plt/fig_07.png", patchwork1, device = png, height = 150, width = 140, dp
 if (construct_all_plots) {
   grcov <- construct_effects(learner_reference, learner_ski, dat_reference, dat_ski, feature = "ground_cover")
 
-  # Calculate mean and median values
-  ref_summary <- grcov$reference |>
-    group_by(ground_cover) |>
-    summarize(mean_value = mean(.value), median_value = median(.value))
-  ski_summary <- grcov$ski |>
-    group_by(ground_cover) |>
-    summarize(mean_value = mean(.value), median_value = median(.value))
-
-  # Plot the results for reference areas with customized mean and median lines
   po1 <- ggplot(grcov$reference, aes(x = ground_cover, y = .value)) +
     geom_line(aes(group = .id), alpha = 0.3, linewidth = 0.25) +
-    geom_line(data = ref_summary, aes(y = mean_value), color = ref_col, linewidth = 0.5) +
-    geom_line(data = ref_summary, aes(y = median_value), color = "#A2714680", linewidth = 0.5, linetype = "dashed") + # Median line
+    geom_line(data = pdpd(grcov$reference), color = ref_col, linewidth = 0.5) +
     scale_y_continuous(name = bquote(~"predicted " ~ Psi), breaks = seq(from = 0, to = 1, by = 0.2)) +
     labs(x = "ground cover") +
     theme_pdp()
 
   po2 <- ggplot(grcov$ski, aes(x = ground_cover, y = .value)) +
     geom_line(aes(group = .id), alpha = 0.3, linewidth = 0.25) +
-    geom_line(data = ski_summary, aes(y = mean_value), color = ski_col, linewidth = 0.5) +
-    geom_line(data = ski_summary, aes(y = median_value), color = "#33ccff80", linewidth = 0.5, linetype = "dashed") + # Median line
+    geom_line(data = pdpd(grcov$ski), color = ref_col, linewidth = 0.5) +
     scale_y_continuous(name = bquote(~"predicted " ~ Psi), breaks = seq(from = 0, to = 1, by = 0.2)) +
     labs(x = "ground cover") +
     theme_pdp()
@@ -165,27 +155,17 @@ if (construct_all_plots) {
 
 slope <- construct_effects(learner_reference, learner_ski, dat_reference, dat_ski, feature = "slope")
 
-# Calculate mean and median values
-ref_summary <- slope$reference |>
-  group_by(slope) |>
-  summarize(mean_value = mean(.value), median_value = median(.value))
-ski_summary <- slope$ski |>
-  group_by(slope) |>
-  summarize(mean_value = mean(.value), median_value = median(.value))
-
 p5 <- ggplot(slope$reference, aes(x = slope, y = .value)) +
-  geom_line(aes(group = .id), alpha = 0.3, linewidth = 0.25) + # ICE lines
-  geom_line(data = ref_summary, aes(y = mean_value), color = ref_col, linewidth = 0.5) + # Mean line
-  geom_line(data = ref_summary, aes(y = median_value), color = "#A2714680", linewidth = 0.5, linetype = "dashed") + # Median line
+  geom_line(aes(group = .id), alpha = 0.3, linewidth = 0.25) +
+  geom_line(data = pdpd(slope$reference), color = ref_col, linewidth = 1) +
   scale_y_continuous(name = bquote(italic(C[const.])), limits = c(0, 1), breaks = seq(from = 0, to = 1, by = 0.2)) +
   labs(title = "reference areas", x = "slope") +
   scale_x_continuous(limits = c(10, 30)) +
   theme_pdp()
 
 p6 <- ggplot(slope$ski, aes(x = slope, y = .value)) +
-  geom_line(aes(group = .id), alpha = 0.3, linewidth = 0.25) + # ICE lines
-  geom_line(data = ski_summary, aes(y = mean_value), color = ski_col, linewidth = 0.5) + # Mean line
-  geom_line(data = ski_summary, aes(y = median_value), color = "#33ccff80", linewidth = 0.5, linetype = "dashed") + # Median line
+  geom_line(aes(group = .id), alpha = 0.3, linewidth = 0.25) +
+  geom_line(data = pdpd(slope$ski), color = ski_col, linewidth = 1) +
   scale_y_continuous(name = bquote(italic(C[const.])), limits = c(0, 1), breaks = seq(from = 0, to = 1, by = 0.2)) +
   labs(title = "ski slopes", x = "slope") +
   scale_x_continuous(limits = c(10, 30)) +
@@ -222,27 +202,17 @@ p8 <- ggplot(geol_class$ski, aes(x = geol_class, y = .value)) +
 
 skeleton <- construct_effects(learner_reference, learner_ski, dat_reference, dat_ski, feature = "skeleton")
 
-# Calculate mean and median values
-ref_summary <- skeleton$reference |>
-  group_by(skeleton) |>
-  summarize(mean_value = mean(.value), median_value = median(.value))
-ski_summary <- skeleton$ski |>
-  group_by(skeleton) |>
-  summarize(mean_value = mean(.value), median_value = median(.value))
-
 p9 <- ggplot(skeleton$reference, aes(x = skeleton, y = .value)) +
-  geom_line(aes(group = .id), alpha = 0.3, linewidth = 0.25) + # ICE lines
-  geom_line(data = ref_summary, aes(y = mean_value), color = ref_col, size = 1.2) + # Mean line
-  geom_line(data = ref_summary, aes(y = median_value), color = "#A2714680", size = 1.2, linetype = "dashed") + # Median line
+  geom_line(aes(group = .id), alpha = 0.3, linewidth = 0.25) +
+  geom_line(data = pdpd(skeleton$reference), color = ref_col, linewidth = 1) +
   scale_y_continuous(name = bquote(italic(C[const.])), limits = c(0, 1), breaks = seq(from = 0, to = 1, by = 0.2)) +
   labs(x = "skeleton [Vol.%]") +
   scale_x_continuous(limits = c(0, 60)) +
   theme_pdp()
 
 p10 <- ggplot(skeleton$ski, aes(x = skeleton, y = .value)) +
-  geom_line(aes(group = .id), alpha = 0.3, linewidth = 0.25) + # ICE lines
-  geom_line(data = ski_summary, aes(y = mean_value), color = ski_col, size = 1.2) + # Mean line
-  geom_line(data = ski_summary, aes(y = median_value), color = "#33ccff80", size = 1.2, linetype = "dashed") + # Median line
+  geom_line(aes(group = .id), alpha = 0.3, linewidth = 0.25) +
+  geom_line(data = pdpd(skeleton$ski), color = ski_col, linewidth = 1) +
   scale_y_continuous(name = bquote(italic(C[const.])), limits = c(0, 1), breaks = seq(from = 0, to = 1, by = 0.2)) +
   labs(x = "skeleton [Vol.%]") +
   scale_x_continuous(limits = c(0, 60)) +
@@ -283,21 +253,28 @@ ggsave("plt/fig_08.png", patchwork3, device = png, height = 220, width = 140, dp
 # Coarse fraction embedment ----
 erd <- construct_effects(learner_reference, learner_ski, dat_reference, dat_ski, feature = "embedded_rock_type")
 
-# Define custom colors
-c_col_cfe_ski <- c("LOC" = "#33ccff55", "EHO" = "#33ccffAA", "EGE" = ski_col)
-c_col_cfe_ref <- c("LOC" = "#A2714655", "EHO" = "#A27146AA", "EGE" = ref_col)
+cfe_reference_data <- erd$reference |>
+  as_tibble() |>
+  mutate(embedded_rock_type = factor(embedded_rock_type, levels = c("LOC", "EHO", "EGE"))) |>
+  mutate(embedded_rock_type = forcats::fct_recode(embedded_rock_type, "loose" = "LOC", "intermediate" = "EHO", "cohesive" = "EGE"))
+cfe_ski_data <- erd$ski |>
+  as_tibble() |>
+  mutate(embedded_rock_type = factor(embedded_rock_type, levels = c("LOC", "EHO", "EGE"))) |>
+  mutate(embedded_rock_type = forcats::fct_recode(embedded_rock_type, "loose" = "LOC", "intermediate" = "EHO", "cohesive" = "EGE"))
 
-p13 <- ggplot(erd$reference, aes(x = embedded_rock_type, y = .value, fill = embedded_rock_type)) +
+# Define custom colors
+c_col_cfe_ski <- c("loose" = "#33ccff55", "intermediate" = "#33ccffAA", "cohesive" = ski_col)
+c_col_cfe_ref <- c("loose" = "#A2714655", "intermediate" = "#A27146AA", "cohesive" = ref_col)
+
+p13 <- ggplot(cfe_reference_data, aes(x = embedded_rock_type, y = .value, fill = embedded_rock_type)) +
   geom_boxplot() +
-  scale_x_discrete(labels = c("cohesive", "intermediate", "loose")) +
   scale_y_continuous(name = bquote(italic(C[const.])), limits = c(0, 1), breaks = seq(from = 0, to = 1, by = 0.2)) +
   scale_fill_manual(values = c_col_cfe_ref) +
   labs(title = "reference areas", x = "coarse fraction embedment") +
   theme_pdp()
 
-p14 <- ggplot(erd$ski, aes(x = embedded_rock_type, y = .value, fill = embedded_rock_type)) +
+p14 <- ggplot(cfe_ski_data, aes(x = embedded_rock_type, y = .value, fill = embedded_rock_type)) +
   geom_boxplot() +
-  scale_x_discrete(labels = c("cohesive", "intermediate", "loose")) +
   scale_y_continuous(name = bquote(italic(C[const.])), limits = c(0, 1), breaks = seq(from = 0, to = 1, by = 0.2)) +
   scale_fill_manual(values = c_col_cfe_ski) +
   labs(title = "ski slopes", x = "coarse fraction embedment") +
@@ -328,28 +305,17 @@ p16 <- ggplot(soilclass$ski, aes(x = soil_class, y = .value)) +
 # Saturation ----
 saturation <- construct_effects(learner_reference, learner_ski, dat_reference, dat_ski, feature = "sd_delta")
 
-# Calculate mean and median values
-ref_summary <- saturation$reference |>
-  group_by(sd_delta) |>
-  summarize(mean_value = mean(.value), median_value = median(.value))
-ski_summary <- saturation$ski |>
-  group_by(sd_delta) |>
-  summarize(mean_value = mean(.value), median_value = median(.value))
-
 p17 <- ggplot(saturation$reference, aes(x = sd_delta, y = .value)) +
-  geom_line(aes(group = .id), alpha = 0.3, linewidth = 0.25) + # ICE lines
-  geom_line(data = ref_summary, aes(y = mean_value), color = ref_col, size = 1.2) + # Mean line
-  geom_line(data = ref_summary, aes(y = median_value), color = "#A2714680", size = 1.2, linetype = "dashed") + # Median line
+  geom_line(aes(group = .id), alpha = 0.3, linewidth = 0.25) +
+  geom_line(data = pdpd(saturation$reference), color = ref_col, linewidth = 1) +
   scale_y_continuous(name = bquote(italic(C[const.])), limits = c(0, 1), breaks = seq(from = 0, to = 1, by = 0.2)) +
   labs(x = bquote(Delta ~ "SD [vol.%]")) +
   scale_x_continuous(limits = c(-0.5, 0)) +
   theme_pdp()
 
 p18 <- ggplot(saturation$ski, aes(x = sd_delta, y = .value)) +
-  geom_line(aes(group = .id), alpha = 0.3, linewidth = 0.25) + # ICE lines
-  geom_line(data = ski_summary, aes(y = mean_value), color = ski_col, size = 1.2) + # Mean line
-  geom_line(data = ski_summary, aes(y = median_value), color = "#33ccff80", size = 1.2, linetype = "dashed") + # Median line
-  # geom_rug(sides = "b", position="jitter", alpha = 0.5) +
+  geom_line(aes(group = .id), alpha = 0.3, linewidth = 0.25) +
+  geom_line(data = pdpd(saturation$ski), color = ski_col, linewidth = 1) +
   scale_y_continuous(name = bquote(italic(C[const.])), limits = c(0, 1), breaks = seq(from = 0, to = 1, by = 0.2)) +
   labs(x = bquote(Delta ~ "SD [vol.%]")) +
   scale_x_continuous(limits = c(-0.5, 0)) +
@@ -419,26 +385,16 @@ if (construct_all_plots) {
 if (construct_all_plots) {
   bd <- construct_effects(learner_reference, learner_ski, dat_reference, dat_ski, feature = "bulk_density")
 
-  # Calculate mean and median values
-  ref_data <- bd$reference |>
-    group_by(bulk_density) |>
-    summarize(mean_value = mean(.value), median_value = median(.value))
-  ski_data <- bd$ski |>
-    group_by(bulk_density) |>
-    summarize(mean_value = mean(.value), median_value = median(.value))
-
   po9 <- ggplot(bd$reference, aes(x = bulk_density, y = .value)) +
-    geom_line(aes(group = .id), alpha = 0.3, linewidth = 0.25) + # ICE lines
-    geom_line(data = ref_data, aes(y = mean_value), color = ref_col, size = 1.2) + # Mean line
-    geom_line(data = ref_data, aes(y = median_value), color = "#A2714680", size = 1.2, linetype = "dashed") + # Median line
+    geom_line(aes(group = .id), alpha = 0.3, linewidth = 0.25) +
+    geom_line(data = pdpd(bd$reference), color = ref_col, linewidth = 1) +
     scale_y_continuous(name = bquote(~"predicted " ~ Psi), breaks = seq(from = 0, to = 1, by = 0.2)) +
     labs(x = "bulk density") +
     theme_pdp()
 
   po0 <- ggplot(bd$ski, aes(x = bulk_density, y = .value)) +
-    geom_line(aes(group = .id), alpha = 0.3, linewidth = 0.25) + # ICE lines
-    geom_line(data = ski_data, aes(y = mean_value), color = ski_col, size = 1.2) + # Mean line
-    geom_line(data = ski_data, aes(y = median_value), color = "#33ccff80", size = 1.2, linetype = "dashed") + # Median line
+    geom_line(aes(group = .id), alpha = 0.3, linewidth = 0.25) +
+    geom_line(data = pdpd(bd$ski), color = ski_col, linewidth = 1) +
     scale_y_continuous(name = bquote(~"predicted " ~ Psi), breaks = seq(from = 0, to = 1, by = 0.2)) +
     labs(x = "bulk density") +
     theme_pdp()

@@ -15,3 +15,6 @@ construct_effects <- function(learner_nonski, learner_ski, data_reference, data_
   )
   list(reference = effect_reference$results, ski = effect_ski$results)
 }
+
+# filter only partial dependence plot data
+pdpd <- function(x) filter(x, .type == "pdp")
