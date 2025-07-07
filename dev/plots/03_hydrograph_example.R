@@ -25,8 +25,8 @@ p <- ggplot(data = dat, aes(x = t, y = AK, group = type)) +
   annotate("text", x = 13.5, y = 0.95, label = bquote(italic("accumulation time")), size = 3.5, color = "grey50") +
   geom_segment(aes(x = 50.5, y = 0.73, xend = 59.5, yend = 0.73), size = 0.4, color = "grey50", arrow = arrow(length = unit(1.7, "mm"), ends = "both", type = "closed")) +
   annotate("text", x = 55, y = 0.58, label = bquote(italic(atop("time of constant", "discharge"))), size = 3.5, color = "grey50") +
-  geom_segment(aes(x = 10, y = 0.4, xend = 8.1, yend = 0.44), size = 0.2, color = "grey50", arrow = arrow(length = unit(1.5, "mm"), type = "closed")) +
-  annotate("text", x = 13, y = 0.35, label = bquote(italic(atop("rising", "limb"))), size = 3.5, color = "grey50") +
+  geom_segment(aes(x = 11, y = 0.4, xend = 8.3, yend = 0.43), size = 0.2, color = "grey50", arrow = arrow(length = unit(1.5, "mm"), type = "closed")) +
+  annotate("text", x = 14, y = 0.35, label = bquote(italic(atop("rising", "limb"))), size = 3.5, color = "grey50") +
   xlab(expression(italic(t) ~ "[min]")) +
   ylab(expression(italic(C) ~ " [-]")) +
   scale_y_continuous(limits = c(0, 1.2), breaks = scales::breaks_extended(n = 7), expand = c(0, 0)) +
