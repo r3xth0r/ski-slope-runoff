@@ -20,6 +20,7 @@ learner_reference <- readRDS("dat/interim/random_forest/ranger_trained_noski.rds
 # Source helper functions
 source("dev/helper/construct_effects.R")
 source("dev/helper/theme_ski.R")
+source("dev/helper/config.R")
 
 # Flag to construct all plots or only the ones included in the manuscript
 construct_all_plots <- FALSE
@@ -103,7 +104,11 @@ p4 <- ggplot(vc_ski_data, aes(x = vegetation_class, y = .value)) +
 
 patchwork1 <- (p2 + p1) / (p4 + p3) &
   theme(plot.title = element_text(face = "bold", margin = margin(0, 0, 10, 0)))
-ggsave("plt/fig_07.png", patchwork1, device = png, height = 150, width = 140, dpi = 300, units = "mm")
+ggsave(
+  glue::glue("plt/fig_07.{file_format}"),
+  plot = patchwork1, device = file_format,
+  height = 150, width = 140, units = "mm", dpi = dpi
+)
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
 
@@ -173,7 +178,11 @@ p6 <- ggplot(slope$ski, aes(x = slope, y = .value)) +
 
 patchwork2 <- (p6 + p5) &
   theme(plot.title = element_text(face = "bold", margin = margin(0, 0, 10, 0)))
-ggsave("plt/fig_10.png", patchwork2, device = png, height = 80, width = 140, dpi = 300, units = "mm")
+ggsave(
+  glue::glue("plt/fig_10.{file_format}"),
+  plot = patchwork2, device = file_format,
+  height = 80, width = 140, units = "mm", dpi = dpi
+)
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
 # FEATURE GROUP: Geology
@@ -244,7 +253,11 @@ p12 <- ggplot(soilt_ski, aes(x = soiltexture, y = .value)) +
 
 patchwork3 <- (p8 + p7) / (p10 + p9) / (p12 + p11) &
   theme(plot.title = element_text(face = "bold", margin = margin(0, 0, 10, 0)))
-ggsave("plt/fig_08.png", patchwork3, device = png, height = 220, width = 140, dpi = 300, units = "mm")
+ggsave(
+  glue::glue("plt/fig_08.{file_format}"),
+  plot = patchwork3, device = file_format,
+  height = 220, width = 140, units = "mm", dpi = dpi
+)
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
 # GROUP: Soil
@@ -322,7 +335,11 @@ p16 <- ggplot(saturation$ski, aes(x = sd_delta, y = .value)) +
 
 patchwork5 <- (p14 + p13) / (p16 + p15) &
   theme(plot.title = element_text(face = "bold", margin = margin(0, 0, 10, 0)))
-ggsave("plt/fig_09.png", patchwork5, device = png, height = 150, width = 140, dpi = 300, units = "mm")
+ggsave(
+  glue::glue("plt/fig_09.{file_format}"),
+  plot = patchwork5, device = file_format,
+  height = 160, width = 140, units = "mm", dpi = dpi
+)
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
 
@@ -404,7 +421,11 @@ if (construct_all_plots) {
 
   patchwork_o2 <- (po6 + po5) / (po8 + po7) / (po0 + po9) / (po12 + po11) &
     theme(plot.title = element_text(face = "bold", margin = margin(0, 0, 10, 0)))
-  ggsave("plt/fig_effects_soil.png", patchwork_o2, device = png, height = 300, width = 160, dpi = 300, units = "mm")
+  ggsave(
+    glue::glue("plt/fig_effects_soil.{file_format}"),
+    plot = patchwork_o2, device = file_format,
+    height = 300, width = 160, units = "mm", dpi = dpi
+  )
 }
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #

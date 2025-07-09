@@ -5,6 +5,7 @@
 library("tidyverse")
 
 source("dev/helper/theme_ski.R")
+source("dev/helper/config.R")
 
 # Load data ----
 dat <- read_csv("dat/interim/plt_irrigation_example.csv")
@@ -33,4 +34,7 @@ p <- ggplot(data = dat, aes(x = t, y = AK, group = type)) +
   scale_size_manual(values = c(0.7, 0.7, 0.7)) +
   coord_cartesian(xlim = c(0, 62), ylim = c(0, 1)) +
   theme_ski()
-ggsave("plt/fig_03.png", p, device = png, height = 80, width = 140, dpi = 300, units = "mm")
+ggsave(glue::glue("plt/fig_03.{file_format}"),
+  plot = p, device = file_format,
+  height = 80, width = 140, units = "mm", dpi = dpi
+)

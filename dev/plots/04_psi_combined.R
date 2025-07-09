@@ -6,6 +6,7 @@ library("tidyverse")
 library("patchwork")
 
 source("dev/helper/theme_ski.R")
+source("dev/helper/config.R")
 
 all_dat <- read_csv("dat/raw/all_data.csv") |>
   mutate(ski_slope = recode_factor(ski_slope, "yes" = "A", "no" = "B"))
@@ -36,4 +37,8 @@ p <- ggplot(dat_psi, aes(x = type, y = psi_intervall, fill = as.factor(type))) +
   labs(x = "", y = bquote(italic(C[const.]))) +
   # coord_flip() +
   theme_ski()
-ggsave("plt/fig_04.png", plot = p, device = png, height = 80, width = 140, dpi = 300, units = "mm")
+ggsave(
+  glue::glue("plt/fig_04.{file_format}"),
+  plot = p, device = file_format,
+  height = 80, width = 140, units = "mm", dpi = dpi
+)

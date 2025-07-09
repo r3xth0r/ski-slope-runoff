@@ -6,6 +6,7 @@ library("tidyverse")
 library("patchwork")
 
 source("dev/helper/theme_ski.R")
+source("dev/helper/config.R")
 
 all_dat <- read_csv("dat/raw/all_data.csv") |>
   mutate(
@@ -36,5 +37,8 @@ p <- ggplot(all_dat, aes(x = toponym, y = psi_intervall, color = ski_slope, fill
   scale_color_manual(values = c(ski_col, ref_col), labels = c("ski slopes", "reference areas"), name = "") +
   scale_fill_manual(values = c(ski_col, ref_col), labels = c("ski slopes", "reference areas"), name = "") +
   geom_vline(xintercept = seq(1.5, 11.5, 1), linetype = "dashed", colour = "black", linewidth = 0.7)
-
-ggsave("plt/fig_05.png", plot = p, device = png, height = 80, width = 140, dpi = 300, units = "mm")
+ggsave(
+  glue::glue("plt/fig_05.{file_format}"),
+  plot = p, device = file_format,
+  height = 80, width = 140, units = "mm", dpi = dpi
+)

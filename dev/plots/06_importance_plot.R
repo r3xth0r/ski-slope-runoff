@@ -7,6 +7,7 @@ library("patchwork")
 
 source("dev/helper/get_importance.R")
 source("dev/helper/theme_ski.R")
+source("dev/helper/config.R")
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
 
@@ -98,6 +99,10 @@ p_ski <- plot_importance(imp_ski, "ski slopes", ski_col)
 
 # Compose plot ----
 patchwork <- (p_ski) / (p_ref)
-ggsave("plt/fig_06.png", patchwork, device = png, height = 160, width = 140, dpi = 300, units = "mm")
+ggsave(
+  glue::glue("plt/fig_06.{file_format}"),
+  plot = p, device = file_format,
+  height = 160, width = 140, units = "mm", dpi = dpi
+)
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
