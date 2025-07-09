@@ -24,7 +24,7 @@ library("glue")
 dat <- read_csv("../dat/raw/all_data.csv", locale = locale(encoding = "iso-8859-1")) |>
   rename_with(~ tolower(gsub("-", "_", .x, fixed = TRUE))) |>
   mutate(exp_date = as.Date(exp_date, format = "%d.%m.%Y")) |>
-  mutate(across(.cols = starttime:endtime, ~ as_datetime(.x))) |>
+  mutate(across(.cols = starttime:endtime, ~ lubridate::as_datetime(.x))) |>
   mutate(across(where(is.character), ~ as.factor(.x)))
 
 rmarkdown::paged_table(dat)
