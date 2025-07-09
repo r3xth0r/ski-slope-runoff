@@ -159,7 +159,7 @@ p5 <- ggplot(slope$reference, aes(x = slope, y = .value)) +
   geom_line(aes(group = .id), alpha = 0.3, linewidth = 0.25) +
   geom_line(data = pdpd(slope$reference), color = ref_col, linewidth = 1) +
   scale_y_continuous(name = bquote(italic(C[const.])), limits = c(0, 1), breaks = seq(from = 0, to = 1, by = 0.2)) +
-  labs(title = "reference areas", x = "slope") +
+  labs(title = "reference areas", x = "slope [°]") +
   scale_x_continuous(limits = c(10, 30)) +
   theme_pdp()
 
@@ -167,7 +167,7 @@ p6 <- ggplot(slope$ski, aes(x = slope, y = .value)) +
   geom_line(aes(group = .id), alpha = 0.3, linewidth = 0.25) +
   geom_line(data = pdpd(slope$ski), color = ski_col, linewidth = 1) +
   scale_y_continuous(name = bquote(italic(C[const.])), limits = c(0, 1), breaks = seq(from = 0, to = 1, by = 0.2)) +
-  labs(title = "ski slopes", x = "slope") +
+  labs(title = "ski slopes", x = "slope [°]") +
   scale_x_continuous(limits = c(10, 30)) +
   theme_pdp()
 
