@@ -21,7 +21,7 @@ process_importance <- function(learner, top_n_features = 6L) {
       "geological class" = "geol class",
       "texture" = "soiltexture",
       "humustype" = "humus type",
-      "vegetation" = "vegetation class"
+      "pasture intensity" = "pasture"
     ))
   top_n <- imp |>
     top_n(top_n_features, importance) |>
@@ -29,7 +29,7 @@ process_importance <- function(learner, top_n_features = 6L) {
   imp |>
     mutate(color = if_else(index %in% top_n, "highlight", "normal")) |>
     mutate(point_type = case_when(
-      index %in% c("pasture", "vegetation", "ground cover") ~ "land use",
+      index %in% c("pasture intensity", "vegetation class", "ground cover") ~ "land use",
       index %in% c("geomorphon", "slope") ~ "topography",
       index %in% c("skeleton", "geological class", "texture") ~ "geology",
       index %in% c(

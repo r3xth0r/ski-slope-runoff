@@ -52,7 +52,7 @@ p1 <- ggplot(pasture_reference_data, aes(x = pasture, y = .value, fill = pasture
     breaks = seq(from = 0, to = 1, by = 0.2)
   ) +
   scale_fill_manual(values = c_col_past_ref) +
-  labs(title = "reference areas", x = "pasture") +
+  labs(title = "reference areas", x = "pasture intensity") +
   theme_pdp()
 
 p2 <- ggplot(pasture_ski_data, aes(x = pasture, y = .value, fill = pasture)) +
@@ -63,7 +63,7 @@ p2 <- ggplot(pasture_ski_data, aes(x = pasture, y = .value, fill = pasture)) +
     breaks = seq(from = 0, to = 1, by = 0.2)
   ) +
   scale_fill_manual(values = c_col_past_ski) +
-  labs(title = "ski slopes", x = "pasture") +
+  labs(title = "ski slopes", x = "pasture intensity") +
   theme_pdp()
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
@@ -87,7 +87,7 @@ p3 <- ggplot(vc_reference_data, aes(x = vegetation_class, y = .value)) +
     name = bquote(italic(C[const.])), limits = c(0, 1),
     breaks = seq(from = 0, to = 1, by = 0.2)
   ) +
-  labs(x = "vegetation") +
+  labs(x = "vegetation class") +
   theme_pdp()
 
 p4 <- ggplot(vc_ski_data, aes(x = vegetation_class, y = .value)) +
@@ -98,7 +98,7 @@ p4 <- ggplot(vc_ski_data, aes(x = vegetation_class, y = .value)) +
     name = bquote(italic(C[const.])), limits = c(0, 1),
     breaks = seq(from = 0, to = 1, by = 0.2)
   ) +
-  labs(x = "vegetation") +
+  labs(x = "vegetation class") +
   theme_pdp()
 
 patchwork1 <- (p2 + p1) / (p4 + p3) &
