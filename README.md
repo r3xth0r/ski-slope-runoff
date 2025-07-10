@@ -28,6 +28,7 @@ The general repo structure is as follows:
 - `dat`: data sets
 - `dev`: development (scripts)
 - `doc`: documentation
+- `gis`: GIS projects and auxiliary data
 - `plt`: plots / figures
 - `renv`: R environment configuration - see [renv](https://rstudio.github.io/renv/articles/renv.html)
 
