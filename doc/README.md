@@ -2,7 +2,7 @@
 
 ## Dataset description
 
-The table [`raw_data_description.csv`](./raw_data_description.csv) contains the column number and the the column name of the main dataset `dat/raw/all_data.csv`. It also includes a short description for all variables, as well as a unit or data type (if applicable).
+The table [`raw_data_description.csv`](./raw_data_description.csv) contains the column number and the the column name of the main dataset [`dat/raw/all_data.csv`](../dat/raw/all_data.csv). It also includes a short description for all variables, as well as a unit or data type (if applicable).
 
 The following factor levels are used for the corresponding ordinal and nominal features:
 
