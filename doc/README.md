@@ -14,18 +14,21 @@ The following factor levels are used for the corresponding ordinal and nominal f
     - Glacial sediment, possibly solidified (GSps)
     - Glacial sediment, potentially very loose (GSpl)
     - Talus/Scree (TS)
-  - `soil_class`:
+
+- `soil_class`:
     - Albic-Podzol Entic-Podzol (APE)
     - Cambisol Cambic-Phaeozem (CCP)
     - Cambion Cambic-Phaeozem Cambic-Umbrisol (CCU)
     - Disturbed Soil (DS)
     - Planosol-Stagnosol (PS)
     - Regosol Phaeozem Umbrisol Folic-Histosol (RPUF)
+
 - `pasture`:
     1. No
     2. Low
     3. Medium
-    4. Intensive 
+    4. Intensive
+
 - `topography`:
     - escarpment
     - lower-slope
@@ -35,14 +38,17 @@ The following factor levels are used for the corresponding ordinal and nominal f
     - slope-flattening
     - trench
     - upper-slope
+
 - `vegetation_class`:
     - forest
     - grassland
     - shrubs
+
 - `embedded_rock_type`:
     1. loose (LOC)
     2. intermediate (EHO)
     3. cohesive (EGE)
+
 - `soiltexture`:
     - loamy sand (lS)
     - loamy silt (lU)
