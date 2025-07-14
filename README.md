@@ -1,4 +1,4 @@
-# Surface runoff on ski slopes induced by heavy rainfall 
+# Analysis of hydrological drivers of surface runoff in Alpine ski regions
 
 <p align="center">
     <a href="https://style.tidyverse.org">
