@@ -18,7 +18,7 @@ column,column_name,description,unit
 17,topography,geomorphon,nominal
 18,vegetation_class,vegetation classification,nominal
 19,ski_slope,binary indicator if ARS is on ski slopes,bool
-20,soil_depth,soil depth,[cm]
+20,soil_depth,soil depth,ordinal
 21,skeleton,soil skeleton content,[% vol.]
 22,embedded_rock_type,type of coarse soil embedding,ordinal
 23,soiltexture,soil texture classification,nominal

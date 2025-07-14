@@ -44,6 +44,12 @@ The following factor levels are used for the corresponding ordinal and nominal f
     - grassland
     - shrubs
 
+- `soil_depth`:
+    - very shallow soil ("sehr flachgründig")
+    - shallow soil ("flachgründig")
+    - moderately deep soil ("mittelgründig")
+    - deep soil ("tiefgründig")
+
 - `embedded_rock_type`:
     1. loose (LOC)
     2. intermediate (EHO)
