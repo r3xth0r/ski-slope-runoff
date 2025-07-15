@@ -55,9 +55,11 @@ dat <- readRDS("dat/interim/model_data_imputed.rds") |>
 if (use_case == "noski") {
   dat <- subset(dat, ski_slope == "no") |>
     select(-ski_slope)
+  readr::write_csv(dat, "dat/processed/dat_sd_delta_noski.csv")
 } else if (use_case == "ski") {
   dat <- subset(dat, ski_slope == "yes") |>
     select(-ski_slope)
+  readr::write_csv(dat, "dat/processed/dat_sd_delta_ski.csv")
 }
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
