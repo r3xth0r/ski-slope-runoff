@@ -26,8 +26,8 @@ theme_pdp <- function(...) {
         margin = margin(t = 10, b = 20, unit = "pt")
       ),
       legend.position = "none",
-      panel.grid.major = element_line(size = 0.3),
-      panel.grid.minor = element_line(size = 0.15)
+      panel.grid.major = element_line(linewidth = 0.3),
+      panel.grid.minor = element_line(linewidth = 0.15)
     )
   return(th)
 }
