@@ -10,21 +10,6 @@ source("dev/helper/config.R")
 
 all_dat <- read_csv("dat/raw/all_data.csv") |>
   mutate(
-    toponym = recode_factor(
-      project_area,
-      "Dobratsch" = "D",
-      "Ehrwald" = "E",
-      "Golm" = "G",
-      "Hauser Kaibling" = "H",
-      "Ischgl" = "I",
-      "Meran2000" = "M",
-      "Nassfeld" = "N",
-      "Patscherkofel" = "P",
-      "Schladming" = "S",
-      "See in Paznaun" = "SP",
-      "Sankt Anton" = "STA",
-      "Wartschenbach" = "Z"
-    ),
     ski_slope = recode_factor(ski_slope, "yes" = "A", "no" = "B")
   ) |>
   select("toponym", "ski_slope", "psi_intervall")
