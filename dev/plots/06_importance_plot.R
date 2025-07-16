@@ -2,8 +2,10 @@
 # Feature importance plot (Fig. 06)
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
 
-library("tidyverse")
-library("patchwork")
+suppressPackageStartupMessages({
+  library("tidyverse")
+  library("patchwork")
+})
 
 source("dev/helper/get_importance.R")
 source("dev/helper/theme_ski.R")

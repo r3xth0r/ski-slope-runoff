@@ -2,13 +2,15 @@
 # Individual boxplots for for ski and reference slopes of each ski region (Fig. 05)
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
 
-library("tidyverse")
-library("patchwork")
+suppressPackageStartupMessages({
+  library("tidyverse")
+  library("patchwork")
+})
 
 source("dev/helper/theme_ski.R")
 source("dev/helper/config.R")
 
-all_dat <- read_csv("dat/raw/all_data.csv") |>
+all_dat <- read_csv("dat/raw/all_data.csv", show_col_types = FALSE) |>
   mutate(
     ski_slope = recode_factor(ski_slope, "yes" = "A", "no" = "B")
   ) |>

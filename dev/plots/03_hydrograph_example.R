@@ -2,16 +2,18 @@
 # Conceptual hydrograph (Fig. 03)
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
 
-library("tidyverse")
+suppressPackageStartupMessages({
+  library("tidyverse")
+})
 
 source("dev/helper/theme_ski.R")
 source("dev/helper/config.R")
 
 # Load data ----
-dat <- read_csv("dat/interim/plt_irrigation_example.csv")
+dat <- read_csv("dat/interim/plt_irrigation_example.csv", show_col_types = FALSE)
 
 p <- ggplot(data = dat, aes(x = t, y = AK, group = type)) +
-  geom_smooth(method = "loess", se = FALSE, span = 0.15, color = "black") +
+  geom_smooth(method = "loess", se = FALSE, span = 0.15, color = "black", formula = "y ~ x") +
   geom_vline(xintercept = 0, linetype = "dotted", color = "black", linewidth = 0.5) +
   geom_segment(aes(x = 50, xend = 60, y = 0.77, yend = 0.77), linetype = "solid", color = "red", linewidth = 0.7) +
   geom_segment(aes(x = 50, y = 0.70, xend = 50, yend = 1), linewidth = 0.5, color = "black", linetype = "dotted") +

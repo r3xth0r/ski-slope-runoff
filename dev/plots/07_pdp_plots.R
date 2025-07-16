@@ -2,16 +2,18 @@
 # Partial dependence plots (Fig. 07-09)
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
 
-library("mlr3")
-library("iml")
-library("readr")
-library("dplyr")
-library("ggplot2")
-library("patchwork")
+suppressPackageStartupMessages({
+  library("mlr3")
+  library("iml")
+  library("readr")
+  library("dplyr")
+  library("ggplot2")
+  library("patchwork")
+})
 
 # Get data for ski slopes and reference areas
-dat_ski <- read_csv("dat/processed/dat_sd_delta_ski.csv")
-dat_reference <- read_csv("dat/processed/dat_sd_delta_noski.csv")
+dat_ski <- read_csv("dat/processed/dat_sd_delta_ski.csv", show_col_types = FALSE)
+dat_reference <- read_csv("dat/processed/dat_sd_delta_noski.csv", show_col_types = FALSE)
 
 # Load trained learners
 learner_ski <- readRDS("dat/interim/random_forest/ranger_trained_ski.rds")
