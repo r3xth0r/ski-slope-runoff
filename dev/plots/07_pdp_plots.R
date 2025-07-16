@@ -108,7 +108,7 @@ patchwork1 <- (p2 + p1) / (p4 + p3) &
   theme(plot.title = element_text(face = "bold", margin = margin(0, 0, 10, 0)))
 ggsave(
   glue::glue("plt/fig_07.{file_format}"),
-  plot = patchwork1, device = file_format,
+  plot = patchwork1, device = device,
   height = 150, width = 140, units = "mm", dpi = dpi
 )
 
@@ -182,7 +182,7 @@ patchwork2 <- (p6 + p5) &
   theme(plot.title = element_text(face = "bold", margin = margin(0, 0, 10, 0)))
 ggsave(
   glue::glue("plt/fig_10.{file_format}"),
-  plot = patchwork2, device = file_format,
+  plot = patchwork2, device = device,
   height = 80, width = 140, units = "mm", dpi = dpi
 )
 
@@ -257,7 +257,7 @@ patchwork3 <- (p8 + p7) / (p10 + p9) / (p12 + p11) &
   theme(plot.title = element_text(face = "bold", margin = margin(0, 0, 10, 0)))
 ggsave(
   glue::glue("plt/fig_08.{file_format}"),
-  plot = patchwork3, device = file_format,
+  plot = patchwork3, device = device,
   height = 220, width = 140, units = "mm", dpi = dpi
 )
 
@@ -339,7 +339,7 @@ patchwork5 <- (p14 + p13) / (p16 + p15) &
   theme(plot.title = element_text(face = "bold", margin = margin(0, 0, 10, 0)))
 ggsave(
   glue::glue("plt/fig_09.{file_format}"),
-  plot = patchwork5, device = file_format,
+  plot = patchwork5, device = device,
   height = 160, width = 140, units = "mm", dpi = dpi
 )
 
@@ -425,7 +425,7 @@ if (construct_all_plots) {
     theme(plot.title = element_text(face = "bold", margin = margin(0, 0, 10, 0)))
   ggsave(
     glue::glue("plt/fig_effects_soil.{file_format}"),
-    plot = patchwork_o2, device = file_format,
+    plot = patchwork_o2, device = device,
     height = 300, width = 160, units = "mm", dpi = dpi
   )
 }

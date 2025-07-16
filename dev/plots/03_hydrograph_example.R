@@ -54,6 +54,6 @@ p <- ggplot(data = dat, aes(x = t, y = AK, group = type)) +
   theme_ski()
 
 ggsave(glue::glue("plt/fig_03.{file_format}"),
-  plot = p, device = file_format,
+  plot = p, device = device,
   height = 80, width = 140, units = "mm", dpi = dpi
 )

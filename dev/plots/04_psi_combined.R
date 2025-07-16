@@ -39,8 +39,9 @@ p <- ggplot(dat_psi, aes(x = type, y = psi_intervall, fill = as.factor(type))) +
   labs(x = "", y = bquote(italic(C[const.]))) +
   # coord_flip() +
   theme_ski()
+
 ggsave(
   glue::glue("plt/fig_04.{file_format}"),
-  plot = p, device = file_format,
+  plot = p, device = device,
   height = 80, width = 140, units = "mm", dpi = dpi
 )

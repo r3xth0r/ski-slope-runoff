@@ -24,8 +24,9 @@ p <- ggplot(all_dat, aes(x = toponym, y = psi_intervall, color = ski_slope, fill
   scale_color_manual(values = c(ski_col, ref_col), labels = c("ski slopes", "reference areas"), name = "") +
   scale_fill_manual(values = c(ski_col, ref_col), labels = c("ski slopes", "reference areas"), name = "") +
   geom_vline(xintercept = seq(1.5, 11.5, 1), linetype = "dashed", colour = "black", linewidth = 0.7)
+
 ggsave(
   glue::glue("plt/fig_05.{file_format}"),
-  plot = p, device = file_format,
+  plot = p, device = device,
   height = 80, width = 140, units = "mm", dpi = dpi
 )
