@@ -4,7 +4,7 @@ ref_col <- "#A27146"
 theme_ski <- function(...) {
   th <- theme_bw(...) +
     theme(
-      text = element_text(size = 12),
+      text = element_text(size = 12, family = "SourceSansPro"),
       axis.title.x = element_text(vjust = 0.5, size = 12),
       axis.title.y = element_text(vjust = 0.5, size = 12),
       plot.title = element_text(
@@ -18,7 +18,7 @@ theme_ski <- function(...) {
 theme_pdp <- function(...) {
   th <- theme_bw(...) +
     theme(
-      text = element_text(size = 11),
+      text = element_text(size = 11, family = "SourceSansPro"),
       axis.title.x = element_text(vjust = 0.5, size = 11),
       axis.title.y = element_text(vjust = 0.5, size = 11),
       plot.title = element_text(
