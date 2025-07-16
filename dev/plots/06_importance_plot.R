@@ -74,7 +74,7 @@ plot_importance <- function(imp, title, highlight_color) {
     labs(title = title) +
     theme_minimal() +
     theme(
-      text = element_text(size = 12),
+      text = element_text(size = 12, family = font),
       legend.position = "inside",
       legend.justification.inside = c(1, 0.1),
       legend.margin = margin(0, 0, 0, 0),
