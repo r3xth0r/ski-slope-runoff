@@ -101,7 +101,7 @@ p_ski <- plot_importance(imp_ski, "ski slopes", ski_col)
 patchwork <- (p_ski) / (p_ref)
 ggsave(
   glue::glue("plt/fig_06.{file_format}"),
-  plot = p, device = file_format,
+  plot = patchwork, device = file_format,
   height = 160, width = 140, units = "mm", dpi = dpi
 )
 
