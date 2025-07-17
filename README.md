@@ -5,6 +5,8 @@
         <img alt="Code style: tidyverse" src="https://img.shields.io/badge/codestyle-tidyverse-blue"></a>
     <a href="https://github.com/psf/black">
         <img alt="Code style: black" src="https://img.shields.io/badge/codestyle-black-000000.svg"></a>
+    <a href="https://doi.org/10.5281/zenodo.16025949">
+        <img src="https://zenodo.org/badge/DOI/10.5281/zenodo.16025949.svg" alt="DOI"></a>
 </p>
 
 This repository supplements the manuscript by
