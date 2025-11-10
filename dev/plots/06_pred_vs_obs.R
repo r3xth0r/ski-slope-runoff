@@ -12,7 +12,16 @@ suppressPackageStartupMessages({
 source("dev/helper/theme_ski.R")
 source("dev/helper/config.R")
 
+# config for mod vs obs plot
+TYPE <- "final_model" # rr
+
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
+# observed psi data data
+dat_ski <- read.csv("dat/processed/dat_sd_delta_ski.csv") |>
+  pull(psi_intervall)
+dat_ref <- read.csv("dat/processed/dat_sd_delta_noski.csv") |>
+  pull(psi_intervall)
 
 # nested resampling
 r_ski <- readRDS("dat/interim/random_forest/ranger_nested_resampling_ski.rds")
@@ -38,8 +47,24 @@ get_score <- function(rr, id) {
 s_ski <- get_score(r_ski, "ski slopes")
 s_ref <- get_score(r_ref, "reference areas")
 
-metrics <- bind_rows(s_ski, s_ref) |>
+metrics_rr <- bind_rows(s_ski, s_ref) |>
   mutate(id = forcats::fct_relevel(id, "ski slopes", "reference areas"))
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
+metrics_mod <- bind_rows(
+  tibble(truth = dat_ski, response = mod_ski$model$predictions, id = "ski slopes"),
+  tibble(truth = dat_ref, response = mod_ref$model$predictions, id = "reference areas")
+) |>
+  mutate(id = forcats::fct_relevel(id, "ski slopes", "reference areas"))
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
+if (TYPE == "rr") {
+  metrics <- metrics_rr
+} else if (TYPE == "mod") {
+  metrics <- metrics_mod
+}
 
 p <- ggplot(metrics, aes(x = response, y = truth, color = id)) +
   geom_smooth(method = "lm", formula = "y ~ x") +
@@ -52,7 +77,7 @@ p <- ggplot(metrics, aes(x = response, y = truth, color = id)) +
   coord_fixed(xlim = c(0, 1.15), ylim = c(0, 1.15)) +
   theme_ski()
 ggsave(
-  glue::glue("plt/fig_mod_obs_rr.{file_format}"),
+  glue::glue("plt/fig_mod_obs_{TYPE}.{file_format}"),
   plot = p, device = device,
   height = 80, width = 140, units = "mm", dpi = dpi
 )
