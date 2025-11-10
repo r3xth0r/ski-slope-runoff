@@ -28,6 +28,8 @@ psi_ref <- dat_ref |>
   mutate(type = "B")
 dat_psi <- bind_rows(psi_ski, psi_ref)
 
+wilcox.test(psi_intervall ~ type, data = dat_psi, paired = FALSE)
+
 p <- ggplot(dat_psi, aes(x = type, y = psi_intervall, fill = as.factor(type))) +
   geom_violin(alpha = 0.35, color = NA, width = 0.5) +
   geom_boxplot(width = 0.1, fill = NA, color = "black") +
