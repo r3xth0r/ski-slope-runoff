@@ -16,10 +16,16 @@ all_dat <- read_csv("dat/raw/all_data.csv", show_col_types = FALSE) |>
   ) |>
   select("toponym", "ski_slope", "psi_intervall")
 
+counts_template <- expand_grid(
+  toponym = unique(all_dat$toponym),
+  ski_slope = unique(all_dat$ski_slope)
+)
 counts <- all_dat |>
   group_by(toponym, ski_slope) |>
   count() |>
-  ungroup()
+  ungroup() |>
+  right_join(counts_template, by = join_by(toponym, ski_slope)) |>
+  mutate(n = replace_na(n, 0))
 ymax <- ceiling(max(all_dat$psi_intervall) * 10) / 10
 
 p <- ggplot(all_dat, aes(x = toponym, y = psi_intervall, color = ski_slope, fill = ski_slope)) +
