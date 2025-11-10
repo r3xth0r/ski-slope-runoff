@@ -36,14 +36,14 @@ p <- ggplot(all_dat, aes(x = toponym, color = ski_slope)) +
     alpha = 0.7, position = position_dodge(width = 0.8)
   ) +
   theme_ski() +
-  scale_y_continuous(breaks = scales::breaks_extended(n = 7)) +
+  scale_y_continuous(breaks = scales::breaks_extended(n = 7), limits = c(0, 1.23)) +
   labs(x = "Ski region", y = expression(italic(C[const.]))) +
   scale_color_manual(values = c(ski_col, ref_col), labels = c("ski slopes", "reference areas"), name = "") +
   scale_fill_manual(values = c(ski_col, ref_col), labels = c("ski slopes", "reference areas"), name = "") +
   geom_vline(xintercept = seq(1.5, 11.5, 1), linetype = "dashed", colour = "black", linewidth = 0.7) +
   geom_text(
     data = counts, aes(x = toponym, y = ymax, label = n, group = ski_slope),
-    position = position_dodge(width = 0.8), vjust = -0.5, size = 2,
+    position = position_dodge(width = 0.8), vjust = -0.5, size = 3,
     family = "SourceSansPro"
   )
 
