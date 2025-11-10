@@ -22,14 +22,17 @@ counts_template <- expand_grid(
 )
 counts <- all_dat |>
   group_by(toponym, ski_slope) |>
-  count() |>
-  ungroup() |>
+  summarize(n = n(), psi_min = min(psi_intervall), psi_max = max(psi_intervall), .groups = "drop") |>
   right_join(counts_template, by = join_by(toponym, ski_slope)) |>
   mutate(n = replace_na(n, 0))
 ymax <- ceiling(max(all_dat$psi_intervall) * 10) / 10
 
-p <- ggplot(all_dat, aes(x = toponym, y = psi_intervall, color = ski_slope, fill = ski_slope)) +
-  geom_boxplot(alpha = 0.4, outlier.shape = NA, width = 0.8, position = position_dodge(preserve = "single")) +
+p <- ggplot(all_dat, aes(x = toponym, color = ski_slope)) +
+  # geom_boxplot(alpha = 0.4, outlier.shape = NA, width = 0.8, position = position_dodge(preserve = "single")) +
+  geom_linerange(
+    data = counts, aes(x = toponym, ymin = psi_min, ymax = psi_max, color = ski_slope),
+    position = position_dodge(width = 0.8)
+  ) +
   theme_ski() +
   scale_y_continuous(breaks = scales::breaks_extended(n = 7)) +
   labs(x = "Ski region", y = expression(italic(C[const.]))) +
