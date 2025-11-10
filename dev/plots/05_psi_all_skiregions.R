@@ -32,6 +32,9 @@ p <- ggplot(all_dat, aes(x = toponym, color = ski_slope)) +
     data = counts, aes(x = toponym, ymin = psi_min, ymax = psi_max, color = ski_slope),
     position = position_dodge(width = 0.8)
   ) +
+  geom_point(aes(y = psi_intervall, fill = ski_slope),
+    alpha = 0.7, position = position_dodge(width = 0.8)
+  ) +
   theme_ski() +
   scale_y_continuous(breaks = scales::breaks_extended(n = 7)) +
   labs(x = "Ski region", y = expression(italic(C[const.]))) +
