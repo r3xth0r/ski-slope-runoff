@@ -16,6 +16,12 @@ all_dat <- read_csv("dat/raw/all_data.csv", show_col_types = FALSE) |>
   ) |>
   select("toponym", "ski_slope", "psi_intervall")
 
+counts <- all_dat |>
+  group_by(toponym, ski_slope) |>
+  count() |>
+  ungroup()
+ymax <- ceiling(max(all_dat$psi_intervall) * 10) / 10
+
 p <- ggplot(all_dat, aes(x = toponym, y = psi_intervall, color = ski_slope, fill = ski_slope)) +
   geom_boxplot(alpha = 0.4, outlier.shape = NA, width = 0.8, position = position_dodge(preserve = "single")) +
   theme_ski() +
@@ -23,7 +29,12 @@ p <- ggplot(all_dat, aes(x = toponym, y = psi_intervall, color = ski_slope, fill
   labs(x = "Ski region", y = expression(italic(C[const.]))) +
   scale_color_manual(values = c(ski_col, ref_col), labels = c("ski slopes", "reference areas"), name = "") +
   scale_fill_manual(values = c(ski_col, ref_col), labels = c("ski slopes", "reference areas"), name = "") +
-  geom_vline(xintercept = seq(1.5, 11.5, 1), linetype = "dashed", colour = "black", linewidth = 0.7)
+  geom_vline(xintercept = seq(1.5, 11.5, 1), linetype = "dashed", colour = "black", linewidth = 0.7) +
+  geom_text(
+    data = counts, aes(x = toponym, y = ymax, label = n, group = ski_slope),
+    position = position_dodge(width = 0.8), vjust = -0.5, size = 2,
+    family = "SourceSansPro"
+  )
 
 ggsave(
   glue::glue("plt/fig_05.{file_format}"),
