@@ -28,7 +28,6 @@ counts <- all_dat |>
 ymax <- ceiling(max(all_dat$psi_intervall) * 10) / 10
 
 p <- ggplot(all_dat, aes(x = toponym, color = ski_slope)) +
-  # geom_boxplot(alpha = 0.4, outlier.shape = NA, width = 0.8, position = position_dodge(preserve = "single")) +
   geom_linerange(
     data = counts, aes(x = toponym, ymin = psi_min, ymax = psi_max, color = ski_slope),
     position = position_dodge(width = 0.8)
