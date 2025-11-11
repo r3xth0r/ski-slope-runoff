@@ -28,6 +28,12 @@ psi_ref <- dat_ref |>
   mutate(type = "B")
 dat_psi <- bind_rows(psi_ski, psi_ref)
 
+dat_psi |>
+  group_by(type) |>
+  summarize(
+    min = min(psi_intervall), median = median(psi_intervall), max = max(psi_intervall)
+  )
+
 wilcox.test(psi_intervall ~ type, data = dat_psi)
 
 p <- ggplot(dat_psi, aes(x = type, y = psi_intervall, fill = as.factor(type))) +
