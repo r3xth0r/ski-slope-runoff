@@ -13,7 +13,10 @@ source("dev/helper/theme_ski.R")
 source("dev/helper/config.R")
 
 # config for mod vs obs plot
-TYPE <- "final_model" # rr
+TYPE <- "mod" # rr
+
+# TODO: improve error message
+stopifnot(TYPE %in% c("mod", "rr"))
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 
