@@ -11,6 +11,7 @@ suppressPackageStartupMessages({
 
 source("dev/helper/theme_ski.R")
 source("dev/helper/config.R")
+source("dev/helper/get_score.R")
 
 # config for mod vs obs plot
 TYPE <- "mod" # rr
@@ -35,17 +36,6 @@ mod_ski <- readRDS("dat/interim/random_forest/ranger_trained_ski.rds")
 mod_ref <- readRDS("dat/interim/random_forest/ranger_trained_noski.rds")
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-
-get_score <- function(rr, id) {
-  scores <- rr$obs_loss() |>
-    as_tibble() |>
-    mutate(id = id)
-  scores |>
-    # group_by(iteration) |>
-    summarize(mse = mean(regr.mse)) |>
-    print()
-  scores
-}
 
 s_ski <- get_score(r_ski, "ski slopes")
 s_ref <- get_score(r_ref, "reference areas")
