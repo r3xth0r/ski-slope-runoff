@@ -16,8 +16,9 @@ source("dev/helper/get_score.R")
 # config for mod vs obs plot
 TYPE <- "mod" # rr
 
-# TODO: improve error message
-stopifnot(TYPE %in% c("mod", "rr"))
+if (!(TYPE %in% c("mod", "rr"))) {
+  stop("TYPE should be one of\n - `mod` (full final model)\n - `rr` (resampling result)")
+}
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 
