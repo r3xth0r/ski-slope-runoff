@@ -37,7 +37,7 @@ p <- ggplot(all_dat, aes(x = toponym, color = ski_slope)) +
   ) +
   theme_ski() +
   scale_y_continuous(breaks = scales::breaks_extended(n = 7), limits = c(0, 1.23)) +
-  labs(x = "Ski region", y = expression(italic(C[const.]))) +
+  labs(x = "ski region", y = expression(italic(C[const.]))) +
   scale_color_manual(values = c(ski_col, ref_col), labels = c("ski slopes", "reference areas"), name = "") +
   scale_fill_manual(values = c(ski_col, ref_col), labels = c("ski slopes", "reference areas"), name = "") +
   geom_vline(xintercept = seq(1.5, 11.5, 1), linetype = "dashed", colour = "black", linewidth = 0.7) +

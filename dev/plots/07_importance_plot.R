@@ -68,7 +68,7 @@ plot_importance <- function(imp, title, highlight_color) {
     coord_flip() +
     xlab("") +
     scale_y_continuous(
-      name = expression(Importance ~ on ~ italic(C[const.])),
+      name = expression(permutation ~ feature ~ importance ~ on ~ italic(C[const.])),
       breaks = seq(0, 4, by = 1), limits = c(0, 4)
     ) +
     labs(title = title) +
