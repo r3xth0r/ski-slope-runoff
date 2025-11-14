@@ -107,7 +107,7 @@ p4 <- ggplot(vc_ski_data, aes(x = vegetation_class, y = .value)) +
 patchwork1 <- (p2 + p1) / (p4 + p3) &
   theme(plot.title = element_text(face = "bold", margin = margin(0, 0, 10, 0)))
 ggsave(
-  glue::glue("plt/fig_07.{file_format}"),
+  glue::glue("plt/fig_08.{file_format}"),
   plot = patchwork1, device = device,
   height = 150, width = 140, units = "mm", dpi = dpi
 )
@@ -181,7 +181,7 @@ p6 <- ggplot(slope$ski, aes(x = slope, y = .value)) +
 patchwork2 <- (p6 + p5) &
   theme(plot.title = element_text(face = "bold", margin = margin(0, 0, 10, 0)))
 ggsave(
-  glue::glue("plt/fig_10.{file_format}"),
+  glue::glue("plt/fig_11.{file_format}"),
   plot = patchwork2, device = device,
   height = 80, width = 140, units = "mm", dpi = dpi
 )
@@ -256,7 +256,7 @@ p12 <- ggplot(soilt_ski, aes(x = soiltexture, y = .value)) +
 patchwork3 <- (p8 + p7) / (p10 + p9) / (p12 + p11) &
   theme(plot.title = element_text(face = "bold", margin = margin(0, 0, 10, 0)))
 ggsave(
-  glue::glue("plt/fig_08.{file_format}"),
+  glue::glue("plt/fig_09.{file_format}"),
   plot = patchwork3, device = device,
   height = 220, width = 140, units = "mm", dpi = dpi
 )
@@ -338,7 +338,7 @@ p16 <- ggplot(saturation$ski, aes(x = sd_delta, y = .value)) +
 patchwork5 <- (p14 + p13) / (p16 + p15) &
   theme(plot.title = element_text(face = "bold", margin = margin(0, 0, 10, 0)))
 ggsave(
-  glue::glue("plt/fig_09.{file_format}"),
+  glue::glue("plt/fig_10.{file_format}"),
   plot = patchwork5, device = device,
   height = 160, width = 140, units = "mm", dpi = dpi
 )
