@@ -4,6 +4,7 @@
 
 suppressPackageStartupMessages({
   library("mlr3")
+  library("yardstick")
   library("data.table")
   library("dplyr")
 })
@@ -52,5 +53,16 @@ metrics_mod <- bind_rows(
   mutate(residual = truth - response) |>
   mutate(id = forcats::fct_relevel(id, "ski slopes", "reference areas"))
 saveRDS(metrics_mod, "dat/processed/metrics_mod.rds")
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
+metrics_rr |>
+  group_by(id) |>
+  summarise(
+    rmse = rmse_vec(truth, response),
+    mae = mae_vec(truth, response),
+    bias = mean(response - truth),
+    rsq = rsq_vec(truth, response),
+  )
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
