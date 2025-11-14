@@ -21,8 +21,8 @@ Bernhard Kohl<sup>[![](https://info.orcid.org/wp-content/uploads/2019/11/orcid_1
 Gertraud Meißl<sup>[![](https://info.orcid.org/wp-content/uploads/2019/11/orcid_16x16.png)](https://orcid.org/0000-0001-9122-3207)</sup>,
 Gerhard Markart<sup>[![](https://info.orcid.org/wp-content/uploads/2019/11/orcid_16x16.png)](https://orcid.org/0009-0000-6449-8969)</sup>
 (2025):
-**Hydrological drivers of surface runoff during heavy rainfall experiments in Alpine ski regions**.
-*Journal*, Issue(Volume), pp-pp. [doi:](https://doi.org/#).
+**Hydrological drivers of surface runoff during high-intensity rainfall experiments in Alpine ski regions**.
+Submitted to *Journal of Hydrology*. <!-- Issue(Volume), pp-pp. [doi:](https://doi.org/#).-->
 
 ## Repo structure 
 
