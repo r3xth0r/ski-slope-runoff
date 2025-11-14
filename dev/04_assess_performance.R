@@ -39,6 +39,7 @@ s_ski <- get_score(r_ski, "ski slopes")
 s_ref <- get_score(r_ref, "reference areas")
 
 metrics_rr <- bind_rows(s_ski, s_ref) |>
+  mutate(residual = truth - response) |>
   mutate(id = forcats::fct_relevel(id, "ski slopes", "reference areas"))
 saveRDS(metrics_rr, "dat/processed/metrics_rr.rds")
 
@@ -48,6 +49,7 @@ metrics_mod <- bind_rows(
   tibble(truth = dat_ski, response = mod_ski$model$predictions, id = "ski slopes"),
   tibble(truth = dat_ref, response = mod_ref$model$predictions, id = "reference areas")
 ) |>
+  mutate(residual = truth - response) |>
   mutate(id = forcats::fct_relevel(id, "ski slopes", "reference areas"))
 saveRDS(metrics_mod, "dat/processed/metrics_mod.rds")
 
