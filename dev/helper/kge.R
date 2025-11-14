@@ -1,4 +1,7 @@
-# Kling-Gupta Efficiency
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+# compute Kling-Gupta Efficiency
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 kge <- function(truth, response) {
   r <- cor(truth, response)
   beta <- mean(response) / mean(truth)
