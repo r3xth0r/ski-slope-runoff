@@ -34,7 +34,7 @@ p <- ggplot(metrics, aes(x = response, y = truth, color = id)) +
   coord_fixed(xlim = c(0, 1.15), ylim = c(0, 1.15)) +
   theme_ski()
 ggsave(
-  glue::glue("plt/fig_mod_obs_{TYPE}.{file_format}"),
+  glue::glue("plt/fig_06_{TYPE}.{file_format}"),
   plot = p, device = device,
   height = 80, width = 140, units = "mm", dpi = dpi
 )
