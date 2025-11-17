@@ -22,22 +22,18 @@ p <- ggplot(data = dat, aes(x = t, y = AK, group = type)) +
   geom_segment(aes(x = 50, xend = 60, y = 0.77, yend = 0.77), linetype = "solid", color = c1, linewidth = 0.7) +
   geom_segment(aes(x = 50, y = 0.70, xend = 50, yend = 1), linewidth = 0.5, color = "black", linetype = "dotted") +
   geom_segment(aes(x = 60, y = 0.70, xend = 60, yend = 1), linewidth = 0.5, color = "black", linetype = "dotted") +
-  geom_segment(aes(x = 32, y = 0.92, xend = 29, yend = 0.95),
-    linewidth = 0.2, arrow = arrow(length = unit(1.5, "mm"), type = "closed")
-  ) +
-  annotate("text", x = 36, y = 0.90, label = expression(italic(C[peak])), size = 4, family = font) +
   geom_segment(aes(x = 55, y = 0.845, xend = 57.5, yend = 0.78),
     linewidth = 0.2, color = c1, arrow = arrow(length = unit(1.5, "mm"), type = "closed")
   ) +
   annotate("text", x = 55, y = 0.89, label = expression(italic(C[const.])), size = 4, color = c1, family = font) +
-  geom_segment(aes(x = 3.4, y = 0.20, xend = 3.8, yend = 0.03),
+  geom_segment(aes(x = 3.4, y = 0.20, xend = 4, yend = 0.03),
     linewidth = 0.2, color = c2, arrow = arrow(length = unit(1.5, "mm"), type = "closed")
   ) +
   annotate("text", x = 3.5, y = 0.30, label = bquote(italic(atop("start", "time"))), size = sz, color = c2, family = font) +
-  geom_segment(aes(x = 0.5, y = 0.98, xend = 27.5, yend = 0.98),
+  geom_segment(aes(x = 0.5, y = 0.86, xend = 27.5, yend = 0.86),
     linewidth = 0.4, color = c2, arrow = arrow(length = unit(1.7, "mm"), ends = "both", type = "closed")
   ) +
-  annotate("text", x = 13.5, y = 0.95, label = bquote(italic("accumulation time")), size = sz, color = c2, family = font) +
+  annotate("text", x = 13.5, y = 0.89, label = bquote(italic("accumulation time")), size = sz, color = c2, family = font) +
   geom_segment(aes(x = 50.5, y = 0.73, xend = 59.5, yend = 0.73),
     linewidth = 0.4, color = c2, arrow = arrow(length = unit(1.7, "mm"), ends = "both", type = "closed")
   ) +
