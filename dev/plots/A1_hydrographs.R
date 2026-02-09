@@ -13,7 +13,8 @@ source("dev/helper/config.R")
 df_ski_hydro <- read_rds("dat/interim/df_ski_hydro.rds")
 
 df_rel_psi <- df_ski_hydro |>
-  group_by(combi_id) |>
+  select(timestamp, id = combi_id, ski_slope, psi_int) |>
+  group_by(id) |>
   arrange(timestamp) |>
   mutate(time_rel = as.numeric(difftime(timestamp, min(timestamp), units = "mins"))) |>
   ungroup() |>
@@ -22,7 +23,7 @@ df_rel_psi <- df_ski_hydro |>
 annotation_pos_y <- max(df_rel_psi$psi_int, na.rm = TRUE) * 0.95
 
 p <- ggplot(
-  df_rel_psi, aes(x = time_rel, y = psi_int, group = combi_id, color = ski_slope)
+  df_rel_psi, aes(x = time_rel, y = psi_int, group = id, color = ski_slope)
 ) +
   # geom_line() +
   stat_smooth(
