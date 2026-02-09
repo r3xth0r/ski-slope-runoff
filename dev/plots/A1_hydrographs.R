@@ -38,8 +38,10 @@ p <- ggplot(
   annotate("text",
     x = 55,
     y = annotation_pos_y,
-    label = "Time Cconst",
+    label = "C[const]",
+    parse = TRUE,
     size = 3.5,
+    family = "SourceSansPro",
     fontface = "italic",
     color = "black"
   ) +
