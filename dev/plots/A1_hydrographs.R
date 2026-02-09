@@ -22,8 +22,7 @@ df_rel_psi <- df_ski_hydro |>
 annotation_pos_y <- max(df_rel_psi$psi_int, na.rm = TRUE) * 0.95
 
 p <- ggplot(
-  df_rel_psi,
-  aes(x = time_rel, y = psi_int, group = interaction(combi_id, ski_slope), color = ski_slope)
+  df_rel_psi, aes(x = time_rel, y = psi_int, group = combi_id, color = ski_slope)
 ) +
   # geom_line() +
   stat_smooth(
