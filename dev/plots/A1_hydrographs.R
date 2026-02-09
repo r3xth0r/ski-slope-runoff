@@ -55,4 +55,5 @@ p <- ggplot(
   theme_ski() +
   theme(
     legend.position = "bottom"
-  )
+  ) +
+  facet_wrap(~ski_slope, nrow = 1, labeller = labeller(ski_slope = c("yes" = "Ski slope", "no" = "Reference area")))
