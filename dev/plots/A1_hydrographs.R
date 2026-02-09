@@ -27,8 +27,8 @@ p <- ggplot(
   # geom_line() +
   stat_smooth(
     method = "gam",
-    formula = y ~ s(x, bs = "cs", k = 6),
-    method.args = list(family = gaussian()),
+    formula = y ~ s(x, bs = "ts"),
+    method.args = list(family = mgcv::tw(link = "log")),
     se = FALSE,
     linewidth = 0.35,
     alpha = 0.45
