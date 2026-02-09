@@ -26,6 +26,7 @@ p <- ggplot(
   df_rel_psi, aes(x = time_rel, y = psi_int, color = ski_slope)
 ) +
   geom_smooth(method = "loess", span = 0.5) +
+  ggalt::geom_xspline(aes(group = id), spline_shape = 0.75) +
   stat_smooth(aes(group = id),
     method = "gam",
     formula = y ~ s(x, bs = "ts"),
