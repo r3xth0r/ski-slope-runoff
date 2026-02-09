@@ -18,6 +18,7 @@ df_rel_psi <- df_ski_hydro |>
   arrange(timestamp) |>
   mutate(time_rel = as.numeric(difftime(timestamp, min(timestamp), units = "mins"))) |>
   ungroup() |>
+  mutate(psi_int = replace_na(psi_int, 0)) |>
   filter(time_rel <= 90)
 
 annotation_pos_y <- max(df_rel_psi$psi_int, na.rm = TRUE) * 0.95
