@@ -23,10 +23,10 @@ df_rel_psi <- df_ski_hydro |>
 annotation_pos_y <- max(df_rel_psi$psi_int, na.rm = TRUE) * 0.95
 
 p <- ggplot(
-  df_rel_psi, aes(x = time_rel, y = psi_int, group = id, color = ski_slope)
+  df_rel_psi, aes(x = time_rel, y = psi_int, color = ski_slope)
 ) +
-  # geom_line() +
-  stat_smooth(
+  geom_smooth(method = "loess", span = 0.5) +
+  stat_smooth(aes(group = id),
     method = "gam",
     formula = y ~ s(x, bs = "ts"),
     method.args = list(family = mgcv::tw(link = "log")),
@@ -60,4 +60,4 @@ p <- ggplot(
     legend.position = "bottom"
   ) +
   facet_wrap(~ski_slope, nrow = 1, labeller = labeller(ski_slope = c("yes" = "Ski slope", "no" = "Reference area"))) +
-  coord_cartesian(xlim = c(0, 60))
+  coord_cartesian(xlim = c(0, 60), ylim = c(0, 1.25))
