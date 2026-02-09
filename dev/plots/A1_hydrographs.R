@@ -59,4 +59,5 @@ p <- ggplot(
   theme(
     legend.position = "bottom"
   ) +
-  facet_wrap(~ski_slope, nrow = 1, labeller = labeller(ski_slope = c("yes" = "Ski slope", "no" = "Reference area")))
+  facet_wrap(~ski_slope, nrow = 1, labeller = labeller(ski_slope = c("yes" = "Ski slope", "no" = "Reference area"))) +
+  coord_cartesian(xlim = c(0, 60))
