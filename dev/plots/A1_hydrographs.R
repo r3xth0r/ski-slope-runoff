@@ -17,6 +17,16 @@ df_rel_psi <- df_ski_hydro |>
   group_by(id) |>
   arrange(timestamp) |>
   mutate(time_rel = as.numeric(difftime(timestamp, min(timestamp), units = "mins"))) |>
+  tidyr::complete(time_rel = c(time_rel, 60)) |>
+  arrange(time_rel) |>
+  tidyr::fill(ski_slope, .direction = "downup") |>
+  mutate(
+    psi_int = if_else(
+      time_rel == 60 & is.na(psi_int),
+      dplyr::coalesce(dplyr::last(psi_int[time_rel < 60 & !is.na(psi_int)]), NA_real_),
+      psi_int
+    )
+  ) |>
   ungroup() |>
   mutate(psi_int = replace_na(psi_int, 0)) |>
   filter(time_rel <= 90)
