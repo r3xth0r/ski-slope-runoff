@@ -53,7 +53,6 @@ pred_curves <- df_rel_psi |>
 p <- ggplot(
   df_rel_psi, aes(x = time_rel, y = psi_int, color = ski_slope)
 ) +
-  geom_smooth(method = "loess", span = 0.5) +
   ggalt::geom_xspline(aes(group = id), spline_shape = 0.75, alpha = 0.5) +
   geom_line(data = pred_curves, aes(x = time_rel, y = y_hat), linewidth = 1) +
   geom_vline(xintercept = c(50, 60), linetype = "dashed", color = "black", linewidth = 0.3) +
