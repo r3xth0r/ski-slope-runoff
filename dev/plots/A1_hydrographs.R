@@ -62,3 +62,10 @@ p <- ggplot(
   ) +
   facet_wrap(~ski_slope, nrow = 1, labeller = labeller(ski_slope = c("yes" = "Ski slope", "no" = "Reference area"))) +
   coord_cartesian(xlim = c(0, 60), ylim = c(0, 1.25))
+ggsave(
+  glue::glue("plt/fig_A1.{file_format}"),
+  plot = p, device = device,
+  height = 80, width = 160, units = "mm", dpi = dpi
+)
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
