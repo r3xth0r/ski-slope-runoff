@@ -53,10 +53,8 @@ p <- ggplot(
     labels = c("yes" = "ski slopes", "no" = "reference areas"),
     name = NULL
   ) +
-  labs(
-    x = "t [min]",
-    y = expression(italic(C) * " [-]")
-  ) +
+  xlab(expression(italic(t) ~ "[min]")) +
+  ylab(expression(italic(C) ~ " [-]")) +
   theme_ski() +
   facet_wrap(~ski_slope, nrow = 1, labeller = labeller(ski_slope = c("yes" = "ski slopes", "no" = "reference areas"))) +
   coord_cartesian(xlim = c(0, 60), ylim = c(0, 1.25))
