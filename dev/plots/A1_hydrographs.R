@@ -4,7 +4,6 @@
 
 suppressPackageStartupMessages({
   library("tidyverse")
-  library("mgcv")
 })
 
 source("dev/helper/theme_ski.R")
@@ -55,14 +54,6 @@ p <- ggplot(
   df_rel_psi, aes(x = time_rel, y = psi_int, color = ski_slope)
 ) +
   geom_smooth(method = "loess", span = 0.5) +
-  stat_smooth(aes(group = id),
-    method = "gam",
-    formula = y ~ s(x, bs = "ts"),
-    method.args = list(family = mgcv::tw(link = "log")),
-    se = FALSE,
-    linewidth = 0.35,
-    alpha = 0.45
-  ) +
   ggalt::geom_xspline(aes(group = id), spline_shape = 0.75, alpha = 0.5) +
   geom_line(data = pred_curves, aes(x = time_rel, y = y_hat), linewidth = 1) +
   geom_vline(xintercept = c(50, 60), linetype = "dashed", color = "black", linewidth = 0.3) +
