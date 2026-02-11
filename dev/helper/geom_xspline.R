@@ -25,7 +25,7 @@
 #'   \item \code{alpha}
 #'   \item \code{color}
 #'   \item \code{linetype}
-#'   \item \code{size}
+#'   \item \code{linewidth}
 #' }
 #'
 #' @seealso
@@ -153,7 +153,7 @@ geom_xspline <- function(mapping = NULL, data = NULL, stat = "xspline",
 #' @export
 GeomXspline <- ggproto("GeomXspline", GeomLine,
   required_aes = c("x", "y"),
-  default_aes = aes(colour = "black", size = 0.5, linetype = 1, alpha = NA)
+  default_aes = aes(colour = "black", linewidth = 0.5, linetype = 1, alpha = NA)
 )
 
 #' @export
