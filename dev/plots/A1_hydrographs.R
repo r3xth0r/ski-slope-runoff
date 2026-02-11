@@ -49,7 +49,7 @@ p <- ggplot(
   ) +
   scale_color_manual(
     values = c("yes" = ski_col, "no" = ref_col),
-    labels = c("yes" = "Ski Slope", "no" = "Reference Area"),
+    labels = c("yes" = "ski slopes", "no" = "reference areas"),
     name = NULL
   ) +
   labs(
@@ -57,10 +57,7 @@ p <- ggplot(
     y = expression(italic(C) * " [-]")
   ) +
   theme_ski() +
-  theme(
-    legend.position = "bottom"
-  ) +
-  facet_wrap(~ski_slope, nrow = 1, labeller = labeller(ski_slope = c("yes" = "Ski slope", "no" = "Reference area"))) +
+  facet_wrap(~ski_slope, nrow = 1, labeller = labeller(ski_slope = c("yes" = "ski slopes", "no" = "reference areas"))) +
   coord_cartesian(xlim = c(0, 60), ylim = c(0, 1.25))
 ggsave(
   glue::glue("plt/fig_A1.{file_format}"),
