@@ -8,6 +8,7 @@ suppressPackageStartupMessages({
 
 source("dev/helper/theme_ski.R")
 source("dev/helper/config.R")
+source("dev/helper/geom_xspline.R")
 
 df_ski_hydro <- read_rds("dat/interim/df_ski_hydro.rds")
 
@@ -35,7 +36,7 @@ annotation_pos_y <- max(df_rel_psi$psi_int, na.rm = TRUE) * 0.95
 p <- ggplot(
   df_rel_psi, aes(x = time_rel, y = psi_int, color = ski_slope)
 ) +
-  ggalt::geom_xspline(aes(group = id), spline_shape = 0.75, alpha = 0.7, show.legend = FALSE) +
+  geom_xspline(aes(group = id), spline_shape = 0.75, alpha = 0.7, show.legend = FALSE) +
   geom_vline(xintercept = c(50, 60), linetype = "dashed", color = "black", linewidth = 0.3) +
   annotate("text",
     x = 55,
