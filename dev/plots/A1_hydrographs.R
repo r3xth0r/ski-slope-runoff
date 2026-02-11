@@ -8,9 +8,6 @@ suppressPackageStartupMessages({
 
 source("dev/helper/theme_ski.R")
 source("dev/helper/config.R")
-source("dev/helper/semivariogram.R")
-
-THRESHOLD <- 0.2
 
 df_ski_hydro <- read_rds("dat/interim/df_ski_hydro.rds")
 
@@ -35,26 +32,10 @@ df_rel_psi <- df_ski_hydro |>
 
 annotation_pos_y <- max(df_rel_psi$psi_int, na.rm = TRUE) * 0.95
 
-pred_curves <- df_rel_psi |>
-  group_by(id) |>
-  filter(max(psi_int, na.rm = TRUE) >= THRESHOLD) |>
-  group_by(ski_slope) |>
-  nest() |>
-  mutate(
-    params = map(data, ~ fit_semivariogram(.x, x = "time_rel", y = "psi_int")),
-    curve = map(params, ~ tibble(x = seq(0, 90, length.out = 300)) |>
-      predict_semivariogram(params = .x, x = "x", use_abs_x = FALSE) |>
-      rename(time_rel = x))
-  ) |>
-  select(ski_slope, curve) |>
-  unnest(curve) |>
-  ungroup()
-
 p <- ggplot(
   df_rel_psi, aes(x = time_rel, y = psi_int, color = ski_slope)
 ) +
   ggalt::geom_xspline(aes(group = id), spline_shape = 0.75, alpha = 0.5) +
-  geom_line(data = pred_curves, aes(x = time_rel, y = y_hat), linewidth = 1) +
   geom_vline(xintercept = c(50, 60), linetype = "dashed", color = "black", linewidth = 0.3) +
   annotate("text",
     x = 55,
