@@ -61,7 +61,7 @@ p <- ggplot(data = dat, aes(x = t, y = AK, group = type)) +
   ) +
   annotate("text",
     x = 55, y = 0.58,
-    label = "italic(atop('time of quasi-steady','runoff'))", parse = TRUE,
+    label = "italic(atop('time of','quasi-steady runoff'))", parse = TRUE,
     size = sz, color = c2, family = font
   ) +
   geom_segment(aes(x = 11, y = 0.4, xend = 8.3, yend = 0.43),
