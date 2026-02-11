@@ -83,8 +83,7 @@ p <- ggplot(
   ) +
   labs(
     x = "t [min]",
-    y = expression(italic(C) * " [-]"),
-    title = "ARS Hydrographs"
+    y = expression(italic(C) * " [-]")
   ) +
   theme_ski() +
   theme(
