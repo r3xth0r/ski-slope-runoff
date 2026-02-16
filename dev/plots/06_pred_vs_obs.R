@@ -28,10 +28,10 @@ p <- ggplot(metrics, aes(x = response, y = truth, color = id)) +
   geom_point(alpha = 0.5, show.legend = FALSE) +
   geom_abline(slope = 1, intercept = 0, linetype = "dashed") +
   facet_wrap(~id) +
-  scale_x_continuous(name = expression(predicted ~ italic(C[const.]))) +
-  scale_y_continuous(name = expression(observed ~ italic(C[const.]))) +
+  scale_x_continuous(name = expression(predicted ~ italic(C[const.])), breaks = seq(0, 1.2, 0.25)) +
+  scale_y_continuous(name = expression(observed ~ italic(C[const.])), breaks = seq(0, 1.2, 0.25)) +
   scale_color_manual(values = c(ski_col, ref_col)) +
-  coord_fixed(xlim = c(0, 1.15), ylim = c(0, 1.15)) +
+  coord_fixed(xlim = c(0, 1.11), ylim = c(0, 1.11)) +
   theme_ski()
 ggsave(
   glue::glue("plt/fig_06_{TYPE}.{file_format}"),

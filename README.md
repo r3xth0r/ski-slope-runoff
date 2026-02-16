@@ -2,9 +2,7 @@
 
 <p align="center">
     <a href="https://style.tidyverse.org">
-        <img alt="Code style: tidyverse" src="https://img.shields.io/badge/codestyle-tidyverse-blue"></a>
-    <a href="https://github.com/psf/black">
-        <img alt="Code style: black" src="https://img.shields.io/badge/codestyle-black-000000.svg"></a>
+        <img alt="Code style: tidyverse" src="https://img.shields.io/badge/codestyle-tidyverse-1a162d?logo=r&logoColor=white"></a>
     <a href="https://doi.org/10.5281/zenodo.16025948">
         <img src="https://zenodo.org/badge/DOI/10.5281/zenodo.16025948.svg" alt="DOI"></a>
 </p>

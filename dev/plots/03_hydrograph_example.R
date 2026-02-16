@@ -44,11 +44,9 @@ p <- ggplot(data = dat, aes(x = t, y = AK, group = type)) +
            label = "italic('accumulation time')", parse = TRUE,
            size = sz, color = c2, family = font) +
   geom_segment(aes(x = 50.5, y = 0.73, xend = 59.5, yend = 0.73),
-               size = 0.4, color = c2,
-               arrow = arrow(length = grid::unit(1.7, "mm"), ends = "both", type = "closed")) +
-  annotate("text", x = 55, y = 0.58,
-           label = "italic(atop('time of quasi-steady','runoff'))", parse = TRUE,
-           size = sz, color = c2, family = font) +
+    linewidth = 0.4, color = c2, arrow = arrow(length = unit(1.7, "mm"), ends = "both", type = "closed")
+  ) +
+  annotate("text", x = 55, y = 0.58, label = bquote(italic(atop("time of", "quasi-steady runoff"))), size = sz, color = c2, family = font) +
   geom_segment(aes(x = 11, y = 0.4, xend = 8.3, yend = 0.43),
                size = 0.2, color = c2,
                arrow = arrow(length = grid::unit(1.5, "mm"), type = "closed")) +
