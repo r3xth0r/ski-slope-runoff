@@ -1,10 +1,12 @@
 # Analysis of hydrological drivers of surface runoff in Alpine ski regions
 
 <p align="center">
-    <a href="https://style.tidyverse.org">
-        <img alt="Code style: tidyverse" src="https://img.shields.io/badge/codestyle-tidyverse-1a162d?logo=r&logoColor=white"></a>
+    <a href="https://doi.org/10.1016/j.jhydrol.2026.135302">
+        <img src="https://img.shields.io/badge/paper-doi:10.1016/j.jhydrol.2026.135302-a5b9b3" alt="DOI"></a>
     <a href="https://doi.org/10.5281/zenodo.16025948">
         <img src="https://zenodo.org/badge/DOI/10.5281/zenodo.16025948.svg" alt="DOI"></a>
+    <a href="https://style.tidyverse.org">
+        <img alt="Code style: tidyverse" src="https://img.shields.io/badge/codestyle-tidyverse-1a162d?logo=r&logoColor=white"></a>
 </p>
 
 This repository supplements the manuscript by
@@ -18,9 +20,9 @@ Klaus Klebinder<sup>[![](https://info.orcid.org/wp-content/uploads/2019/11/orcid
 Bernhard Kohl<sup>[![](https://info.orcid.org/wp-content/uploads/2019/11/orcid_16x16.png)](https://orcid.org/0000-0002-5716-6541)</sup>,
 Gertraud Meißl<sup>[![](https://info.orcid.org/wp-content/uploads/2019/11/orcid_16x16.png)](https://orcid.org/0000-0001-9122-3207)</sup>,
 Gerhard Markart<sup>[![](https://info.orcid.org/wp-content/uploads/2019/11/orcid_16x16.png)](https://orcid.org/0009-0000-6449-8969)</sup>
-(2025):
+(2026):
 **Hydrological drivers of surface runoff during high-intensity rainfall experiments in Alpine ski regions**.
-Submitted to *Journal of Hydrology*. <!-- Issue(Volume), pp-pp. [doi:](https://doi.org/#).-->
+*Journal of Hydrology*. <!-- Issue(Volume) -->135302. [doi:10.1016/j.jhydrol.2026.135302](https://doi.org/10.1016/j.jhydrol.2026.135302).
 
 ## Repo structure 
 
