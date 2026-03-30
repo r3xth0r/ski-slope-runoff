@@ -27,9 +27,9 @@ authors:
   given-names: "Gerhard"
   orcid: "https://orcid.org/0009-0000-6449-8969"
 title: "Hydrological drivers of surface runoff during high-intensity rainfall experiments in Alpine ski regions"
-version: 2.1
+version: 3.0
 doi: 10.5281/zenodo.16025948
-date-released: 2026-02-16
+date-released: 2026-03-30
 url: "https://github.com/r3xth0r/ski-slope-runoff/"
 preferred-citation:
   type: article
