@@ -22,7 +22,7 @@ Gertraud Meißl<sup>[![](https://info.orcid.org/wp-content/uploads/2019/11/orcid
 Gerhard Markart<sup>[![](https://info.orcid.org/wp-content/uploads/2019/11/orcid_16x16.png)](https://orcid.org/0009-0000-6449-8969)</sup>
 (2026):
 **Hydrological drivers of surface runoff during high-intensity rainfall experiments in Alpine ski regions**.
-*Journal of Hydrology*. <!-- Issue(Volume) -->135302. [doi:10.1016/j.jhydrol.2026.135302](https://doi.org/10.1016/j.jhydrol.2026.135302).
+*Journal of Hydrology*, 672, 135302. [doi:10.1016/j.jhydrol.2026.135302](https://doi.org/10.1016/j.jhydrol.2026.135302).
 
 ## Repo structure 
 
