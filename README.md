@@ -9,11 +9,11 @@
         <img alt="Code style: tidyverse" src="https://img.shields.io/badge/codestyle-tidyverse-1a162d?logo=r&logoColor=white"></a>
 </p>
 
-This repository supplements the manuscript by
+This repository supplements the paper
 <!-- in alphabetical order, apart from first, second, third and senior author -->
 Veronika Lechner<sup>[![](https://info.orcid.org/wp-content/uploads/2019/11/orcid_16x16.png)](https://orcid.org/0000-0002-9707-182X)</sup>,
 Christian Scheidl<sup>[![](https://info.orcid.org/wp-content/uploads/2019/11/orcid_16x16.png)](https://orcid.org/0000-0002-5625-6238)</sup>,
-Matthias Schlögl<sup>[![](https://info.orcid.org/wp-content/uploads/2019/11/orcid_16x16.png)](https://orcid.org/0000-0002-4357-523X)</sup> and
+Matthias Schlögl<sup>[![](https://info.orcid.org/wp-content/uploads/2019/11/orcid_16x16.png)](https://orcid.org/0000-0002-4357-523X)</sup>,
 Elena Baldauf<sup>[![](https://info.orcid.org/wp-content/uploads/2019/11/orcid_16x16.png)]()</sup>,
 Andreas Huber<sup>[![](https://info.orcid.org/wp-content/uploads/2019/11/orcid_16x16.png)](https://orcid.org/0009-0005-4238-8124)</sup>,
 Klaus Klebinder<sup>[![](https://info.orcid.org/wp-content/uploads/2019/11/orcid_16x16.png)]()</sup>,
